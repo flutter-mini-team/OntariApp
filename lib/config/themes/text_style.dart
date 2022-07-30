@@ -14,10 +14,22 @@ class TxtStyle {
     fontSize: 22,
   );
 
+  static const headline2BoldWhite = TextStyle(
+    fontWeight: FontWeight.w700,
+    color: DarkTheme.white,
+    fontSize: 22,
+  );
+
   static const headline3SemiBold = TextStyle(
     fontWeight: FontWeight.w700,
     color: DarkTheme.greyScale700,
     fontSize: 16,
+  );
+
+  static const create = TextStyle(
+    fontWeight: FontWeight.w700,
+    color: DarkTheme.primaryBlue600,
+    fontSize: 14,
   );
 
   static const headline4SemiBold = TextStyle(
@@ -26,9 +38,33 @@ class TxtStyle {
     fontSize: 14,
   );
 
+  static const headline4White = TextStyle(
+    fontWeight: FontWeight.w600,
+    color: DarkTheme.white,
+    fontSize: 20,
+  );
+
+  static const headline4blue = TextStyle(
+    fontWeight: FontWeight.w600,
+    color: DarkTheme.primaryBlue600,
+    fontSize: 14,
+  );
+
   static const headline5Medium = TextStyle(
     fontWeight: FontWeight.w500,
     color: DarkTheme.greyScale700,
+    fontSize: 14,
+  );
+
+  static const headline5MediumWhite = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: DarkTheme.greyScale500,
+    fontSize: 14,
+  );
+
+  static const hintText = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: DarkTheme.greyScale500,
     fontSize: 14,
   );
 
@@ -68,6 +104,12 @@ class TxtStyle {
     fontSize: 12,
   );
 
+    static const bodySmallMediumGrey = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: DarkTheme.greyScale500,
+    fontSize: 14,
+  );
+
   static const bodySmallRegular = TextStyle(
     fontWeight: FontWeight.w400,
     color: DarkTheme.greyScale700,
@@ -89,6 +131,36 @@ class TxtStyle {
   static const buttonSmallSemiBold = TextStyle(
     fontWeight: FontWeight.w600,
     color: DarkTheme.greyScale700,
+    fontSize: 12,
+  );
+
+  static const titleInput = TextStyle(
+    fontWeight: FontWeight.w600,
+    color: DarkTheme.white,
+    fontSize: 14,
+  );
+
+  static const Term = TextStyle(
+    fontWeight: FontWeight.w600,
+    color: DarkTheme.greyScale500,
+    fontSize: 12,
+  );
+
+  static const TermBold = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: DarkTheme.greyScale700,
+    fontSize: 12,
+  );
+
+  static const titleSplash = TextStyle(
+    fontWeight: FontWeight.w800,
+    color: DarkTheme.white,
+    fontSize: 40,
+  );
+
+  static const bodyTextSmall = TextStyle(
+    fontWeight: FontWeight.w500,
+    color: DarkTheme.white,
     fontSize: 12,
   );
 }

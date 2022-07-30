@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ontari_app/modules/splash_page.dart';
 
 import '../../modules/common_widget/common_widget_page.dart';
+import '../../modules/sign_in_page.dart';
+import '../../modules/sign_up_page.dart';
+import '../../modules/verify_your_page.dart';
 import '../../widgets/stful/pages.dart';
 
 class Router {
@@ -14,23 +18,22 @@ class Router {
         {
           return MaterialPageRoute(builder: (_) => const ListPage());
         }
-      // case 'Splash':
-      // {
-      //     return MaterialPageRoute(builder: (_) => OnBoardingPage());
-
-      // }
-      // case 'OnBoardingPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => OnBoardingPage());
-      //   }
-      // case 'SignInPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => SignInPage());
-      //   }
-      // case 'SignUpPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => SignUpPage());
-      //   }
+      case 'Splash':
+        {
+          return MaterialPageRoute(builder: (_) => const SplashPage());
+        }
+      case 'SignInPage':
+        {
+          return MaterialPageRoute(builder: (_) => const SignInPage());
+        }
+      case 'SignUpPage':
+        {
+          return MaterialPageRoute(builder: (_) => const SignUpPage());
+        }
+      case 'VerifyYourPage':
+        {
+          return MaterialPageRoute(builder: (_) => const VerifyYourPage());
+        }
       // case 'FavoriteGenrePage':
       //   {
       //     return MaterialPageRoute(builder: (_) => FavoriteGenrePage());

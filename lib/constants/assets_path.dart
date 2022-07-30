@@ -2,9 +2,16 @@ class AssetPath {
   static const String prePath = 'assets/images';
 
   static const String iconGoogle = '$prePath/google_icon.png';
+  static const String iconFacebook = '$prePath/facebook_icon.png';
   static const String iconPlay = '$prePath/play_icon.png';
   static const String iconClose = '$prePath/close_icon.png';
-
+  static const String iconEmail = '$prePath/email_icon.png';
+  static const String iconEye = '$prePath/eye_icon.png';
+  static const String iconHideEye = '$prePath/hide_eye_icon.png';
+  static const String iconLock = '$prePath/lock_icon.png';
+  static const String iconUncheck = '$prePath/uncheck_icon.png';
+  static const String iconCheck = '$prePath/check_icon.png';
+  static const String iconSearch = '$prePath/search_icon.png';
 
   static const String img_Avatar = '$prePath/img_avatar.png';
   // static const String iconBack = '$prePath/back.png';

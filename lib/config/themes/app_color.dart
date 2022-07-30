@@ -22,6 +22,7 @@ class DarkTheme {
   static const primaryBlue700 = Color(0xFF2C5EBF);
   static const primaryBlue800 = Color(0xFF003F99);
   static const primaryBlue900 = Color(0xFF003074);
+  static const primaryBlueButton900 = Color(0xFF1D2334);
 
   static const white = Color(0xFFFFFFFF);
   static const green = Color(0xFF00BF71);
