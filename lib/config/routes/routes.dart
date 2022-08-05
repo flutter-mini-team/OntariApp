@@ -14,7 +14,7 @@ class Routes {
   static const String forgotPasswordPage = 'ForgotPasswordPage';
   static const String selectPlanPage = 'SelectPlanPage';
 
-  static const String homePage = 'HomePagePage';
+  static const String homePage = 'HomePage';
   static const String activityPage = 'ActivityPage';
   static const String categoryPage = 'CategoryPage';
   static const String searchMentorPage = 'SearchMentorPage';

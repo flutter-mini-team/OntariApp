@@ -7,8 +7,8 @@ class ClassicButton extends StatelessWidget {
   final double? height;
   final Color? color;
   final double? radius;
-  final double? widthRadius;
-  final Color? colorRadius;
+  final double widthRadius;
+  final Color colorRadius;
   final Widget? child;
   final VoidCallback? onTap;
 
@@ -18,8 +18,8 @@ class ClassicButton extends StatelessWidget {
     this.height,
     this.color,
     this.radius,
-    this.widthRadius,
-    this.colorRadius,
+    this.widthRadius = 0,
+    this.colorRadius = DarkTheme.white,
     this.child,
     this.onTap,
   }) : super(key: key);
@@ -36,8 +36,8 @@ class ClassicButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           border: Border.all(
-            width: widthRadius!,
-            color: colorRadius!,
+            width: widthRadius,
+            color: colorRadius,
           ),
           borderRadius: BorderRadius.circular(radius!),
         ),
@@ -51,12 +51,15 @@ class CircleButton extends StatelessWidget {
   final String? assetPath;
   final Color? bgColor;
   final VoidCallback? onTap;
+  final double? widthIcon, heightIcon;
 
   const CircleButton({
     Key? key,
     this.assetPath,
     this.bgColor,
     this.onTap,
+    this.widthIcon = 10,
+    this.heightIcon = 10,
   }) : super(key: key);
 
   @override
@@ -65,9 +68,13 @@ class CircleButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(color: bgColor, shape: BoxShape.circle),
-        child: ImageIcon(
-          color: DarkTheme.white,
-          AssetImage(assetPath!),
+        child: Align(
+          child: Image(
+            width: widthIcon,
+            height: heightIcon,
+            image: AssetImage(assetPath!),
+            color: DarkTheme.white,
+          ),
         ),
       ),
     );
@@ -96,14 +103,15 @@ class SquareButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(radius!),
       onTap: onTap,
       child: Container(
-          alignment: Alignment.center,
-          height: edge,
-          width: edge,
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(radius!),
-          ),
-          child: child),
+        alignment: Alignment.center,
+        height: edge,
+        width: edge,
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(radius!),
+        ),
+        child: child,
+      ),
     );
   }
 }

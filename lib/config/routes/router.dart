@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ontari_app/modules/activity/activity_page.dart';
+import 'package:ontari_app/modules/category/category_page.dart';
+import 'package:ontari_app/modules/select_plan_page.dart';
+import 'package:ontari_app/modules/setting/setting_page.dart';
 import 'package:ontari_app/modules/splash_page.dart';
 
 import '../../modules/common_widget/common_widget_page.dart';
+import '../../modules/home/home_page.dart';
 import '../../modules/sign_in_page.dart';
 import '../../modules/sign_up_page.dart';
 import '../../modules/verify_your_page.dart';
+import '../../root_page.dart';
 import '../../widgets/stful/pages.dart';
 
 class Router {
@@ -18,7 +24,7 @@ class Router {
         {
           return MaterialPageRoute(builder: (_) => const ListPage());
         }
-      case 'Splash':
+      case 'SplashPage':
         {
           return MaterialPageRoute(builder: (_) => const SplashPage());
         }
@@ -34,6 +40,27 @@ class Router {
         {
           return MaterialPageRoute(builder: (_) => const VerifyYourPage());
         }
+      case 'SelectPlanPage':
+        {
+          return MaterialPageRoute(builder: (_) => const SelectPlanPage());
+        }
+      case 'HomePage':
+        {
+          return MaterialPageRoute(builder: (_) => const RootPage());
+        }
+      case 'ActivityPage':
+        {
+          return MaterialPageRoute(builder: (_) => const RootPage(bottom: 1));
+        }
+      case 'CategoryPage':
+        {
+          return MaterialPageRoute(builder: (_) => const RootPage(bottom: 2));
+        }
+      case 'SettingPage':
+        {
+          return MaterialPageRoute(builder: (_) => const RootPage(bottom: 3));
+        }
+
       // case 'FavoriteGenrePage':
       //   {
       //     return MaterialPageRoute(builder: (_) => FavoriteGenrePage());
@@ -42,10 +69,7 @@ class Router {
       //   {
       //     return MaterialPageRoute(builder: (_) => ConfirmNewPage());
       //   }
-      // case 'HomePage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => HomePage());
-      //   }
+
       // case 'MovieInfoPage':
       //   {
       //     return MaterialPageRoute(builder: (_) => MovieInfoPage());
@@ -88,7 +112,7 @@ class Router {
 
       // case 'RootPage':
       //   {
-      //     return MaterialPageRoute(builder: (_) => RootPage());
+      //     return MaterialPageRoute(builder: (_) => const RootPage());
       //   }
 
       default:

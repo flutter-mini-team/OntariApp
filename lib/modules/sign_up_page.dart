@@ -135,7 +135,7 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.fromLTRB(120, 70, 120, 5),
+              padding: EdgeInsets.fromLTRB(120, 80, 120, 5),
               child: IndicatorHome(
                 color: DarkTheme.white,
                 radius: 10,

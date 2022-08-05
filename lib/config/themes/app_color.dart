@@ -22,12 +22,19 @@ class DarkTheme {
   static const primaryBlue700 = Color(0xFF2C5EBF);
   static const primaryBlue800 = Color(0xFF003F99);
   static const primaryBlue900 = Color(0xFF003074);
-  static const primaryBlueButton900 = Color(0xFF1D2334);
 
   static const white = Color(0xFFFFFFFF);
   static const green = Color(0xFF00BF71);
   static const red = Color(0xFFFD2A2A);
   static const yellow = Color(0xFFFBBC05);
+
+  static const primaryBlueButton900 = Color(0xFF1D2334);
+  static const primaryBlueButton = Color(0xFF0F111A);
+  static const colorBox = Color(0xFF173C70);
+  static const colorImgMentor = Color(0xFF141724);
+  static const colorBoxActivity = Color(0xFF4D61F4);
+  static final colorImgPreview = const Color(0xFF232323).withOpacity(0.4);
+  static const colorContentCourse = const Color(0xFFC4C4C4);
 }
 
 // class GradientPalette {

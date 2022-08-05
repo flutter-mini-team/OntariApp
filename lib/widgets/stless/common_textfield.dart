@@ -10,7 +10,7 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField({
     Key? key,
     this.size,
-    required this.title,
+    this.title = '',
     required this.hintText,
     this.keyboardType,
     this.childPrefixIcon,
@@ -34,7 +34,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.title, style: TxtStyle.titleInput),
-        const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+        const SizedBox(height: 16),
         SizedBox(
           width: widget.size!.width,
           child: TextField(
@@ -46,7 +46,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             keyboardType: widget.keyboardType,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(12.0),
                 borderSide: const BorderSide(
                   color: DarkTheme.greyScale900,
                   width: 2,
@@ -55,7 +55,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               filled: true,
               fillColor: DarkTheme.greyScale800,
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(12.0),
                 borderSide: const BorderSide(
                   color: DarkTheme.primaryBlue600,
                   width: 2,
@@ -70,12 +70,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
               suffixIcon: !_onChanged!
                   ? IconButton(
-                      icon: Align(
+                      icon: const Align(
                         widthFactor: 0.5,
                         heightFactor: 0.5,
                         child: CustomAvatar(
-                          width: widget.size!.width / 26,
-                          height: widget.size!.width / 32,
+                          width: 15,
+                          height: 15,
                           assetName: AssetPath.iconClose,
                         ),
                       ),
@@ -122,7 +122,7 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.title!, style: TxtStyle.titleInput),
-        const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+        const SizedBox(height: 16),
         SizedBox(
           width: widget.size!.width,
           child: TextField(
@@ -133,7 +133,7 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
             obscureText: _isObscure,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(12.0),
                 borderSide: const BorderSide(
                   color: DarkTheme.greyScale900,
                   width: 2,
@@ -142,7 +142,7 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
               filled: true,
               fillColor: DarkTheme.greyScale800,
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(12.0),
                 borderSide: const BorderSide(
                   color: DarkTheme.primaryBlue600,
                   width: 2,
@@ -154,17 +154,18 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
                 widthFactor: 0.5,
                 heightFactor: 0.5,
                 child: CustomAvatar(
-                    width: widget.size!.width / 20,
-                    height: widget.size!.width / 20,
-                    assetName: widget.assetPrefixIcon!),
+                  width: 15,
+                  height: 16,
+                  assetName: widget.assetPrefixIcon!,
+                ),
               ),
               suffixIcon: Align(
                 widthFactor: 0.5,
                 heightFactor: 0.5,
                 child: !onChanged!
                     ? CustomAvatar(
-                        width: widget.size!.width / 14,
-                        height: widget.size!.width / 18,
+                        width: 25,
+                        height: 18,
                         assetName: _isObscure
                             ? AssetPath.iconEye
                             : AssetPath.iconHideEye,
@@ -200,6 +201,7 @@ class _InputCodeState extends State<InputCode> {
       width: 55,
       height: 55,
       child: TextField(
+        keyboardAppearance: Brightness.dark,
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         style: TxtStyle.headline4White,
@@ -208,6 +210,10 @@ class _InputCodeState extends State<InputCode> {
           counterText: '',
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: DarkTheme.greyScale800,
+              width: 2,
+            ),
           ),
           filled: true,
           fillColor: DarkTheme.greyScale800,
