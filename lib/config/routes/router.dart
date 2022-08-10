@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/modules/activity/activity_page.dart';
 import 'package:ontari_app/modules/category/category_page.dart';
-import 'package:ontari_app/modules/select_plan_page.dart';
+import 'package:ontari_app/modules/setting/edit_profile_page.dart';
+
 import 'package:ontari_app/modules/setting/setting_page.dart';
-import 'package:ontari_app/modules/splash_page.dart';
 
 import '../../modules/common_widget/common_widget_page.dart';
 import '../../modules/home/home_page.dart';
-import '../../modules/sign_in_page.dart';
-import '../../modules/sign_up_page.dart';
-import '../../modules/verify_your_page.dart';
+
+import '../../modules/setting/change_language_page.dart';
+import '../../modules/setting/download_video_page.dart';
+import '../../modules/setting/my_favorite_page.dart';
 import '../../root_page.dart';
+import '../../sign_in/select_plan_page.dart';
+import '../../sign_in/sign_in_page.dart';
+import '../../sign_in/sign_up_page.dart';
+import '../../sign_in/splash_page.dart';
+import '../../sign_in/verify_your_page.dart';
 import '../../widgets/stful/pages.dart';
 
 class Router {
@@ -60,24 +66,23 @@ class Router {
         {
           return MaterialPageRoute(builder: (_) => const RootPage(bottom: 3));
         }
-
-      // case 'FavoriteGenrePage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => FavoriteGenrePage());
-      //   }
-      // case 'ConfirmNewPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => ConfirmNewPage());
-      //   }
-
-      // case 'MovieInfoPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => MovieInfoPage());
-      //   }
-      // case 'SelectCinemaPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => SelectCinemaPage());
-      //   }case 'SelectSeatPage':
+      case 'LanguagePage':
+        {
+          return MaterialPageRoute(builder: (_) => const LanguagePage());
+        }
+      case 'FavoritePage':
+        {
+          return MaterialPageRoute(builder: (_) => const MyFavoritePage());
+        }
+      case 'DownloadVideoPage':
+        {
+          return MaterialPageRoute(builder: (_) => const DownloadVideoPage());
+        }
+      case 'EditProfilePage':
+        {
+          return MaterialPageRoute(builder: (_) => const EditProfilePage());
+        }
+      //case 'SelectSeatPage':
       //   {
       //     return MaterialPageRoute(builder: (_) => SelectSeatPage());
       //   }

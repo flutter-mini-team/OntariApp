@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ontari_app/config/themes/app_color.dart';
 
 import '../../../config/themes/text_style.dart';
 import '../../../constants/assets_path.dart';
@@ -18,37 +19,45 @@ class CategoryOffice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BodyItem(
-      onTap: onTap,
-      assetName: AssetPath.imgBackgroundItems,
-      widthImg: 48,
-      height: 48,
-      child: Center(
-        child: Image(image: AssetImage(assetIcon!)),
-      ),
-      mid: Padding(
-        padding: const EdgeInsets.only(left: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title!,
-              style: TxtStyle.titleItemActivity,
+    return Column(
+      children: [
+        BodyItem(
+          onTap: onTap,
+          assetName: AssetPath.imgBackgroundItems,
+          widthImg: 48,
+          height: 48,
+          //paddingDivider: 20,
+          //colorDivider: DarkTheme.colorDivider,
+          mid: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title!,
+                  style: TxtStyle.headline4SemiBoldWhite,
+                ),
+                Text(
+                  countMentor!,
+                  style: TxtStyle.headline6MediumGrey,
+                ),
+              ],
             ),
-            Text(
-              countMentor!,
-              style: TxtStyle.headline6MediumGrey,
+          ),
+          right: const Image(
+            width: 24,
+            height: 24,
+            alignment: Alignment.centerRight,
+            image: AssetImage(
+              AssetPath.iconArrowRight,
             ),
-          ],
+          ),
+          child: Image(image: AssetImage(assetIcon!)),
         ),
-      ),
-      right: const Image(
-        alignment: Alignment.centerRight,
-        image: AssetImage(
-          AssetPath.iconArrowRight,
-        ),
-      ),
+        const SizedBox(height: 20),
+        const Divider(color: DarkTheme.colorDivider),
+      ],
     );
   }
 }

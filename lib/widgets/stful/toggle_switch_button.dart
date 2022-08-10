@@ -18,7 +18,7 @@ class _ToggleSwitchButtonState extends State<ToggleSwitchButton> {
       scale: 0.8,
       child: CupertinoSwitch(
         value: _value,
-        activeColor: DarkTheme.primaryBlue900,
+        activeColor: DarkTheme.primaryBlue600,
         onChanged: (value) => setState(() {
           _value = value;
         }),

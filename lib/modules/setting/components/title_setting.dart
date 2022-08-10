@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+import '../../../config/themes/app_color.dart';
+import '../../../config/themes/text_style.dart';
+import '../../../constants/assets_path.dart';
+import '../../../widgets/stless/common_button.dart';
+
+class TitleSetting extends StatelessWidget {
+  const TitleSetting({
+    Key? key,
+    this.title = '',
+  }) : super(key: key);
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24.0),
+      child: Row(
+        children: [
+          SquareButton(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            edge: 40,
+            bgColor: DarkTheme.greyScale800,
+            radius: 10,
+            child: const Image(
+              color: DarkTheme.greyScale600,
+              image: AssetImage(
+                AssetPath.iconArrowLeft,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Text(
+            title!,
+            style: TxtStyle.headline3SemiBoldWhite,
+          ),
+        ],
+      ),
+    );
+  }
+}

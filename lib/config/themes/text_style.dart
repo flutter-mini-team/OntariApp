@@ -214,7 +214,7 @@ class TxtStyle {
 
   static const TermBold = TextStyle(
     fontWeight: FontWeight.w500,
-    color: DarkTheme.greyScale700,
+    color: DarkTheme.white,
     fontSize: 12,
   );
 
@@ -224,7 +224,7 @@ class TxtStyle {
     fontSize: 40,
   );
 
-  static const titleActivity = TextStyle(
+  static const titlePage = TextStyle(
     fontWeight: FontWeight.w800,
     color: DarkTheme.white,
     fontSize: 24,
@@ -264,6 +264,18 @@ class TxtStyle {
     fontWeight: FontWeight.w500,
     color: DarkTheme.white,
     fontSize: 10,
+  );
+
+  static final textFinished = TextStyle(
+    fontWeight: FontWeight.w400,
+    color: DarkTheme.white.withOpacity(0.7),
+    fontSize: 14,
+  );
+
+  static const textLogout = TextStyle(
+    fontWeight: FontWeight.w600,
+    color: DarkTheme.red,
+    fontSize: 14,
   );
 }
 

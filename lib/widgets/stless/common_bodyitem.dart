@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ontari_app/config/themes/app_color.dart';
 
 class BodyItem extends StatelessWidget {
   BodyItem({
@@ -23,29 +24,34 @@ class BodyItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: SizedBox(
-        height: height,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: widthImg,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(assetName!),
+      child: Column(
+        children: [
+          SizedBox(
+            height: height,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: widthImg,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(assetName!),
+                    ),
+                    borderRadius: BorderRadius.circular(radius),
+                  ),
+                  child: child,
                 ),
-                borderRadius: BorderRadius.circular(radius),
-              ),
-              child: child,
+                SizedBox(
+                  height: height,
+                  child: mid,
+                ),
+                Expanded(child: right),
+              ],
             ),
-            SizedBox(
-              height: height,
-              child: mid,
-            ),
-            Expanded(child: right),
-          ],
-        ),
+          ),
+          
+        ],
       ),
     );
   }

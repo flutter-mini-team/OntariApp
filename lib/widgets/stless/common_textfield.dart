@@ -9,14 +9,15 @@ import 'indicator_home.dart';
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
     Key? key,
-    this.size,
     this.title = '',
     required this.hintText,
     this.keyboardType,
+    this.height = 0,
+    this.heightSizedbox = 16,
     this.childPrefixIcon,
   }) : super(key: key);
   final String title;
-  final Size? size;
+  final double? height, heightSizedbox;
   final hintText, keyboardType;
   final Widget? childPrefixIcon;
 
@@ -34,9 +35,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.title, style: TxtStyle.titleInput),
-        const SizedBox(height: 16),
+        SizedBox(height: widget.heightSizedbox),
         SizedBox(
-          width: widget.size!.width,
+          height: widget.height,
           child: TextField(
             controller: text,
             onChanged: (value) {
@@ -125,6 +126,7 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
         const SizedBox(height: 16),
         SizedBox(
           width: widget.size!.width,
+          height: 52,
           child: TextField(
             onChanged: (value) {
               onChanged = false;

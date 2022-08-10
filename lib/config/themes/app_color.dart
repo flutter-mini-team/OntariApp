@@ -35,6 +35,8 @@ class DarkTheme {
   static const colorBoxActivity = Color(0xFF4D61F4);
   static final colorImgPreview = const Color(0xFF232323).withOpacity(0.4);
   static const colorContentCourse = const Color(0xFFC4C4C4);
+  static const colorDivider = Color(0xFF252B41);
+  static const colorMenuDialog = Color(0xFF252C41);
 }
 
 // class GradientPalette {

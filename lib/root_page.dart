@@ -18,22 +18,33 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   late List<Widget> _tabs;
-  //int _currentIndex = 0;
   late int _currentIndex = widget.bottom;
+  //late Widget _currentPage; //
 
   @override
   void initState() {
     _tabs = [HomePage(), ActivityPage(), CategoryPage(), SettingPage()];
+    //_currentPage = _tabs[0];
     super.initState();
   }
+
+  // void _changeTab(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //     _currentPage = _tabs[index];
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _tabs[_currentIndex],
+      //body: _currentPage,
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
         backgroundColor: DarkTheme.greyScale800,
         unselectedItemColor: DarkTheme.greyScale400,
         selectedItemColor: DarkTheme.primaryBlue600,
@@ -41,25 +52,30 @@ class _RootPageState extends State<RootPage> {
         onTap: (index) {
           setState(() {
             _currentIndex = index;
+            //_changeTab(index);
           });
         },
         items: const [
           BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage(AssetPath.iconHome)),
-              label: 'Home',
-              activeIcon: ImageIcon(AssetImage(AssetPath.iconHome))),
+            icon: ImageIcon(AssetImage(AssetPath.iconHome)),
+            label: 'Home',
+            activeIcon: ImageIcon(AssetImage(AssetPath.iconHome)),
+          ),
           BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage(AssetPath.iconActivity)),
-              label: 'Activity',
-              activeIcon: ImageIcon(AssetImage(AssetPath.iconActivity))),
+            icon: ImageIcon(AssetImage(AssetPath.iconActivity)),
+            label: 'Activity',
+            activeIcon: ImageIcon(AssetImage(AssetPath.iconActivity)),
+          ),
           BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage(AssetPath.iconCategory)),
-              label: 'Category',
-              activeIcon: ImageIcon(AssetImage(AssetPath.iconCategory))),
+            icon: ImageIcon(AssetImage(AssetPath.iconCategory)),
+            label: 'Category',
+            activeIcon: ImageIcon(AssetImage(AssetPath.iconCategory)),
+          ),
           BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage(AssetPath.iconSetting)),
-              label: 'Setting',
-              activeIcon: ImageIcon(AssetImage(AssetPath.iconSetting))),
+            icon: ImageIcon(AssetImage(AssetPath.iconSetting)),
+            label: 'Setting',
+            activeIcon: ImageIcon(AssetImage(AssetPath.iconSetting)),
+          ),
         ],
       ),
     );

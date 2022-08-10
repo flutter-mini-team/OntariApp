@@ -12,6 +12,7 @@ class AssetPath {
   static const String iconUncheck = '$prePath/uncheck_icon.png';
   static const String iconCheck = '$prePath/check_icon.png';
   static const String iconSearch = '$prePath/search_icon.png';
+  static const String iconSearchCourse = '$prePath/search_course_icon.png';
   static const String iconStar = '$prePath/star_icon.png';
   static const String iconFamily = '$prePath/family_icon.png';
   static const String iconHome = '$prePath/home_icon.png';
@@ -22,13 +23,14 @@ class AssetPath {
   static const String iconBox = '$prePath/box_icon.png';
   static const String iconRectangle = '$prePath/rectangle_icon.png';
   static const String iconArrowRight = '$prePath/arrow_right_icon.png';
+  static const String iconArrowLeft = '$prePath/arrow_left_icon.png';
   static const String iconChecked= '$prePath/checked_icon.png';
   static const String iconUS = '$prePath/us_icon.png';
   static const String iconJapan = '$prePath/japan_icon.png';
   static const String iconIndonesia = '$prePath/indonesia_icon.png';
   static const String iconFrance = '$prePath/france_icon.png';
   static const String iconItaly = '$prePath/italy_icon.png';
-  static const String iconRusia = '$prePath/rusia_icon.png';
+  static const String iconRussia = '$prePath/russia_icon.png';
   static const String iconGerman = '$prePath/german_icon.png';
   static const String iconSweden = '$prePath/sweden_icon.png';
   static const String iconTime = '$prePath/time_icon.png';
@@ -36,9 +38,23 @@ class AssetPath {
   static const String iconMore = '$prePath/more_icon.png';
   static const String iconUser = '$prePath/user_icon.png';
   static const String iconCrown = '$prePath/crown_icon.png';
+  static const String iconBusiness = '$prePath/business_icon.png';
+  static const String iconDesign = '$prePath/design_icon.png';
+  static const String iconEntertainment = '$prePath/entertainment_icon.png';
+  static const String iconFood = '$prePath/food_icon.png';
+  static const String iconCode = '$prePath/code_icon.png';
+  static const String iconMusic = '$prePath/music_icon.png';
+  static const String iconPassword = '$prePath/security_icon.png';
+  static const String iconMyFavorite = '$prePath/hearth_icon.png';
+  static const String iconLanguage = '$prePath/world_icon.png';
+  static const String iconDarkMode = '$prePath/moon_icon.png';
+  static const String iconShare = '$prePath/share_icon.png';
+  static const String iconRemove = '$prePath/remove_icon.png';
+  static const String iconPlayCircle = '$prePath/play_circle_icon.png';
 
 
   static const String imgVector = '$prePath/img_vector.png';
+  static const String imgVector2 = '$prePath/img_vector2.png';
   static const String imgMentor = '$prePath/img_mentor.png';
   static const String imgMentor2 = '$prePath/img_mentor2.png';
   static const String imgPreview = '$prePath/img_preview.png';

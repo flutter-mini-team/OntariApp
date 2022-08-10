@@ -23,34 +23,40 @@ class _ItemLanguageState extends State<ItemLanguage> {
 
   @override
   Widget build(BuildContext context) {
-    return BodyItem(
-      onTap: () {
-        setState(() {
-          _isSelected = !_isSelected!;
-        });
-      },
-      assetName: widget.assetName,
-      mid: Padding(
-        padding: const EdgeInsets.only(left: 14.0),
-        child: SizedBox(
-          width: 200,
-          child: Text(
-            widget.nameLang!,
-            style: _isSelected!
-                ? TxtStyle.headline4blue
-                : TxtStyle.titleItemActivity,
+    return Column(
+      children: [
+        BodyItem(
+          onTap: () {
+            setState(() {
+              _isSelected = !_isSelected!;
+            });
+          },
+          assetName: widget.assetName,
+          mid: Padding(
+            padding: const EdgeInsets.only(left: 14.0),
+            child: SizedBox(
+              width: 200,
+              child: Text(
+                widget.nameLang!,
+                style: _isSelected!
+                    ? TxtStyle.headline4blue
+                    : TxtStyle.headline4SemiBoldWhite,
+              ),
+            ),
           ),
+          height: 16,
+          radius: 2,
+          widthImg: 24,
+          right: _isSelected!
+              ? const Image(
+                  image: AssetImage(AssetPath.iconChecked),
+                  color: DarkTheme.primaryBlue600,
+                )
+              : const Text(''),
         ),
-      ),
-      height: 16,
-      radius: 2,
-      widthImg: 24,
-      right: _isSelected!
-          ? Image(
-              image: AssetImage(AssetPath.iconChecked),
-              color: DarkTheme.primaryBlue600,
-            )
-          : Text(''),
+        const SizedBox(height: 21),
+        Divider(color: DarkTheme.greyScale50.withOpacity(0.8)),
+      ],
     );
   }
 }

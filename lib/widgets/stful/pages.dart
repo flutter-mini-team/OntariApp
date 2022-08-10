@@ -30,10 +30,10 @@ class ListPage extends StatelessWidget {
       // Routes.playingCoursePage,
       // Routes.fullscreenVideoPage,
       Routes.settingPage,
-      // Routes.editProfilePage,
-      // Routes.downloadVideoPage,
-      // Routes.languagePage,
-      // Routes.favoritePage,
+      Routes.languagePage,
+      Routes.downloadVideoPage,
+      Routes.editProfilePage,
+      Routes.favoritePage,
       // Routes.termConditionPage,
     ];
     return Scaffold(

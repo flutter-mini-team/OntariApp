@@ -5,6 +5,8 @@ import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/models/model_local.dart';
+import 'package:ontari_app/modules/setting/components/items_arrow_setting.dart';
+import 'package:ontari_app/modules/setting/components/items_toggle_setting.dart';
 import 'package:ontari_app/widgets/stless/common_button.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -19,10 +21,14 @@ import '../../widgets/stless/indicator_home.dart';
 
 import '../../widgets/stless/mentor.dart';
 import '../../widgets/stless/terms.dart';
+import '../activity/components/completed_progress.dart';
 import '../activity/components/items_activity.dart';
 import '../category/components/category_office.dart';
 import '../category/components/items_category_office.dart';
+import '../setting/components/item_account.dart';
+import '../setting/components/items_download_video.dart';
 import '../setting/components/items_language.dart';
+import '../setting/components/items_my_favorite.dart';
 
 class CommonWidgetPage extends StatefulWidget {
   const CommonWidgetPage({Key? key}) : super(key: key);
@@ -169,7 +175,8 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             CustomTextField(
-              size: size / 1.2,
+              height: 52,
+              //size: size / 1.2,
               title: 'Email address',
               hintText: 'Enter your email address',
               keyboardType: TextInputType.emailAddress,
@@ -182,7 +189,8 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             TextFieldPassword(
-              size: size / 1.2,
+              size: size,
+              //height: 52,
               title: 'Password',
               hintText: 'Enter your password',
               assetPrefixIcon: AssetPath.iconLock,
@@ -190,8 +198,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             // search bar
             CustomTextField(
-              //controller: text,
-              size: size / 1.2,
+              height: 52,
               title: 'Search bar',
               hintText: 'Search your focus...',
               keyboardType: TextInputType.emailAddress,
@@ -451,228 +458,58 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: BodyItem(
-                height: 88,
-                widthImg: 112,
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              child: ItemsDownloadVideo(
                 assetName: AssetPath.imgContentDownload,
-                mid: Padding(
-                  padding: const EdgeInsets.only(left: 12.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Course Part 1',
-                        style: TxtStyle.textCourse,
-                      ),
-                      Text(
-                        'Introduction Mentor and\nCourse',
-                        style: TxtStyle.titleItemActivity,
-                      ),
-                      Text(
-                        'Beatrix Annabel',
-                        style: TxtStyle.headline5MediumWhite,
-                      ),
-                    ],
-                  ),
-                ),
-                right: const Align(
-                  alignment: Alignment.topRight,
-                  child: Image(
-                    image: AssetImage(AssetPath.iconMore),
-                    height: 20,
-                    width: 20,
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0, bottom: 8),
-                    child: SizedBox(
-                      width: 36,
-                      height: 18,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: DarkTheme.greyScale700,
-                        ),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          '10:09',
-                          style: TxtStyle.textTimeCourse,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                part: 'Course Part 1',
+                title: 'Introduction Mentor and\nCourse',
+                name: 'Beatrix Annabel',
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: BodyItem(
-                assetName: AssetPath.imgBackgroundItems,
-                height: 32,
-                widthImg: 32,
-                mid: const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Center(
-                    child: Text(
-                      'Change Phone Number',
-                      style: TxtStyle.headline4SemiBold,
-                    ),
-                  ),
-                ),
-                right: const Image(
-                  alignment: Alignment.centerRight,
-                  image: AssetImage(
-                    AssetPath.iconArrowRight,
-                  ),
-                ),
-                child: const Center(
-                  child: Image(
-                    image: AssetImage(AssetPath.iconUser),
-                    width: 10,
-                    height: 10,
-                  ),
-                ),
+              child: ItemsArrowSetting(
+                onTap: () {},
+                title: 'Change Phone Number',
+                assetName: AssetPath.iconUser,
+              ),
+            ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              child: ItemsToggleSetting(
+                title: 'Notification',
+                assetName: AssetPath.iconBell,
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: BodyItem(
-                assetName: AssetPath.imgBackgroundItems,
-                height: 32,
-                widthImg: 32,
-                mid: const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Center(
-                    child: Text(
-                      'Notification',
-                      style: TxtStyle.headline4SemiBold,
-                    ),
-                  ),
-                ),
-                right: const Padding(
-                  padding: EdgeInsets.only(left: 147.0),
-                  child: ToggleSwitchButton(),
-                ),
-                child: const Center(
-                  child: Image(
-                    image: AssetImage(AssetPath.iconBell),
-                    width: 10,
-                    height: 10,
-                  ),
-                ),
-              ),
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: BodyItem(
-                height: 64,
-                widthImg: 64,
+              child: ItemsMyFavorite(
+                onTap: () {},
                 assetName: AssetPath.imgContent3,
-                mid: Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Text(
-                        'Alexander Jane',
-                        style: TxtStyle.titleItemActivity,
-                      ),
-                      Text(
-                        'Teaches Social Psychology',
-                        style: TxtStyle.headline6MediumGrey,
-                      ),
-                    ],
-                  ),
-                ),
-                right: const Align(
-                  alignment: Alignment.topRight,
-                  child: Image(
-                    image: AssetImage(AssetPath.iconMore),
-                    height: 20,
-                    width: 20,
-                  ),
-                ),
-                child: Center(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                      child: SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircleButton(
-                          assetPath: AssetPath.iconPlay,
-                          bgColor: DarkTheme.white.withOpacity(0.4),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                title: 'Alexander Jane',
+                name: 'Teaches Social Psychology',
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: BodyItem(
-                height: 64,
-                widthImg: 64,
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              child: SettingAccount(
+                onTap: () {
+                  print('aaa');
+                },
+                fullName: 'Barly Vallendito',
+                userName: 'barlyvallendito',
                 assetName: AssetPath.imgAvatar,
-                mid: Padding(
-                  padding: const EdgeInsets.only(left: 14.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Barly Vallendito',
-                        style: TxtStyle.titleItemActivity,
-                      ),
-                      Text(
-                        'barlyvallendito',
-                        style: TxtStyle.headline5MediumWhite,
-                      ),
-                    ],
-                  ),
-                ),
-                right: const Image(
-                  alignment: Alignment.centerRight,
-                  image: AssetImage(
-                    AssetPath.iconArrowRight,
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 4.0, bottom: 4),
-                    child: SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: DarkTheme.white,
-                        ),
-                        alignment: Alignment.center,
-                        child: const Image(
-                          image: AssetImage(AssetPath.iconCrown),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ),
+            ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              child: CompletedProgress(),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
           ],
