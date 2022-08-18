@@ -141,6 +141,40 @@ class ModelSetting {
   });
 }
 
+class ModelSubjects extends ModelSetting {
+  ModelSubjects({required super.iconUrl, required super.title});
+}
+
+final List<ModelSubjects> subjects = [
+  ModelSubjects(
+    iconUrl: AssetPath.imgContentCourse,
+    title: 'Social Psychology',
+  ),
+  ModelSubjects(
+    iconUrl: AssetPath.imgContentCourse2,
+    title: 'Psychology of Self',
+  ),
+  ModelSubjects(
+    iconUrl: AssetPath.imgContentCourse3,
+    title: 'Psychology Mood',
+  ),
+];
+
+final List<ModelSubjects> subjectsGet = [
+  ModelSubjects(
+    iconUrl: AssetPath.iconTime,
+    title: '11 Hours of Demand Video',
+  ),
+  ModelSubjects(
+    iconUrl: AssetPath.iconFile,
+    title: 'Exclusive learning materials',
+  ),
+  ModelSubjects(
+    iconUrl: AssetPath.iconInfinity,
+    title: 'Full lifetime access',
+  ),
+];
+
 //----------------------------------Menu Item---------------------------------//
 const ModelSetting itemShare = ModelSetting(
   iconUrl: AssetPath.iconShare,
@@ -304,4 +338,60 @@ final List<ModelSettingDownload> downloadItem = [
   itemPart2,
   itemPart3,
   itemPart4,
+];
+//----------------------------------------------------------------------------//
+//----------------------------------------------------------------------------//
+
+class ModelCourse extends ModelSetting {
+  final String? time, part;
+
+  const ModelCourse({
+    required super.iconUrl,
+    required super.title,
+    this.time,
+    this.part,
+  });
+}
+
+const ModelCourse itemCourse1 = ModelCourse(
+  iconUrl: AssetPath.imgCourseList,
+  part: 'Course Part 1',
+  time: '10:09',
+  title: 'Introduction Mentor\nand Course 👋🏻',
+);
+
+const ModelCourse itemCourse2 = ModelCourse(
+  iconUrl: AssetPath.imgCourseList2,
+  part: 'Course Part 2',
+  time: '10:09',
+  title: 'Social Perceptions\nand Misperceptions',
+);
+
+const ModelCourse itemCourse3 = ModelCourse(
+  iconUrl: AssetPath.imgCourseList3,
+  part: 'Course Part 3',
+  time: '10:09',
+  title: 'Psychology of\nSelf-Presentation',
+);
+
+const ModelCourse itemCourse4 = ModelCourse(
+  iconUrl: AssetPath.imgCourseList4,
+  part: 'Course Part 4',
+  time: '10:09',
+  title: 'Conformity and\nDeindividiation',
+);
+
+const ModelCourse itemCourse5 = ModelCourse(
+  iconUrl: AssetPath.imgCourseList5,
+  part: 'Course Part 5',
+  time: '10:10',
+  title: 'Group Behavior: The\nGood, Bad, and Ugly',
+);
+
+final List<ModelCourse> courseItem = [
+  itemCourse1,
+  itemCourse2,
+  itemCourse3,
+  itemCourse4,
+  itemCourse5,
 ];

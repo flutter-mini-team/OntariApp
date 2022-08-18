@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/modules/activity/activity_page.dart';
-import 'package:ontari_app/modules/category/category_page.dart';
-import 'package:ontari_app/modules/setting/edit_profile_page.dart';
+import 'package:ontari_app/fullscreen_page.dart';
+import 'package:ontari_app/models/model_local.dart';
+import 'package:ontari_app/modules/activity/pages/activity_page.dart';
+import 'package:ontari_app/modules/category/pages/category_page.dart';
+import 'package:ontari_app/modules/common/common_widget_page.dart';
+import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
+import 'package:ontari_app/modules/details/pages/detail_playing_course.dart';
+import 'package:ontari_app/modules/setting/pages/change_language_page.dart';
+import 'package:ontari_app/modules/setting/pages/download_video_page.dart';
+import 'package:ontari_app/modules/setting/pages/edit_profile_page.dart';
+import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
+import 'package:ontari_app/modules/sign_in/pages/select_plan_page.dart';
+import 'package:ontari_app/modules/sign_in/pages/sign_in_page.dart';
+import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
+import 'package:ontari_app/modules/sign_in/pages/splash_page.dart';
+import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
 
-import 'package:ontari_app/modules/setting/setting_page.dart';
+import '../../modules/home/pages/home_page.dart';
 
-import '../../modules/common_widget/common_widget_page.dart';
-import '../../modules/home/home_page.dart';
-
-import '../../modules/setting/change_language_page.dart';
-import '../../modules/setting/download_video_page.dart';
-import '../../modules/setting/my_favorite_page.dart';
-import '../../root_page.dart';
-import '../../sign_in/select_plan_page.dart';
-import '../../sign_in/sign_in_page.dart';
-import '../../sign_in/sign_up_page.dart';
-import '../../sign_in/splash_page.dart';
-import '../../sign_in/verify_your_page.dart';
-import '../../widgets/stful/pages.dart';
+import '../../modules/root_page.dart';
+import '../../widgets/stateful/pages.dart';
 
 class Router {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -82,44 +84,22 @@ class Router {
         {
           return MaterialPageRoute(builder: (_) => const EditProfilePage());
         }
-      //case 'SelectSeatPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => SelectSeatPage());
-      //   }
-      // case 'CheckOutMoviePage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => CheckOutMoviePage());
-      //   }
-      // case 'MyTicketPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => MyTicketPage());
-      //   }
-      // case 'TicketDetailPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => TicketDetailPage());
-      //   }
-      // case 'MyWalletPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => MyWalletPage());
-      //   }
-      // case 'TopUpPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => TopUpPage());
-      //   }
-      // case 'ProfilePage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => ProfilePage());
-      //   }
-      // case 'EditProfilePage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => EditProfilePage());
-      //   }
-
-      // case 'RootPage':
-      //   {
-      //     return MaterialPageRoute(builder: (_) => const RootPage());
-      //   }
-
+      case 'DetailMentorPage':
+        {
+          return MaterialPageRoute(builder: (_) => const DetailMentorPage());
+        }
+      case 'PlayingCoursePage':
+        {
+          return MaterialPageRoute(
+            builder: (_) => const PlayingCoursePage(
+              //modelCourse: courseItem[0],
+            ),
+          );
+        }
+      case 'FullScreenPage':
+        {
+          return MaterialPageRoute(builder: (_) => const FullScreenPage());
+        }
       default:
         {
           return MaterialPageRoute(

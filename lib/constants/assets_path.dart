@@ -4,6 +4,7 @@ class AssetPath {
   static const String iconGoogle = '$prePath/google_icon.png';
   static const String iconFacebook = '$prePath/facebook_icon.png';
   static const String iconPlay = '$prePath/play_icon.png';
+  static const String iconPause = '$prePath/pause_icon.png';
   static const String iconClose = '$prePath/close_icon.png';
   static const String iconEmail = '$prePath/email_icon.png';
   static const String iconEye = '$prePath/eye_icon.png';
@@ -24,7 +25,7 @@ class AssetPath {
   static const String iconRectangle = '$prePath/rectangle_icon.png';
   static const String iconArrowRight = '$prePath/arrow_right_icon.png';
   static const String iconArrowLeft = '$prePath/arrow_left_icon.png';
-  static const String iconChecked= '$prePath/checked_icon.png';
+  static const String iconChecked = '$prePath/checked_icon.png';
   static const String iconUS = '$prePath/us_icon.png';
   static const String iconJapan = '$prePath/japan_icon.png';
   static const String iconIndonesia = '$prePath/indonesia_icon.png';
@@ -51,7 +52,8 @@ class AssetPath {
   static const String iconShare = '$prePath/share_icon.png';
   static const String iconRemove = '$prePath/remove_icon.png';
   static const String iconPlayCircle = '$prePath/play_circle_icon.png';
-
+  static const String iconFile = '$prePath/file_icon.png';
+  static const String iconInfinity = '$prePath/infinity_icon.png';
 
   static const String imgVector = '$prePath/img_vector.png';
   static const String imgVector2 = '$prePath/img_vector2.png';
@@ -67,12 +69,23 @@ class AssetPath {
   static const String imgAvatar = '$prePath/img_avatar.png';
   static const String imgBackgroundItems = '$prePath/background_items_icon.png';
   static const String imgCourseList = '$prePath/img_course_list.png';
+  static const String imgCourseList2 = '$prePath/img_course_list2.png';
+  static const String imgCourseList3 = '$prePath/img_course_list3.png';
+  static const String imgCourseList4 = '$prePath/img_course_list4.png';
+  static const String imgCourseList5 = '$prePath/img_course_list5.png';
   static const String imgContentCourse = '$prePath/img_content_course.png';
   static const String imgContentCourse2 = '$prePath/img_content_course2.png';
   static const String imgContentCourse3 = '$prePath/img_content_course3.png';
   static const String imgContentDownload = '$prePath/img_content_download.png';
-  static const String imgContentDownload2 = '$prePath/img_content_download2.png';
-  static const String imgContentDownload3= '$prePath/img_content_download3.png';
-  static const String imgContentDownload4 = '$prePath/img_content_download4.png';
-  static const String imgContentDownload5 = '$prePath/img_content_download5.png';
+  static const String imgContentDownload2 =
+      '$prePath/img_content_download2.png';
+  static const String imgContentDownload3 =
+      '$prePath/img_content_download3.png';
+  static const String imgContentDownload4 =
+      '$prePath/img_content_download4.png';
+  static const String imgContentDownload5 =
+      '$prePath/img_content_download5.png';
+  static const String imgDetailMentor = '$prePath/img_detail_mentor.png';
+
+  static const String video = 'assets/videos/video.mp4';
 }

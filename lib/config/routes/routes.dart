@@ -1,13 +1,11 @@
 class Routes {
   static const String rootPage = 'RootPage';
+  static const String fullScreenPage = 'FullScreenPage';
 
   static const String commonWidgetPage = 'CommonWidgetPage';
   static const String listPage = 'ListPage';
   //--------------------------------------------------------------------------//
   static const String splash = 'SplashPage';
-  //static const String onboardingPage1 = 'OnboardingPage_1';
-  //static const String onboardingPage2 = 'OnboardingPage_2';
-  //static const String onboardingPage3 = 'OnboardingPage_3';
   static const String signUpPage = 'SignUpPage';
   static const String signInPage = 'SignInPage';
   static const String verifyYourPage = 'VerifyYourPage';
