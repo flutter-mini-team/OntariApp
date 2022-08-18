@@ -10,9 +10,6 @@ import 'package:ontari_app/widgets/stateless/common_textfield.dart';
 import 'package:ontari_app/widgets/stateless/indicator_home.dart';
 import 'package:ontari_app/widgets/stateless/terms.dart';
 
-
-
-
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -26,9 +23,10 @@ class SignUpPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 55.0),
+                padding: EdgeInsets.only(top: 100.0),
                 child: Text('Sign Up', style: TxtStyle.titleSplash),
               ),
               const Padding(
@@ -118,26 +116,24 @@ class SignUpPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 22),
-              RichText(
-                text: const TextSpan(
-                  text: 'Already have an account? ',
-                  style: TxtStyle.Term,
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Sign in',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Already have an account? ',
+                    style: TxtStyle.Term,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Sign in',
                       style: TxtStyle.create,
                     ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(100, 80, 100, 5),
-                child: IndicatorHome(
-                  color: DarkTheme.white,
-                  radius: 10,
-                  height: 5,
-                ),
-              ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

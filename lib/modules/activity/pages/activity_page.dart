@@ -7,6 +7,7 @@ import 'package:ontari_app/modules/activity/widgets/activity_empty.dart';
 import 'package:ontari_app/modules/activity/widgets/completed_progress.dart';
 import 'package:ontari_app/modules/activity/widgets/items_activity.dart';
 import 'package:ontari_app/modules/activity/widgets/uncompleted_progress.dart';
+import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../config/themes/app_color.dart';
@@ -119,6 +120,14 @@ class _ActivityPageState extends State<ActivityPage>
         return Padding(
           padding: const EdgeInsets.fromLTRB(24, 18, 24, 0),
           child: ItemsActivity(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DetailMentorPage(),
+                ),
+              );
+            },
             assetName: list[index].imageUrl,
             title: list[index].title,
             name: list[index].name,

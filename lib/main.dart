@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
             .textTheme
             .apply(bodyColor: DarkTheme.white, displayColor: DarkTheme.white),
       ),
-      //home: const MyHomePage(),
       initialRoute: Routes.listPage,
       onGenerateRoute: router.Router.generateRoute,
     );

@@ -12,12 +12,11 @@ class ListPage extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     List<String> pages = [
       Routes.commonWidgetPage,
-      Routes.splash,
       Routes.fullScreenPage,
+      Routes.splash,
       Routes.signInPage,
       Routes.signUpPage,
       Routes.verifyYourPage,
-      // Routes.forgotPasswordPage,
       Routes.selectPlanPage,
       Routes.homePage,
       Routes.activityPage,
@@ -29,30 +28,32 @@ class ListPage extends StatelessWidget {
       Routes.downloadVideoPage,
       Routes.editProfilePage,
       Routes.favoritePage,
-      // Routes.termConditionPage,
     ];
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            children: pages
-                .map((e) => Builder(
-                    builder: (context) => Container(
-                          margin: const EdgeInsets.only(bottom: 20),
-                          child: ClassicButton(
-                            height: size.height / 15,
-                            width: size.width,
-                            widthRadius: 0,
-                            colorRadius: DarkTheme.white,
-                            color: DarkTheme.greyScale800,
-                            child: Center(child: Text(e)),
-                            radius: 20,
-                            onTap: () {
-                              Navigator.pushNamed(context, e);
-                            },
-                          ),
-                        )))
-                .toList()),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              children: pages
+                  .map((e) => Builder(
+                      builder: (context) => Container(
+                            margin: const EdgeInsets.only(bottom: 20),
+                            child: ClassicButton(
+                              height: size.height / 15,
+                              width: size.width,
+                              widthRadius: 0,
+                              colorRadius: DarkTheme.white,
+                              color: DarkTheme.greyScale800,
+                              child: Center(child: Text(e)),
+                              radius: 20,
+                              onTap: () {
+                                Navigator.pushNamed(context, e);
+                              },
+                            ),
+                          )))
+                  .toList()),
+        ),
       ),
     );
   }

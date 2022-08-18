@@ -16,10 +16,12 @@ class ItemsActivity extends StatelessWidget {
     this.title,
     this.name,
     this.percent = 0,
+    required this.onTap,
   }) : super(key: key);
 
   String? assetName, title, name; //,percentText;
   double? percent;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,7 @@ class ItemsActivity extends StatelessWidget {
     return Column(
       children: [
         BodyItem(
-          //colorDivider: DarkTheme.colorDivider,
-          //paddingDivider: 20,
+          onTap: onTap,
           height: 64,
           widthImg: 64,
           assetName: assetName,

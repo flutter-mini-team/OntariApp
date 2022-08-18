@@ -240,6 +240,7 @@ class _DetailMentorPageState extends State<DetailMentorPage>
                                                     courseItem, context),
                                               ],
                                             ),
+                                            SizedBox(height: 100),
                                           ],
                                         ),
                                       ),
@@ -313,8 +314,7 @@ class _DetailMentorPageState extends State<DetailMentorPage>
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      PlayingCoursePage(index: index),
+                  builder: (context) => PlayingCoursePage(index: index),
                 ),
               );
             },
@@ -385,19 +385,24 @@ class ImageHeader extends SliverPersistentHeaderDelegate {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 1,
-                        color: DarkTheme.greyScale100,
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: DarkTheme.greyScale100,
+                        ),
                       ),
-                    ),
-                    child: const Image(
-                      image: AssetImage(AssetPath.iconArrowLeft),
-                      color: DarkTheme.white,
+                      child: const Image(
+                        image: AssetImage(AssetPath.iconArrowLeft),
+                        color: DarkTheme.white,
+                      ),
                     ),
                   ),
                   const Image(

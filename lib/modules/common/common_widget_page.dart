@@ -283,6 +283,9 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: ItemsActivity(
+                onTap: () {
+                  
+                },
                 assetName: AssetPath.imgContent,
                 title: 'James Haritz',
                 name: 'Teaches Social Psychology',

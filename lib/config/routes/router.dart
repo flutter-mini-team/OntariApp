@@ -98,7 +98,7 @@ class Router {
         }
       case 'FullScreenPage':
         {
-          return MaterialPageRoute(builder: (_) => const FullScreenPage());
+          return MaterialPageRoute(builder: (_) => const SplashPage());
         }
       default:
         {

@@ -4,13 +4,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
+import 'package:ontari_app/modules/root_page.dart';
+import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
 import 'package:ontari_app/widgets/stateless/indicator_home.dart';
-
-
-
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class SignInPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 35.0),
+                padding: EdgeInsets.only(top: 60.0),
                 child: Text('Ontari.', style: TxtStyle.titleSplash),
               ),
               const Padding(
@@ -65,6 +64,12 @@ class SignInPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ClassicButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RootPage()),
+                    );
+                  },
                   width: size.width,
                   radius: 12,
                   widthRadius: 0,
@@ -124,26 +129,29 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 53.0),
-                child: RichText(
-                  text: const TextSpan(
-                    text: 'Don\'t have an account? ',
-                    style: TxtStyle.Term,
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Create Here',
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Don\'t have an account? ',
+                      style: TxtStyle.Term,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpPage(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Create Here',
                         style: TxtStyle.create,
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(100, 20, 100, 0),
-                child: IndicatorHome(
-                  color: DarkTheme.white,
-                  radius: 10,
-                  height: 5,
+                    ),
+                  ],
                 ),
               ),
             ],
