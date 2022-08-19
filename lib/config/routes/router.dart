@@ -35,10 +35,10 @@ class Router {
         {
           return MaterialPageRoute(builder: (_) => const SplashPage());
         }
-      case 'SignInPage':
-        {
-          return MaterialPageRoute(builder: (_) => const SignInPage());
-        }
+      // case 'SignInPage':
+      //   {
+      //     return MaterialPageRoute(builder: (_) => const SignInPage());
+      //   }
       case 'SignUpPage':
         {
           return MaterialPageRoute(builder: (_) => const SignUpPage());

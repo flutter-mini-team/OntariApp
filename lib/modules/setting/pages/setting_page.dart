@@ -14,13 +14,18 @@ import 'package:ontari_app/modules/setting/widgets/item_account.dart';
 import 'package:ontari_app/modules/setting/widgets/items_arrow_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/items_toggle_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/title_option_setting.dart';
+import 'package:provider/provider.dart';
 
+import '../../../services/auth.dart';
+import '../../../widgets/stateless/show_alert_dialog.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
+
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: SafeArea(
@@ -72,11 +77,34 @@ class SettingPage extends StatelessWidget {
     );
   }
 
+  Future<void> _signOut(BuildContext context) async {
+    try {
+      final auth = Provider.of<AuthBase>(context, listen: false);
+      await auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _confirmSignOut(BuildContext context) async {
+    final didRequestSignOut = await showAlertDialog(
+      context,
+      title: 'Logout',
+      content: 'Are you sure that you want to logout',
+      cancelActionText: 'Cancel',
+      defaultActionText: 'Logout',
+    );
+    if (didRequestSignOut == true) {
+      _signOut(context);
+    }
+  }
+
   Padding buildLogoutButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 24.0),
       child: TextButton(
         onPressed: () {
+          _confirmSignOut(context);
           // showCupertinoDialog(
           //   context: context,
           //   builder: createDialog,
@@ -90,45 +118,6 @@ class SettingPage extends StatelessWidget {
       ),
     );
   }
-
-  // Widget createDialog(BuildContext context) {
-  //   return Dialog(
-  //     backgroundColor: DarkTheme.colorMenuDialog,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.circular(10),
-  //     ),
-  //     child: SizedBox(
-  //       height: 191,
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //         children: [
-  //           const Text(
-  //             'Are you sure, you want to log out ?',
-  //             style: TxtStyle.headline4SemiBoldWhite,
-  //           ),
-  //           const Divider(),
-  //           TextButton(
-  //             onPressed: () {},
-  //             child: const Text(
-  //               'Logout',
-  //               style: TxtStyle.textLogout,
-  //             ),
-  //           ),
-  //           const Divider(),
-  //           TextButton(
-  //             onPressed: () {
-  //               Navigator.pop(context);
-  //             },
-  //             child: const Text(
-  //               'Cancel',
-  //               style: TxtStyle.headline4blue,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 
   TitleOptionSettings buildTitleOptionSettings(String title) {
     return TitleOptionSettings(

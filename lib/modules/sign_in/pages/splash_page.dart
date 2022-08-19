@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
+import 'package:ontari_app/modules/landing_page.dart';
 import 'package:ontari_app/modules/sign_in/pages/sign_in_page.dart';
 import 'package:ontari_app/widgets/stateless/indicator_home.dart';
 
@@ -14,6 +15,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  
   @override
   void initState() {
     super.initState();
@@ -21,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
       const Duration(seconds: 2),
       () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const SignInPage()),
+        MaterialPageRoute(builder: (context) => const LandingPage()),
       ),
     );
   }
