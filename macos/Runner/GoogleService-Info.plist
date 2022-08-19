@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>992996802815-r7smmqpsf4b20j62gegfe6bvvgrjt8l5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.992996802815-r7smmqpsf4b20j62gegfe6bvvgrjt8l5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAtNin7t8FDc0tcJ4fOcJCxfnKN5gv9qeE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>992996802815</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.ontariApp</string>
+	<key>PROJECT_ID</key>
+	<string>ontariapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ontariapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:992996802815:ios:3a65c09bd4cacd012a0cca</string>
+</dict>
+</plist>

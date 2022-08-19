@@ -1,4 +1,3 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -6,7 +5,6 @@ import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/modules/sign_in/pages/sign_in_page.dart';
 import 'package:ontari_app/widgets/stateless/indicator_home.dart';
-import 'package:page_transition/page_transition.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

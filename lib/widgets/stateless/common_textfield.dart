@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ontari_app/constants/assets_path.dart';
 
 import '../../config/themes/app_color.dart';
@@ -203,11 +204,19 @@ class _InputCodeState extends State<InputCode> {
       width: 55,
       height: 55,
       child: TextField(
+        onChanged: (value) {
+          if (value.length == 1) {
+            FocusScope.of(context).nextFocus();
+          }
+        },
         keyboardAppearance: Brightness.dark,
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         style: TxtStyle.headline4White,
-        maxLength: 1,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(1),
+          FilteringTextInputFormatter.digitsOnly,
+        ],
         decoration: InputDecoration(
           counterText: '',
           enabledBorder: OutlineInputBorder(

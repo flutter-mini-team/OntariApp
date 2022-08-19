@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "992996802815",
+    "project_id": "ontariapp",
+    "storage_bucket": "ontariapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992996802815:android:87b900e021a2d1fb2a0cca",
+        "android_client_info": {
+          "package_name": "com.example.ontari_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992996802815-45kvfrr8dj5qb530nn2u60tqs8hcv6dk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZJt3G6j77zkhon-LTOmvArkxjuCCAru0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992996802815-45kvfrr8dj5qb530nn2u60tqs8hcv6dk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

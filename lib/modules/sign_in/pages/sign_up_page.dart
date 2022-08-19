@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
+import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
-import 'package:ontari_app/widgets/stateless/indicator_home.dart';
 import 'package:ontari_app/widgets/stateless/terms.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -54,6 +52,14 @@ class SignUpPage extends StatelessWidget {
                 child: Terms(size: size),
               ),
               ClassicButton(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const VerifyYourPage(),
+                    ),
+                  );
+                },
                 width: size.width,
                 radius: 12,
                 widthRadius: 0,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
@@ -9,10 +7,40 @@ import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
-import 'package:ontari_app/widgets/stateless/indicator_home.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+
+
+
+  TextFieldPassword buildTextFieldPassword(Size size) {
+    return TextFieldPassword(
+      size: size,
+      title: 'Password',
+      hintText: 'Enter your password',
+      assetPrefixIcon: AssetPath.iconLock,
+    );
+  }
+
+  CustomTextField buildTextFieldEmail() {
+    return const CustomTextField(
+      height: 52,
+      title: 'Email address',
+      hintText: 'Enter your email address',
+      keyboardType: TextInputType.emailAddress,
+      childPrefixIcon: CustomAvatar(
+        width: 15,
+        height: 12,
+        assetName: AssetPath.iconEmail,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +57,11 @@ class SignInPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 60.0),
                 child: Text('Ontari.', style: TxtStyle.titleSplash),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: CustomTextField(
-                  height: 52,
-                  title: 'Email address',
-                  hintText: 'Enter your email address',
-                  keyboardType: TextInputType.emailAddress,
-                  childPrefixIcon: CustomAvatar(
-                    width: 15,
-                    height: 12,
-                    assetName: AssetPath.iconEmail,
-                  ),
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: buildTextFieldEmail(),
               ),
-              TextFieldPassword(
-                size: size,
-                title: 'Password',
-                hintText: 'Enter your password',
-                assetPrefixIcon: AssetPath.iconLock,
-              ),
+              buildTextFieldPassword(size),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(

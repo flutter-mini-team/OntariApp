@@ -263,11 +263,11 @@ final List<ModelSetting> application = [
 final List<ModelSetting> applicationToggle = [
   const ModelSetting(
     iconUrl: AssetPath.iconBell,
-    title: 'Notification',
+    title: 'Notification  ',
   ),
   const ModelSetting(
     iconUrl: AssetPath.iconDarkMode,
-    title: 'Dark Mode',
+    title: 'Dark Mode   ',
   ),
 ];
 //--------------------------------My Favorite---------------------------------//

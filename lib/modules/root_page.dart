@@ -3,7 +3,6 @@ import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/modules/activity/pages/activity_page.dart';
 import 'package:ontari_app/modules/category/pages/category_page.dart';
 import 'package:ontari_app/modules/setting/pages/setting_page.dart';
-import 'package:ontari_app/widgets/stateless/indicator_home.dart';
 
 import '../constants/assets_path.dart';
 import 'home/pages/home_page.dart';
@@ -42,11 +41,9 @@ class _RootPageState extends State<RootPage> {
         print('isFirstRouteInCurrentTab: $isFirstRouteInCurrentTab');
         print(_selectedIndex);
 
-        // let system handle back button if we're on the first route
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        //body: _tabs[_selectedIndex],
         body: Stack(
           children: [
             _buildOffstageNavigator(0),

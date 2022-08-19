@@ -6,9 +6,6 @@ import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
 
-
-
-
 class VerifyYourPage extends StatelessWidget {
   const VerifyYourPage({Key? key}) : super(key: key);
 
@@ -17,7 +14,6 @@ class VerifyYourPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: Column(
-        //mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
@@ -53,7 +49,7 @@ class VerifyYourPage extends StatelessWidget {
           Row(
             children: const [
               Padding(
-                padding: EdgeInsets.fromLTRB(24, 0, 12, 0),
+                padding: EdgeInsets.only(left: 24, right: 12),
                 child: ClassicButton(
                   widthRadius: 2.0,
                   width: 84,

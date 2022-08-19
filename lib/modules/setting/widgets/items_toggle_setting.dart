@@ -31,7 +31,7 @@ class ItemsToggleSetting extends StatelessWidget {
         ),
       ),
       right: const Padding(
-        padding: EdgeInsets.only(left: 147.0),
+        padding: EdgeInsets.only(left: 145.0),
         child: ToggleSwitchButton(),
       ),
       child: Center(

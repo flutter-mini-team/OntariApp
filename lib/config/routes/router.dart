@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/fullscreen_page.dart';
 import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/activity/pages/activity_page.dart';
 import 'package:ontari_app/modules/category/pages/category_page.dart';
