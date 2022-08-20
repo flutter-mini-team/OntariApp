@@ -9,7 +9,6 @@ import 'package:ontari_app/modules/setting/widgets/title_setting.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
 
-
 class DownloadVideoPage extends StatelessWidget {
   const DownloadVideoPage({Key? key}) : super(key: key);
 
@@ -25,11 +24,8 @@ class DownloadVideoPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const TitleSetting(title: 'Download Video'),
-                const CustomTextField(
-                  height: 48,
-                  heightSizedbox: 0,
+                const TextFieldSearchBar(
                   hintText: 'Search your focus...',
-                  keyboardType: TextInputType.emailAddress,
                   childPrefixIcon: CustomAvatar(
                     width: 16,
                     height: 16,

@@ -11,8 +11,6 @@ import 'package:ontari_app/widgets/stateless/common_bodyitem.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
 
-
-
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key? key}) : super(key: key);
 
@@ -130,32 +128,35 @@ class EditProfilePage extends StatelessWidget {
     );
   }
 
-  CustomTextField buildTextFieldString(
-      String title, String hintText, String assetName) {
-    return CustomTextField(
-      height: 52,
-      title: title,
-      hintText: hintText,
-      keyboardType: TextInputType.name,
-      childPrefixIcon: CustomAvatar(
-        width: 12,
-        height: 12,
-        assetName: assetName,
-      ),
+  Widget buildTextFieldString(String title, String hintText, String assetName) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title, style: TxtStyle.headline4SemiBoldWhite),
+        const SizedBox(height: 10),
+        TextFieldSearchBar(
+          hintText: hintText,
+          childPrefixIcon: CustomAvatar(
+            width: 12,
+            height: 12,
+            assetName: assetName,
+          ),
+        ),
+      ],
     );
   }
 
-  CustomTextField buildTextFieldEmail(
+  TextFieldEmail buildTextFieldEmail(
       String title, String hintText, String assetName) {
-    return CustomTextField(
-      height: 52,
-      title: title,
-      hintText: hintText,
-      keyboardType: TextInputType.emailAddress,
-      childPrefixIcon: CustomAvatar(
+    return TextFieldEmail(
+      //emailController: _emailController,
+      //emailFocusNode: _emailFocusNode,
+      //onChanged: ,
+      //onEditingComplete: ,
+      childPrefixIcon: const CustomAvatar(
         width: 15,
         height: 12,
-        assetName: assetName,
+        assetName: AssetPath.iconEmail,
       ),
     );
   }

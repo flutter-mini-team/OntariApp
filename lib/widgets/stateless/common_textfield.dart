@@ -5,48 +5,44 @@ import 'package:ontari_app/constants/assets_path.dart';
 import '../../config/themes/app_color.dart';
 import '../../config/themes/text_style.dart';
 import 'common_avatar.dart';
-import 'indicator_home.dart';
 
-class CustomTextField extends StatefulWidget {
-  const CustomTextField({
+class TextFieldEmail extends StatelessWidget {
+  TextFieldEmail({
     Key? key,
-    this.title = '',
-    required this.hintText,
-    this.keyboardType,
-    this.height = 0,
-    this.heightSizedbox = 16,
+    this.emailFocusNode,
+    this.emailController,
     this.childPrefixIcon,
+    //this.errorText = '',
+    this.onChanged,
+    this.onEditingComplete,
   }) : super(key: key);
-  final String title;
-  final double? height, heightSizedbox;
-  final hintText, keyboardType;
+
+  final FocusNode? emailFocusNode;
+  final TextEditingController? emailController;
   final Widget? childPrefixIcon;
-
-  @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  bool? _onChanged = true;
-  final TextEditingController text = TextEditingController();
+  //final String errorText;
+  Function(String)? onChanged;
+  Function()? onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.title, style: TxtStyle.titleInput),
-        SizedBox(height: widget.heightSizedbox),
+        const Text('Email Address', style: TxtStyle.titleInput),
+        const SizedBox(height: 10),
         SizedBox(
-          height: widget.height,
+          height: 52,
           child: TextField(
-            controller: text,
-            onChanged: (value) {
-              _onChanged = false;
-              setState(() {});
-            },
-            keyboardType: widget.keyboardType,
+            controller: emailController,
+            focusNode: emailFocusNode,
+            onChanged: onChanged,
+            onEditingComplete: onEditingComplete,
+            autocorrect: false,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
             decoration: InputDecoration(
+              //errorText: errorText,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
                 borderSide: const BorderSide(
@@ -63,32 +59,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   width: 2,
                 ),
               ),
-              hintText: widget.hintText,
+              hintText: 'Enter your email address',
               hintStyle: TxtStyle.hintText,
               prefixIcon: Align(
                 widthFactor: 0.5,
                 heightFactor: 0.5,
-                child: widget.childPrefixIcon,
+                child: childPrefixIcon,
               ),
-              suffixIcon: !_onChanged!
-                  ? IconButton(
-                      icon: const Align(
-                        widthFactor: 0.5,
-                        heightFactor: 0.5,
-                        child: CustomAvatar(
-                          width: 15,
-                          height: 15,
-                          assetName: AssetPath.iconClose,
-                        ),
-                      ),
-                      onPressed: () {
-                        text.clear();
-                        setState(() {
-                          _onChanged = true;
-                        });
-                      },
-                    )
-                  : const Text(''),
             ),
           ),
         ),
@@ -98,17 +75,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
 }
 
 class TextFieldPassword extends StatefulWidget {
-  const TextFieldPassword({
+  TextFieldPassword({
     Key? key,
-    this.size,
-    this.title,
-    this.hintText,
     this.assetPrefixIcon,
+    this.passwordController,
+    this.passwordFocusNode,
+    this.onChanged,
+    this.onEditingComplete,
   }) : super(key: key);
-  final String? title;
-  final Size? size;
-  final String? hintText;
+
   final String? assetPrefixIcon;
+  final TextEditingController? passwordController;
+  final FocusNode? passwordFocusNode;
+  Function(String)? onChanged;
+  Function()? onEditingComplete;
 
   @override
   State<TextFieldPassword> createState() => _TextFieldPasswordState();
@@ -123,16 +103,19 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.title!, style: TxtStyle.titleInput),
+        const Text('Password', style: TxtStyle.titleInput),
         const SizedBox(height: 16),
         SizedBox(
-          width: widget.size!.width,
           height: 52,
           child: TextField(
             onChanged: (value) {
               onChanged = false;
               setState(() {});
             },
+            textInputAction: TextInputAction.done,
+            onEditingComplete: widget.onEditingComplete,
+            controller: widget.passwordController,
+            focusNode: widget.passwordFocusNode,
             obscureText: _isObscure,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
@@ -151,7 +134,7 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
                   width: 2,
                 ),
               ),
-              hintText: widget.hintText!,
+              hintText: 'Enter your password',
               hintStyle: TxtStyle.hintText,
               prefixIcon: Align(
                 widthFactor: 0.5,
@@ -167,8 +150,8 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
                 heightFactor: 0.5,
                 child: !onChanged!
                     ? CustomAvatar(
-                        width: 25,
-                        height: 18,
+                        width: 20,
+                        height: 15,
                         assetName: _isObscure
                             ? AssetPath.iconEye
                             : AssetPath.iconHideEye,
@@ -178,12 +161,94 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
                           });
                         },
                       )
-                    : Text(''),
+                    : const Text(''),
               ),
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class TextFieldSearchBar extends StatefulWidget {
+  const TextFieldSearchBar({
+    Key? key,
+    this.childPrefixIcon,
+    required this.hintText,
+    //this.errorText = '',
+    //this.emailController,
+  }) : super(key: key);
+  //final String errorText;
+  final Widget? childPrefixIcon;
+  final String hintText;
+  //final TextEditingController? emailController;
+
+  @override
+  State<TextFieldSearchBar> createState() => _TextFieldSearchBarState();
+}
+
+class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
+  bool? _onChanged = true;
+  final TextEditingController? emailController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 48,
+      child: TextField(
+        controller: emailController,
+        onChanged: (value) {
+          _onChanged = false;
+          setState(() {});
+        },
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          //errorText: widget.errorText,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide: const BorderSide(
+              color: DarkTheme.greyScale900,
+              width: 2,
+            ),
+          ),
+          filled: true,
+          fillColor: DarkTheme.greyScale800,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide: const BorderSide(
+              color: DarkTheme.primaryBlue600,
+              width: 2,
+            ),
+          ),
+          hintText: widget.hintText,
+          hintStyle: TxtStyle.hintText,
+          prefixIcon: Align(
+            widthFactor: 0.5,
+            heightFactor: 0.5,
+            child: widget.childPrefixIcon,
+          ),
+          suffixIcon: !_onChanged!
+              ? IconButton(
+                  icon: const Align(
+                    widthFactor: 0.5,
+                    heightFactor: 0.5,
+                    child: CustomAvatar(
+                      width: 15,
+                      height: 15,
+                      assetName: AssetPath.iconClose,
+                    ),
+                  ),
+                  onPressed: () {
+                    emailController?.clear();
+                    setState(() {
+                      _onChanged = true;
+                    });
+                  },
+                )
+              : const Text(''),
+        ),
+      ),
     );
   }
 }

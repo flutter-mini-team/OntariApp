@@ -177,35 +177,36 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
               ],
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            CustomTextField(
-              height: 52,
-              //size: size / 1.2,
-              title: 'Email address',
-              hintText: 'Enter your email address',
-              keyboardType: TextInputType.emailAddress,
-              //assetIcon: AssetPath.iconEmail,
-              childPrefixIcon: CustomAvatar(
-                width: size.width / 24,
-                height: size.width / 30,
+            // CustomTextField(
+            //   height: 52,
+            //   title: 'Email address',
+            //   hintText: 'Enter your email address',
+            //   keyboardType: TextInputType.emailAddress,
+            //   //assetIcon: AssetPath.iconEmail,
+            //   childPrefixIcon: CustomAvatar(
+            //     width: size.width / 24,
+            //     height: size.width / 30,
+            //     assetName: AssetPath.iconEmail,
+            //   ),
+            // ),
+            TextFieldEmail(
+              //emailController: _emailController,
+              //emailFocusNode: _emailFocusNode,
+              //onChanged: ,
+              //onEditingComplete: ,
+              childPrefixIcon: const CustomAvatar(
+                width: 15,
+                height: 12,
                 assetName: AssetPath.iconEmail,
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             TextFieldPassword(
-              size: size,
-              //height: 52,
-              title: 'Password',
-              hintText: 'Enter your password',
               assetPrefixIcon: AssetPath.iconLock,
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            // search bar
-            CustomTextField(
-              height: 52,
-              title: 'Search bar',
+            TextFieldSearchBar(
               hintText: 'Search your focus...',
-              keyboardType: TextInputType.emailAddress,
-              //assetIcon: AssetPath.iconSearch,
               childPrefixIcon: CustomAvatar(
                 width: size.width / 22.5,
                 height: size.width / 22.5,
@@ -283,9 +284,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: ItemsActivity(
-                onTap: () {
-                  
-                },
+                onTap: () {},
                 assetName: AssetPath.imgContent,
                 title: 'James Haritz',
                 name: 'Teaches Social Psychology',

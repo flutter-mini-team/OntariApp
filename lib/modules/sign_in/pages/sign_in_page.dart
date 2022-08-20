@@ -14,7 +14,7 @@ import '../../../services/auth.dart';
 import '../../../widgets/stateless/show_exception_alert_dialog.dart';
 import '../sign_in_manager.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({
     Key? key,
     required this.manager,
@@ -40,6 +40,45 @@ class SignInPage extends StatelessWidget {
     );
   }
 
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
+  // Future<void> _submit() async {
+  //   try {
+  //     await widget.model.submit();
+  //     Navigator.of(context).pop();
+  //   } on FirebaseAuthException catch (e) {
+  //     showExceptionAlertDialog(
+  //       context,
+  //       title: 'Sign in failed',
+  //       exception: e,
+  //     );
+  //   }
+  // }
+
+  // void _emailEditingComplete() {
+  //   final newFocus = model.emailValidator.isValid(model.email)
+  //       ? _passwordFocusNode
+  //       : _emailFocusNode;
+  //   FocusScope.of(context).requestFocus(newFocus);
+  // }
+
   void _showSignInError(BuildContext context, Exception exception) {
     if (exception is FirebaseException &&
         exception.code == 'ERROR_ABORTED_BY_USER') {
@@ -54,7 +93,7 @@ class SignInPage extends StatelessWidget {
 
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
-      await manager?.signInWithGoogle();
+      await widget.manager?.signInWithGoogle();
     } on Exception catch (e) {
       _showSignInError(context, e);
     }
@@ -62,28 +101,29 @@ class SignInPage extends StatelessWidget {
 
   Future<void> _signInWithFacebook(BuildContext context) async {
     try {
-      await manager?.signInWithFacebook();
+      await widget.manager?.signInWithFacebook();
     } on Exception catch (e) {
       _showSignInError(context, e);
     }
   }
 
-  TextFieldPassword buildTextFieldPassword(Size size) {
+  TextFieldPassword buildTextFieldPassword() {
     return TextFieldPassword(
-      size: size,
-      title: 'Password',
-      hintText: 'Enter your password',
+      passwordController: _passwordController,
+      passwordFocusNode: _passwordFocusNode,
+      //onChanged: ,
+      //onEditingComplete: ,
       assetPrefixIcon: AssetPath.iconLock,
     );
   }
 
-  CustomTextField buildTextFieldEmail() {
-    return const CustomTextField(
-      height: 52,
-      title: 'Email address',
-      hintText: 'Enter your email address',
-      keyboardType: TextInputType.emailAddress,
-      childPrefixIcon: CustomAvatar(
+  TextFieldEmail buildTextFieldEmail() {
+    return TextFieldEmail(
+      emailController: _emailController,
+      emailFocusNode: _emailFocusNode,
+      //onChanged: ,
+      //onEditingComplete: ,
+      childPrefixIcon: const CustomAvatar(
         width: 15,
         height: 12,
         assetName: AssetPath.iconEmail,
@@ -110,22 +150,11 @@ class SignInPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: buildTextFieldEmail(),
               ),
-              buildTextFieldPassword(size),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    print('aaaa');
-                  },
-                  child: const Text(
-                    'Forgot password?',
-                    style: TxtStyle.headline4blue,
-                  ),
-                ),
-              ),
+              buildTextFieldPassword(),
+              buildForgotPassword(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: isLoading
+                child: widget.isLoading
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
@@ -147,6 +176,8 @@ class SignInPage extends StatelessWidget {
                         child: const Center(child: Text('Sign in')),
                       ),
               ),
+//----------------------------------------------------------------------------//
+//----------------------------------------------------------------------------//
               const Text(
                 'Or continue with social account',
                 style: TxtStyle.headline5MediumWhite,
@@ -154,7 +185,8 @@ class SignInPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 24, bottom: 16),
                 child: ClassicButton(
-                  onTap: () => isLoading ? null : _signInWithGoogle(context),
+                  onTap: () =>
+                      widget.isLoading ? null : _signInWithGoogle(context),
                   width: size.width,
                   widthRadius: 0,
                   radius: 12,
@@ -176,7 +208,8 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               ClassicButton(
-                onTap: () => isLoading ? null : _signInWithFacebook(context),
+                onTap: () =>
+                    widget.isLoading ? null : _signInWithFacebook(context),
                 width: size.width,
                 widthRadius: 0,
                 radius: 12,
@@ -196,35 +229,54 @@ class SignInPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Don\'t have an account? ',
-                      style: TxtStyle.Term,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpPage(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'Create Here',
-                        style: TxtStyle.create,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              buildGoToSignUpPage(context),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Align buildForgotPassword() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () {
+          print('aaaa');
+        },
+        child: const Text(
+          'Forgot password?',
+          style: TxtStyle.headline4blue,
+        ),
+      ),
+    );
+  }
+
+  Padding buildGoToSignUpPage(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Don\'t have an account? ',
+            style: TxtStyle.Term,
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignUpPage(),
+                ),
+              );
+            },
+            child: const Text(
+              'Create Here',
+              style: TxtStyle.create,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -26,18 +26,17 @@ class CategoryPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildTitleCategory(),
-                const CustomTextField(
-                  height: 48,
-                  heightSizedbox: 0,
-                  hintText: 'Search your focus...',
-                  keyboardType: TextInputType.emailAddress,
-                  childPrefixIcon: CustomAvatar(
-                    width: 16,
-                    height: 16,
-                    assetName: AssetPath.iconSearch,
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24.0),
+                  child: TextFieldSearchBar(
+                    hintText: 'Search your focus...',
+                    childPrefixIcon: CustomAvatar(
+                      width: 16,
+                      height: 16,
+                      assetName: AssetPath.iconSearch,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 24),
                 const Text(
                   'Category',
                   style: TxtStyle.headline3SemiBoldWhite,

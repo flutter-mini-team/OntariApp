@@ -8,8 +8,42 @@ import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
 import 'package:ontari_app/widgets/stateless/terms.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
+  TextFieldEmail buildTextFieldEmail() {
+    return TextFieldEmail(
+      emailController: _emailController,
+      emailFocusNode: _emailFocusNode,
+      //onChanged: ,
+      //onEditingComplete: ,
+      childPrefixIcon: const CustomAvatar(
+        width: 15,
+        height: 12,
+        assetName: AssetPath.iconEmail,
+      ),
+    );
+  }
+
+  TextFieldPassword buildTextFieldPassword() {
+    return TextFieldPassword(
+      assetPrefixIcon: AssetPath.iconLock,
+      passwordController: _passwordController,
+      passwordFocusNode: _passwordFocusNode,
+      //onChanged: ,
+      //onEditingComplete: ,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +61,11 @@ class SignUpPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 100.0),
                 child: Text('Sign Up', style: TxtStyle.titleSplash),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: CustomTextField(
-                  height: 52,
-                  title: 'Email address',
-                  hintText: 'Enter your email address',
-                  keyboardType: TextInputType.emailAddress,
-                  childPrefixIcon: CustomAvatar(
-                    width: 15,
-                    height: 12,
-                    assetName: AssetPath.iconEmail,
-                  ),
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: buildTextFieldEmail(),
               ),
-              TextFieldPassword(
-                size: size,
-                title: 'Password',
-                hintText: 'Enter your password',
-                assetPrefixIcon: AssetPath.iconLock,
-              ),
+              buildTextFieldPassword(),
               Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 28),
                 child: Terms(size: size),

@@ -66,11 +66,9 @@ class HomePage extends StatelessWidget {
                         'Welcome back to ontari, Explore Course',
                         style: TxtStyle.headline5MediumWhite,
                       ),
-                      const CustomTextField(
-                        heightSizedbox: 0,
-                        height: 48,
+                      const SizedBox(height: 16),
+                      const TextFieldSearchBar(
                         hintText: 'Search your focus...',
-                        keyboardType: TextInputType.emailAddress,
                         childPrefixIcon: CustomAvatar(
                           width: 15,
                           height: 16,
