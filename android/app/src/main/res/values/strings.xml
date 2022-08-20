@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OntariApp</string>
+    <string name="facebook_app_id">842537297152783</string>
+    <string name="fb_login_protocol_scheme">fb842537297152783</string>
+    <string name="facebook_client_token">7307633a5322ddeec574746e1122ba64</string>
+</resources>

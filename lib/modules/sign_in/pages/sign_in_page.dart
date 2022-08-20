@@ -60,6 +60,14 @@ class SignInPage extends StatelessWidget {
     }
   }
 
+  Future<void> _signInWithFacebook(BuildContext context) async {
+    try {
+      await manager?.signInWithFacebook();
+    } on Exception catch (e) {
+      _showSignInError(context, e);
+    }
+  }
+
   TextFieldPassword buildTextFieldPassword(Size size) {
     return TextFieldPassword(
       size: size,
@@ -168,7 +176,7 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               ClassicButton(
-                onTap: () => print('Size: ${size}'),
+                onTap: () => isLoading ? null : _signInWithFacebook(context),
                 width: size.width,
                 widthRadius: 0,
                 radius: 12,
