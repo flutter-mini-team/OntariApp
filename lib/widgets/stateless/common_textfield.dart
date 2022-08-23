@@ -82,6 +82,7 @@ class TextFieldPassword extends StatefulWidget {
     this.passwordFocusNode,
     this.onChanged,
     this.onEditingComplete,
+
   }) : super(key: key);
 
   final String? assetPrefixIcon;
@@ -108,10 +109,12 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
         SizedBox(
           height: 52,
           child: TextField(
-            onChanged: (value) {
-              onChanged = false;
-              setState(() {});
-            },
+            // onChanged: (value) {
+            //   //widget.onChanged = value as Function(String?);
+            //   onChanged = false;
+            //   setState(() {});
+            // },
+            onChanged: widget.onChanged,
             textInputAction: TextInputAction.done,
             onEditingComplete: widget.onEditingComplete,
             controller: widget.passwordController,

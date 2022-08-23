@@ -39,10 +39,10 @@ class Router {
       //   {
       //     return MaterialPageRoute(builder: (_) => const SignInPage());
       //   }
-      case 'SignUpPage':
-        {
-          return MaterialPageRoute(builder: (_) => const SignUpPage());
-        }
+      // case 'SignUpPage':
+      //   {
+      //     return MaterialPageRoute(builder: (_) => const SignUpPage());
+      //   }
       case 'VerifyYourPage':
         {
           return MaterialPageRoute(builder: (_) => const VerifyYourPage());
@@ -91,8 +91,8 @@ class Router {
         {
           return MaterialPageRoute(
             builder: (_) => const PlayingCoursePage(
-              //modelCourse: courseItem[0],
-            ),
+                //modelCourse: courseItem[0],
+                ),
           );
         }
       case 'FullScreenPage':

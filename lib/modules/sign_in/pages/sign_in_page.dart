@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
-import 'package:ontari_app/modules/root_page.dart';
 import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
@@ -12,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../../services/auth.dart';
 import '../../../widgets/stateless/show_exception_alert_dialog.dart';
+import '../models/email_sign_in_change_model.dart';
 import '../sign_in_manager.dart';
 
 class SignInPage extends StatefulWidget {
@@ -19,21 +19,33 @@ class SignInPage extends StatefulWidget {
     Key? key,
     required this.manager,
     required this.isLoading,
+    required this.model,
   }) : super(key: key);
 
-  final SignInManager? manager;
+  final SignInManager manager;
   final bool isLoading;
+  final EmailSignInChangeModel model;
 
   static Widget create(BuildContext context) {
     final auth = Provider.of<AuthBase>(context, listen: false);
-    return ChangeNotifierProvider<ValueNotifier<bool>>(
-      create: (_) => ValueNotifier<bool>(false),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ValueNotifier<bool>>(
+          create: (_) => ValueNotifier<bool>(false),
+        ),
+        ChangeNotifierProvider<EmailSignInChangeModel>(
+          create: (_) => EmailSignInChangeModel(auth: auth),
+        ),
+      ],
       child: Consumer<ValueNotifier<bool>>(
         builder: (_, isLoading, __) => Provider<SignInManager>(
           create: (_) => SignInManager(auth: auth, isLoading: isLoading),
-          child: Consumer<SignInManager>(
-            builder: (_, manager, __) =>
-                SignInPage(manager: manager, isLoading: isLoading.value),
+          child: Consumer2<SignInManager, EmailSignInChangeModel>(
+            builder: (_, manager, model, __) => SignInPage(
+              manager: manager,
+              isLoading: isLoading.value,
+              model: model,
+            ),
           ),
         ),
       ),
@@ -49,6 +61,7 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
+  EmailSignInChangeModel get model => widget.model;
 
   @override
   void dispose() {
@@ -59,25 +72,52 @@ class _SignInPageState extends State<SignInPage> {
     super.dispose();
   }
 
-  // Future<void> _submit() async {
-  //   try {
-  //     await widget.model.submit();
-  //     Navigator.of(context).pop();
-  //   } on FirebaseAuthException catch (e) {
-  //     showExceptionAlertDialog(
-  //       context,
-  //       title: 'Sign in failed',
-  //       exception: e,
-  //     );
-  //   }
-  // }
+  Future<void> _submit() async {
+    try {
+      await model.submitSignIn();
+    } on FirebaseAuthException catch (e) {
+      showExceptionAlertDialog(
+        context,
+        title: 'Sign in failed',
+        exception: e,
+      );
+    }
+  }
 
-  // void _emailEditingComplete() {
-  //   final newFocus = model.emailValidator.isValid(model.email)
-  //       ? _passwordFocusNode
-  //       : _emailFocusNode;
-  //   FocusScope.of(context).requestFocus(newFocus);
-  // }
+  TextFieldEmail buildTextFieldEmail() {
+    return TextFieldEmail(
+      emailController: _emailController,
+      emailFocusNode: _emailFocusNode,
+      onChanged: (value) {
+        model.updateEmail(value);
+      },
+      onEditingComplete: () => _emailEditingComplete(),
+      childPrefixIcon: const CustomAvatar(
+        width: 15,
+        height: 12,
+        assetName: AssetPath.iconEmail,
+      ),
+    );
+  }
+
+  TextFieldPassword buildTextFieldPassword() {
+    return TextFieldPassword(
+      assetPrefixIcon: AssetPath.iconLock,
+      passwordController: _passwordController,
+      passwordFocusNode: _passwordFocusNode,
+      onChanged: (value) {
+        model.updatePassword(value);
+      },
+      onEditingComplete: _submit,
+    );
+  }
+
+  void _emailEditingComplete() {
+    final newFocus = model.emailValidator.isValid(model.email)
+        ? _passwordFocusNode
+        : _emailFocusNode;
+    FocusScope.of(context).requestFocus(newFocus);
+  }
 
   void _showSignInError(BuildContext context, Exception exception) {
     if (exception is FirebaseException &&
@@ -93,7 +133,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
-      await widget.manager?.signInWithGoogle();
+      await widget.manager.signInWithGoogle();
     } on Exception catch (e) {
       _showSignInError(context, e);
     }
@@ -101,34 +141,10 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> _signInWithFacebook(BuildContext context) async {
     try {
-      await widget.manager?.signInWithFacebook();
+      await widget.manager.signInWithFacebook();
     } on Exception catch (e) {
       _showSignInError(context, e);
     }
-  }
-
-  TextFieldPassword buildTextFieldPassword() {
-    return TextFieldPassword(
-      passwordController: _passwordController,
-      passwordFocusNode: _passwordFocusNode,
-      //onChanged: ,
-      //onEditingComplete: ,
-      assetPrefixIcon: AssetPath.iconLock,
-    );
-  }
-
-  TextFieldEmail buildTextFieldEmail() {
-    return TextFieldEmail(
-      emailController: _emailController,
-      emailFocusNode: _emailFocusNode,
-      //onChanged: ,
-      //onEditingComplete: ,
-      childPrefixIcon: const CustomAvatar(
-        width: 15,
-        height: 12,
-        assetName: AssetPath.iconEmail,
-      ),
-    );
   }
 
   @override
@@ -160,12 +176,7 @@ class _SignInPageState extends State<SignInPage> {
                       )
                     : ClassicButton(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RootPage(),
-                            ),
-                          );
+                          model.canSubmit ? _submit() : null;
                         },
                         width: size.width,
                         radius: 12,
@@ -176,8 +187,6 @@ class _SignInPageState extends State<SignInPage> {
                         child: const Center(child: Text('Sign in')),
                       ),
               ),
-//----------------------------------------------------------------------------//
-//----------------------------------------------------------------------------//
               const Text(
                 'Or continue with social account',
                 style: TxtStyle.headline5MediumWhite,
@@ -267,7 +276,7 @@ class _SignInPageState extends State<SignInPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SignUpPage(),
+                  builder: (context) => SignUpPage.create(context),
                 ),
               );
             },

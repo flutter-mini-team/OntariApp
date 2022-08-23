@@ -1,15 +1,34 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
+import 'package:ontari_app/modules/sign_in/pages/sign_in_page.dart';
 import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
 import 'package:ontari_app/widgets/stateless/terms.dart';
+import 'package:provider/provider.dart';
+
+import '../../../services/auth.dart';
+import '../../../widgets/stateless/show_exception_alert_dialog.dart';
+import '../models/email_sign_in_change_model.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  const SignUpPage({Key? key, required this.model}) : super(key: key);
+
+  final EmailSignInChangeModel model;
+
+  static Widget create(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
+    return ChangeNotifierProvider<EmailSignInChangeModel>(
+      create: (_) => EmailSignInChangeModel(auth: auth),
+      child: Consumer<EmailSignInChangeModel>(
+        builder: (_, model, __) => SignUpPage(model: model),
+      ),
+    );
+  }
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -20,13 +39,38 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
+  EmailSignInChangeModel get model => widget.model;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submit() async {
+    try {
+      await widget.model.submitSignUp();
+      Navigator.of(context).pop();
+    } on FirebaseAuthException catch (e) {
+      showExceptionAlertDialog(
+        context,
+        title: 'Sign in failed',
+        exception: e,
+      );
+    }
+  }
 
   TextFieldEmail buildTextFieldEmail() {
     return TextFieldEmail(
       emailController: _emailController,
       emailFocusNode: _emailFocusNode,
-      //onChanged: ,
-      //onEditingComplete: ,
+      onChanged: (value) {
+        model.updateEmail(value);
+      },
+      onEditingComplete: () => _emailEditingComplete(),
       childPrefixIcon: const CustomAvatar(
         width: 15,
         height: 12,
@@ -40,9 +84,18 @@ class _SignUpPageState extends State<SignUpPage> {
       assetPrefixIcon: AssetPath.iconLock,
       passwordController: _passwordController,
       passwordFocusNode: _passwordFocusNode,
-      //onChanged: ,
-      //onEditingComplete: ,
+      onChanged: (value) {
+        model.updatePassword(value);
+      },
+      onEditingComplete: _submit,
     );
+  }
+
+  void _emailEditingComplete() {
+    final newFocus = model.emailValidator.isValid(model.email)
+        ? _passwordFocusNode
+        : _emailFocusNode;
+    FocusScope.of(context).requestFocus(newFocus);
   }
 
   @override
@@ -71,14 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Terms(size: size),
               ),
               ClassicButton(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const VerifyYourPage(),
-                    ),
-                  );
-                },
+                onTap: () => model.canSubmit ? _submit() : null,
                 width: size.width,
                 radius: 12,
                 widthRadius: 0,
