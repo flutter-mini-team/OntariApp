@@ -100,6 +100,8 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+  bool _onChanged = false;
+  bool _isObscure = true;
   TextFieldPassword buildTextFieldPassword() {
     return TextFieldPassword(
       assetPrefixIcon: AssetPath.iconLock,
@@ -107,8 +109,31 @@ class _SignInPageState extends State<SignInPage> {
       passwordFocusNode: _passwordFocusNode,
       onChanged: (value) {
         model.updatePassword(value);
+        _onChanged = true;
+        setState(() {});
       },
       onEditingComplete: _submit,
+      obscureText: _isObscure,
+      suffixIcon: _passwordController.text.isEmpty
+          ? Container(width: 0)
+          : Align(
+              widthFactor: 0.5,
+              heightFactor: 0.5,
+              child: _onChanged
+                  ? CustomAvatar(
+                      width: 20,
+                      height: 15,
+                      assetName: _isObscure
+                          ? AssetPath.iconEye
+                          : AssetPath.iconHideEye,
+                      onTap: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                    )
+                  : const Text(''),
+            ),
     );
   }
 

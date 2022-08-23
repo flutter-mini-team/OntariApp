@@ -12,15 +12,16 @@ class TextFieldEmail extends StatelessWidget {
     this.emailFocusNode,
     this.emailController,
     this.childPrefixIcon,
-    //this.errorText = '',
+
     this.onChanged,
     this.onEditingComplete,
+
   }) : super(key: key);
 
   final FocusNode? emailFocusNode;
   final TextEditingController? emailController;
   final Widget? childPrefixIcon;
-  //final String errorText;
+
   Function(String)? onChanged;
   Function()? onEditingComplete;
 
@@ -42,7 +43,6 @@ class TextFieldEmail extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              //errorText: errorText,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
                 borderSide: const BorderSide(
@@ -78,27 +78,27 @@ class TextFieldPassword extends StatefulWidget {
   TextFieldPassword({
     Key? key,
     this.assetPrefixIcon,
+    this.suffixIcon,
     this.passwordController,
     this.passwordFocusNode,
     this.onChanged,
     this.onEditingComplete,
-
+    this.obscureText = true,
   }) : super(key: key);
 
   final String? assetPrefixIcon;
+  final Widget? suffixIcon;
   final TextEditingController? passwordController;
   final FocusNode? passwordFocusNode;
   Function(String)? onChanged;
   Function()? onEditingComplete;
+  final bool obscureText;
 
   @override
   State<TextFieldPassword> createState() => _TextFieldPasswordState();
 }
 
 class _TextFieldPasswordState extends State<TextFieldPassword> {
-  bool? onChanged = true;
-  bool _isObscure = true;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -109,17 +109,12 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
         SizedBox(
           height: 52,
           child: TextField(
-            // onChanged: (value) {
-            //   //widget.onChanged = value as Function(String?);
-            //   onChanged = false;
-            //   setState(() {});
-            // },
             onChanged: widget.onChanged,
             textInputAction: TextInputAction.done,
             onEditingComplete: widget.onEditingComplete,
             controller: widget.passwordController,
             focusNode: widget.passwordFocusNode,
-            obscureText: _isObscure,
+            obscureText: widget.obscureText,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
@@ -148,24 +143,7 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
                   assetName: widget.assetPrefixIcon!,
                 ),
               ),
-              suffixIcon: Align(
-                widthFactor: 0.5,
-                heightFactor: 0.5,
-                child: !onChanged!
-                    ? CustomAvatar(
-                        width: 20,
-                        height: 15,
-                        assetName: _isObscure
-                            ? AssetPath.iconEye
-                            : AssetPath.iconHideEye,
-                        onTap: () {
-                          setState(() {
-                            _isObscure ? _isObscure = false : _isObscure = true;
-                          });
-                        },
-                      )
-                    : const Text(''),
-              ),
+              suffixIcon: widget.suffixIcon,
             ),
           ),
         ),

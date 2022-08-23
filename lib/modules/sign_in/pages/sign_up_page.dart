@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
-import 'package:ontari_app/modules/sign_in/pages/sign_in_page.dart';
 import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
@@ -79,6 +78,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  bool _onChanged = false;
+  bool _isObscure = true;
   TextFieldPassword buildTextFieldPassword() {
     return TextFieldPassword(
       assetPrefixIcon: AssetPath.iconLock,
@@ -86,8 +87,31 @@ class _SignUpPageState extends State<SignUpPage> {
       passwordFocusNode: _passwordFocusNode,
       onChanged: (value) {
         model.updatePassword(value);
+        _onChanged = true;
+        setState(() {});
       },
       onEditingComplete: _submit,
+      obscureText: _isObscure,
+      suffixIcon: _passwordController.text.isEmpty
+          ? Container(width: 0)
+          : Align(
+              widthFactor: 0.5,
+              heightFactor: 0.5,
+              child: _onChanged
+                  ? CustomAvatar(
+                      width: 20,
+                      height: 15,
+                      assetName: _isObscure
+                          ? AssetPath.iconEye
+                          : AssetPath.iconHideEye,
+                      onTap: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                    )
+                  : const Text(''),
+            ),
     );
   }
 

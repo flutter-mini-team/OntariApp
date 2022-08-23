@@ -14,6 +14,7 @@ class EmailSignInChangeModel with EmailAndPasswordValidator, ChangeNotifier {
   String email;
   String password;
 
+
   Future<void> submitSignIn() async {
     try {
       await auth.signInWithEmailAndPassword(email, password);
@@ -34,6 +35,7 @@ class EmailSignInChangeModel with EmailAndPasswordValidator, ChangeNotifier {
     return emailValidator.isValid(email) && passwordValidator.isValid(password);
   }
 
+
   void updateEmail(String email) => updateWith(email: email);
   void updatePassword(String password) => updateWith(password: password);
 
@@ -43,6 +45,7 @@ class EmailSignInChangeModel with EmailAndPasswordValidator, ChangeNotifier {
   }) {
     this.email = email ?? this.email;
     this.password = password ?? this.password;
+
     notifyListeners();
   }
 }
