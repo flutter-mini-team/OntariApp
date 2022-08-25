@@ -4,6 +4,7 @@ import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
+import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
@@ -159,6 +160,7 @@ class _SignInPageState extends State<SignInPage> {
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
       await widget.manager.signInWithGoogle();
+      snackBarSuccess();
     } on Exception catch (e) {
       _showSignInError(context, e);
     }
@@ -167,6 +169,7 @@ class _SignInPageState extends State<SignInPage> {
   Future<void> _signInWithFacebook(BuildContext context) async {
     try {
       await widget.manager.signInWithFacebook();
+      snackBarSuccess();
     } on Exception catch (e) {
       _showSignInError(context, e);
     }
@@ -184,7 +187,7 @@ class _SignInPageState extends State<SignInPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 60.0),
+                padding: EdgeInsets.only(top: 40.0),
                 child: Text('Ontari.', style: TxtStyle.titleSplash),
               ),
               Padding(
@@ -263,6 +266,36 @@ class _SignInPageState extends State<SignInPage> {
                   ],
                 ),
               ),
+              const SizedBox(height: 16),
+              ClassicButton(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const VerifyYourPage(),
+                    ),
+                  );
+                },
+                width: size.width,
+                widthRadius: 0,
+                radius: 12,
+                height: 52,
+                color: DarkTheme.primaryBlueButton900,
+                colorRadius: DarkTheme.primaryBlueButton900,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.phone,
+                      color: DarkTheme.greyScale500,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 20.0),
+                      child: Text('Sign In with Phone number'),
+                    ),
+                  ],
+                ),
+              ),
               buildGoToSignUpPage(context),
             ],
           ),
@@ -288,7 +321,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Padding buildGoToSignUpPage(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30.0),
+      padding: const EdgeInsets.only(top: 10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -313,5 +346,30 @@ class _SignInPageState extends State<SignInPage> {
         ],
       ),
     );
+  }
+
+  void snackBarSuccess() {
+    return showSnackBar(
+      context,
+      "Sign in Successfully",
+      Image.asset(
+        AssetPath.iconChecked,
+        color: DarkTheme.green,
+      ),
+    );
+  }
+
+  void showSnackBar(BuildContext context, String text, Widget image) {
+    final snackBar = SnackBar(
+      backgroundColor: DarkTheme.greyScale800,
+      content: Row(
+        children: [
+          image,
+          const SizedBox(width: 20),
+          Text(text),
+        ],
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

@@ -12,10 +12,8 @@ class TextFieldEmail extends StatelessWidget {
     this.emailFocusNode,
     this.emailController,
     this.childPrefixIcon,
-
     this.onChanged,
     this.onEditingComplete,
-
   }) : super(key: key);
 
   final FocusNode? emailFocusNode;
@@ -234,16 +232,13 @@ class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
   }
 }
 
-class InputCode extends StatefulWidget {
+class InputCode extends StatelessWidget {
   const InputCode({
     Key? key,
+    this.textController,
   }) : super(key: key);
+  final TextEditingController? textController;
 
-  @override
-  State<InputCode> createState() => _InputCodeState();
-}
-
-class _InputCodeState extends State<InputCode> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -255,6 +250,7 @@ class _InputCodeState extends State<InputCode> {
             FocusScope.of(context).nextFocus();
           }
         },
+        controller: textController,
         keyboardAppearance: Brightness.dark,
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,

@@ -45,7 +45,7 @@ class Router {
       //   }
       case 'VerifyYourPage':
         {
-          return MaterialPageRoute(builder: (_) => const VerifyYourPage());
+          return MaterialPageRoute(builder: (_) => VerifyYourPage());
         }
       case 'SelectPlanPage':
         {

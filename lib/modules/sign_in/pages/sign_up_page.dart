@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
-import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/common_textfield.dart';
@@ -53,6 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
     try {
       await widget.model.submitSignUp();
       Navigator.of(context).pop();
+      snackBarSuccess();
     } on FirebaseAuthException catch (e) {
       showExceptionAlertDialog(
         context,
@@ -234,5 +234,30 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+  }
+
+  void snackBarSuccess() {
+    return showSnackBar(
+      context,
+      "Sign up Successfully",
+      Image.asset(
+        AssetPath.iconChecked,
+        color: DarkTheme.green,
+      ),
+    );
+  }
+
+  void showSnackBar(BuildContext context, String text, Widget image) {
+    final snackBar = SnackBar(
+      backgroundColor: DarkTheme.greyScale800,
+      content: Row(
+        children: [
+          image,
+          const SizedBox(width: 20),
+          Text(text),
+        ],
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
