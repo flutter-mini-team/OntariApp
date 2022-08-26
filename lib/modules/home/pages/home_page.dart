@@ -11,7 +11,7 @@ import 'package:ontari_app/widgets/stateless/common_button.dart';
 import '../../../config/themes/app_color.dart';
 import '../../../models/model_local.dart';
 import '../../../widgets/stateless/common_avatar.dart';
-import '../../../widgets/stateless/common_textfield.dart';
+import '../../../widgets/stateful/common_textfield.dart';
 import '../../../widgets/stateless/discount.dart';
 import '../../../widgets/stateless/mentor.dart';
 

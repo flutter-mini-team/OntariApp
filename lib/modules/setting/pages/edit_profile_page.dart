@@ -9,7 +9,7 @@ import 'package:ontari_app/modules/setting/widgets/title_setting.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_bodyitem.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
-import 'package:ontari_app/widgets/stateless/common_textfield.dart';
+import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key? key}) : super(key: key);

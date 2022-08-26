@@ -7,10 +7,11 @@ import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
 import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
-import 'package:ontari_app/widgets/stateless/common_textfield.dart';
+import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import 'package:provider/provider.dart';
 
 import '../../../services/auth.dart';
+import '../../../utils/showSnackBar.dart';
 import '../../../widgets/stateless/show_exception_alert_dialog.dart';
 import '../models/email_sign_in_change_model.dart';
 import '../sign_in_manager.dart';
@@ -287,7 +288,7 @@ class _SignInPageState extends State<SignInPage> {
                   children: const [
                     Icon(
                       Icons.phone,
-                      color: DarkTheme.greyScale500,
+                      color: DarkTheme.green,
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 20.0),
@@ -357,19 +358,5 @@ class _SignInPageState extends State<SignInPage> {
         color: DarkTheme.green,
       ),
     );
-  }
-
-  void showSnackBar(BuildContext context, String text, Widget image) {
-    final snackBar = SnackBar(
-      backgroundColor: DarkTheme.greyScale800,
-      content: Row(
-        children: [
-          image,
-          const SizedBox(width: 20),
-          Text(text),
-        ],
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

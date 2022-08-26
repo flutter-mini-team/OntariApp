@@ -12,8 +12,9 @@ class NonEmptyStringValidator implements StringValidator {
   }
 }
 
-class EmailAndPasswordValidator {
+class GeneralValidator {
   final StringValidator emailValidator = NonEmptyStringValidator();
   final StringValidator passwordValidator = NonEmptyStringValidator();
+  final StringValidator phoneValidator = NonEmptyStringValidator();
   final String invalidErrorText = 'Please provide a valid value';
 }

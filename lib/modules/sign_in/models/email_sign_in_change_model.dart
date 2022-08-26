@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ontari_app/modules/sign_in/sign_in_manager.dart';
 import 'package:ontari_app/services/auth.dart';
 
 import 'validators.dart';
 
-class EmailSignInChangeModel with EmailAndPasswordValidator, ChangeNotifier {
+class EmailSignInChangeModel with GeneralValidator, ChangeNotifier {
   EmailSignInChangeModel({
     required this.auth,
     this.email = '',

@@ -13,7 +13,6 @@ abstract class AuthBase {
   Future<User> signInWithFacebook();
   Future<User> createUserWithEmailAndPassword(String email, String password);
   Future<User> signInWithEmailAndPassword(String email, String password);
-  //Future<void> verifyPhoneNumber(BuildContext context, Function setData);
   Future<void> signOut();
 }
 
@@ -26,7 +25,6 @@ class Auth implements AuthBase {
   @override
   User? get currentUser => _firebaseAuth.currentUser;
 
-  // @override
   // Future<void> verifyPhoneNumber(BuildContext context, Function setData) async {
   //   await _firebaseAuth.verifyPhoneNumber(
   //     phoneNumber: '+84789862417',
@@ -64,16 +62,6 @@ class Auth implements AuthBase {
   //       );
   //     },
   //   );
-  // }
-
-  // void showSnackBar(BuildContext context, String text, Image image) {
-  //   final snackBar = SnackBar(
-  //     content: ListTile(
-  //       trailing: image,
-  //       title: Text(text),
-  //     ),
-  //   );
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   // }
 
   @override

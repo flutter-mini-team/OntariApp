@@ -26,7 +26,7 @@ import '../../widgets/stateful/toggle_switch_button.dart';
 import '../../widgets/stateless/class_preview.dart';
 import '../../widgets/stateless/common_avatar.dart';
 import '../../widgets/stateless/common_bodyitem.dart';
-import '../../widgets/stateless/common_textfield.dart';
+import '../../widgets/stateful/common_textfield.dart';
 import '../../widgets/stateless/discount.dart';
 import '../../widgets/stateless/indicator_home.dart';
 

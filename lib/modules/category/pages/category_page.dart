@@ -9,7 +9,7 @@ import '../../../constants/assets_path.dart';
 import '../../../models/model_local.dart';
 import '../../../widgets/stateless/common_avatar.dart';
 import '../../../widgets/stateless/common_button.dart';
-import '../../../widgets/stateless/common_textfield.dart';
+import '../../../widgets/stateful/common_textfield.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({Key? key}) : super(key: key);

@@ -7,7 +7,7 @@ import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/setting/widgets/items_download_video.dart';
 import 'package:ontari_app/modules/setting/widgets/title_setting.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
-import 'package:ontari_app/widgets/stateless/common_textfield.dart';
+import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 
 class DownloadVideoPage extends StatelessWidget {
   const DownloadVideoPage({Key? key}) : super(key: key);

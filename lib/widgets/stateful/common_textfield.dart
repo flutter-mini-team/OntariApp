@@ -4,7 +4,7 @@ import 'package:ontari_app/constants/assets_path.dart';
 
 import '../../config/themes/app_color.dart';
 import '../../config/themes/text_style.dart';
-import 'common_avatar.dart';
+import '../stateless/common_avatar.dart';
 
 class TextFieldEmail extends StatelessWidget {
   TextFieldEmail({
@@ -155,35 +155,34 @@ class TextFieldSearchBar extends StatefulWidget {
     Key? key,
     this.childPrefixIcon,
     required this.hintText,
-    //this.errorText = '',
-    //this.emailController,
+    this.keyboardType,
+    this.textController,
   }) : super(key: key);
-  //final String errorText;
   final Widget? childPrefixIcon;
   final String hintText;
-  //final TextEditingController? emailController;
+  final TextInputType? keyboardType;
+  final TextEditingController? textController;
 
   @override
   State<TextFieldSearchBar> createState() => _TextFieldSearchBarState();
 }
 
 class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
-  bool? _onChanged = true;
-  final TextEditingController? emailController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    widget.textController!.addListener(() => setState(() {}));
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 48,
       child: TextField(
-        controller: emailController,
-        onChanged: (value) {
-          _onChanged = false;
-          setState(() {});
-        },
+        keyboardType: widget.keyboardType,
+        controller: widget.textController,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          //errorText: widget.errorText,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
             borderSide: const BorderSide(
@@ -207,7 +206,7 @@ class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
             heightFactor: 0.5,
             child: widget.childPrefixIcon,
           ),
-          suffixIcon: !_onChanged!
+          suffixIcon: widget.textController!.text.isNotEmpty
               ? IconButton(
                   icon: const Align(
                     widthFactor: 0.5,
@@ -218,12 +217,7 @@ class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
                       assetName: AssetPath.iconClose,
                     ),
                   ),
-                  onPressed: () {
-                    emailController?.clear();
-                    setState(() {
-                      _onChanged = true;
-                    });
-                  },
+                  onPressed: () => widget.textController!.clear(),
                 )
               : const Text(''),
         ),
