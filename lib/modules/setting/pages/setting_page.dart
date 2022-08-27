@@ -46,7 +46,7 @@ class SettingPage extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (_) => const EditProfilePage()),
+                              builder: (_) => EditProfilePage()),
                         );
                       },
                       fullName: 'Barly Vallendito',
@@ -161,7 +161,7 @@ class SettingPage extends StatelessWidget {
       switch (index) {
         case 0:
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const DownloadVideoPage()));
+              MaterialPageRoute(builder: (_) => DownloadVideoPage()));
           break;
         case 1:
           Navigator.of(context)

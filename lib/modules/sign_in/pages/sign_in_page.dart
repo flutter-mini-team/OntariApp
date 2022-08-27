@@ -273,7 +273,7 @@ class _SignInPageState extends State<SignInPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const VerifyYourPage(),
+                      builder: (context) => VerifyYourPage.create(context),
                     ),
                   );
                 },

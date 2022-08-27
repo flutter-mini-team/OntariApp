@@ -7,7 +7,7 @@ import '../../config/themes/text_style.dart';
 import '../stateless/common_avatar.dart';
 
 class TextFieldEmail extends StatelessWidget {
-  TextFieldEmail({
+  const TextFieldEmail({
     Key? key,
     this.emailFocusNode,
     this.emailController,
@@ -19,9 +19,8 @@ class TextFieldEmail extends StatelessWidget {
   final FocusNode? emailFocusNode;
   final TextEditingController? emailController;
   final Widget? childPrefixIcon;
-
-  Function(String)? onChanged;
-  Function()? onEditingComplete;
+  final Function(String)? onChanged;
+  final Function()? onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +72,7 @@ class TextFieldEmail extends StatelessWidget {
 }
 
 class TextFieldPassword extends StatefulWidget {
-  TextFieldPassword({
+  const TextFieldPassword({
     Key? key,
     this.assetPrefixIcon,
     this.suffixIcon,
@@ -88,8 +87,8 @@ class TextFieldPassword extends StatefulWidget {
   final Widget? suffixIcon;
   final TextEditingController? passwordController;
   final FocusNode? passwordFocusNode;
-  Function(String)? onChanged;
-  Function()? onEditingComplete;
+  final Function(String)? onChanged;
+  final Function()? onEditingComplete;
   final bool obscureText;
 
   @override
@@ -156,12 +155,14 @@ class TextFieldSearchBar extends StatefulWidget {
     this.childPrefixIcon,
     required this.hintText,
     this.keyboardType,
-    this.textController,
+    required this.textController,
+    this.onChanged,
   }) : super(key: key);
   final Widget? childPrefixIcon;
   final String hintText;
   final TextInputType? keyboardType;
-  final TextEditingController? textController;
+  final TextEditingController textController;
+  final Function(String)? onChanged;
 
   @override
   State<TextFieldSearchBar> createState() => _TextFieldSearchBarState();
@@ -171,7 +172,7 @@ class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
   @override
   void initState() {
     super.initState();
-    widget.textController!.addListener(() => setState(() {}));
+    widget.textController.addListener(() => setState(() {}));
   }
 
   @override
@@ -179,6 +180,7 @@ class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
     return SizedBox(
       height: 48,
       child: TextField(
+        onChanged: widget.onChanged,
         keyboardType: widget.keyboardType,
         controller: widget.textController,
         textInputAction: TextInputAction.done,
@@ -206,7 +208,7 @@ class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
             heightFactor: 0.5,
             child: widget.childPrefixIcon,
           ),
-          suffixIcon: widget.textController!.text.isNotEmpty
+          suffixIcon: widget.textController.text.isNotEmpty
               ? IconButton(
                   icon: const Align(
                     widthFactor: 0.5,
@@ -217,7 +219,7 @@ class _TextFieldSearchBarState extends State<TextFieldSearchBar> {
                       assetName: AssetPath.iconClose,
                     ),
                   ),
-                  onPressed: () => widget.textController!.clear(),
+                  onPressed: () => widget.textController.clear(),
                 )
               : const Text(''),
         ),

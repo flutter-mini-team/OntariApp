@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
+import 'package:ontari_app/utils/showSnackBar.dart';
 
 import '../constants/assets_path.dart';
 
@@ -13,6 +14,12 @@ abstract class AuthBase {
   Future<User> signInWithFacebook();
   Future<User> createUserWithEmailAndPassword(String email, String password);
   Future<User> signInWithEmailAndPassword(String email, String password);
+  Future<void> signInWithPhoneNumber(String verificationId, String smsCode);
+  Future<void> verifyPhoneNumber(
+    BuildContext context,
+    String phoneNumber,
+    Function(String) verificationID,
+  );
   Future<void> signOut();
 }
 
@@ -25,44 +32,50 @@ class Auth implements AuthBase {
   @override
   User? get currentUser => _firebaseAuth.currentUser;
 
-  // Future<void> verifyPhoneNumber(BuildContext context, Function setData) async {
-  //   await _firebaseAuth.verifyPhoneNumber(
-  //     phoneNumber: '+84789862417',
-  //     verificationCompleted: (PhoneAuthCredential credential) async {
-  //       showSnackBar(
-  //         context,
-  //         "Verification Completed",
-  //         Image.asset(AssetPath.iconChecked, color: DarkTheme.green),
-  //       );
-  //     },
-  //     verificationFailed: (FirebaseAuthException e) {
-  //       showSnackBar(
-  //         context,
-  //         e.code,
-  //         Image.asset(AssetPath.iconClose, color: DarkTheme.red),
-  //       );
-  //     },
-  //     codeSent: (String verificationId, int? resendToken) async {
-  //       // String smsCode = 'xxxx';
-  //       // PhoneAuthCredential credential = PhoneAuthProvider.credential(
-  //       //     verificationId: verificationId, smsCode: smsCode);
-  //       setData(verificationId);
+  @override
+  Future<void> verifyPhoneNumber(
+    BuildContext context,
+    String phoneNumber,
+    Function(String) verificationID,
+  ) async {
+    await _firebaseAuth.verifyPhoneNumber(
+      phoneNumber: '+84$phoneNumber',
+      timeout: const Duration(seconds: 120),
+      verificationCompleted: (PhoneAuthCredential credential) async {},
+      verificationFailed: (FirebaseAuthException e) {
+        print(e.message);
+        showSnackBar(
+          context,
+          e.code,
+          Image.asset(AssetPath.iconClose, color: DarkTheme.red),
+        );
+      },
+      codeSent: (String verificationId, int? resendToken) async {
+        verificationID(verificationId);
 
-  //       showSnackBar(
-  //         context,
-  //         "Verification code sent on the phone number",
-  //         Image.asset(AssetPath.iconEmail, color: DarkTheme.yellow),
-  //       );
-  //     },
-  //     codeAutoRetrievalTimeout: (String verificationId) {
-  //       showSnackBar(
-  //         context,
-  //         "Time out",
-  //         Image.asset(AssetPath.iconTime),
-  //       );
-  //     },
-  //   );
-  // }
+        showSnackBar(
+          context,
+          "Verification code sent on the phone number",
+          Image.asset(AssetPath.iconEmail, color: DarkTheme.yellow),
+        );
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        showSnackBar(context, "Time out", Image.asset(AssetPath.iconTime));
+      },
+    );
+  }
+
+  @override
+  Future<void> signInWithPhoneNumber(
+    String verificationId,
+    String smsCode,
+  ) async {
+    AuthCredential credential = PhoneAuthProvider.credential(
+      verificationId: verificationId,
+      smsCode: smsCode,
+    );
+    await _firebaseAuth.signInWithCredential(credential);
+  }
 
   @override
   Future<User> signInWithGoogle() async {

@@ -1,8 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
-import 'package:ontari_app/modules/landing_page.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import 'package:otp_text_field/otp_field.dart';
@@ -11,31 +11,59 @@ import 'package:otp_text_field/style.dart';
 import 'package:provider/provider.dart';
 
 import '../../../services/auth.dart';
-import '../../../widgets/stateless/show_alert_dialog.dart';
+import '../../../utils/showSnackBar.dart';
+import '../../../widgets/stateless/show_exception_alert_dialog.dart';
+import '../models/phone_sign_in_change_model.dart';
 
 class VerifyYourPage extends StatefulWidget {
-  const VerifyYourPage({Key? key}) : super(key: key);
+  const VerifyYourPage({Key? key, required this.model}) : super(key: key);
+
+  final PhoneSignInChangeModel model;
+  static Widget create(BuildContext context) {
+    final auth = Provider.of<AuthBase>(context, listen: false);
+    return ChangeNotifierProvider<PhoneSignInChangeModel>(
+      create: (_) => PhoneSignInChangeModel(auth: auth),
+      child: Consumer<PhoneSignInChangeModel>(
+        builder: (_, model, __) => VerifyYourPage(model: model),
+      ),
+    );
+  }
 
   @override
   State<VerifyYourPage> createState() => _VerifyYourPageState();
 }
 
 class _VerifyYourPageState extends State<VerifyYourPage> {
+  PhoneSignInChangeModel get model => widget.model;
   final OtpFieldController _controller = OtpFieldController();
   final TextEditingController _textController = TextEditingController();
 
-  //late String verificationId = "";
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
 
-  //+84789862417
-  // void setData(verificationID) {
-  //   setState(() {
-  //     verificationId = verificationID;
-  //   });
-  // }
+  Future<void> _submit(BuildContext context) async {
+    try {
+      await model.submitSignIn();
+      Navigator.of(context).pop();
+      snackBarSuccess();
+    } on FirebaseAuthException catch (e) {
+      showExceptionAlertDialog(
+        context,
+        title: 'Sign in failed',
+        exception: e,
+      );
+    }
+  }
 
   TextFieldSearchBar buildTextFieldPhoneNumber() {
     return TextFieldSearchBar(
       textController: _textController,
+      onChanged: (value) {
+        model.updatePhone(value);
+      },
       keyboardType: TextInputType.number,
       hintText: "Enter phone number ...",
       childPrefixIcon: const Icon(
@@ -47,13 +75,6 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final auth = Provider.of<AuthBase>(context, listen: false);
-    // try {
-    //   auth.verifyPhoneNumber(context, setData);
-    // } catch (e) {
-    //   print(e.toString());
-    // }
-    // print(verificationId);
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: SingleChildScrollView(
@@ -83,7 +104,9 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
                       child: buildTextFieldPhoneNumber(),
                     ),
                     ClassicButton(
-                      onTap: () => print(_textController),
+                      onTap: () => model.canSend
+                          ? model.verifyPhoneNumber(context)
+                          : snackBarEmpty(),
                       widthRadius: 2.0,
                       width: 70,
                       height: 40,
@@ -101,6 +124,10 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
                 ),
                 const SizedBox(height: 40),
                 OTPTextField(
+                  onCompleted: (pin) {
+                    model.updateSmsCode(pin);
+                    _submit(context);
+                  },
                   controller: _controller,
                   length: 6,
                   width: 360,
@@ -112,45 +139,28 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
                   style: TxtStyle.headline4White,
                   fieldStyle: FieldStyle.box,
                   onChanged: (value) {},
-                  onCompleted: (pin) {
-                    if (pin.compareTo("111111") == 0) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LandingPage(),
-                        ),
-                      );
-                    } else {
-                      showAlertDialog(
-                        context,
-                        title: 'OTP',
-                        content:
-                            'The OTP code is incorrect, please check again',
-                        defaultActionText: 'OK',
-                      );
-                    }
-                  },
                 ),
                 const SizedBox(height: 40),
                 Row(
-                  children: const [
+                  children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 12),
+                      padding: const EdgeInsets.only(right: 12),
                       child: ClassicButton(
+                        onTap: () {},
                         widthRadius: 2.0,
                         width: 84,
                         height: 40,
                         radius: 10,
                         color: DarkTheme.primaryBlueButton900,
                         colorRadius: DarkTheme.primaryBlue900,
-                        child: Center(
+                        child: const Center(
                             child: Text(
                           '111111',
                           style: TxtStyle.headline4White2,
                         )),
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Use code from your phone',
                       style: TxtStyle.headline5MediumWhite,
                     ),
@@ -160,6 +170,28 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void snackBarEmpty() {
+    return showSnackBar(
+      context,
+      "Please enter the phone number",
+      Image.asset(
+        AssetPath.iconClose,
+        color: DarkTheme.red,
+      ),
+    );
+  }
+
+  void snackBarSuccess() {
+    return showSnackBar(
+      context,
+      "Sign in with phone number Successfully",
+      Image.asset(
+        AssetPath.iconChecked,
+        color: DarkTheme.green,
       ),
     );
   }

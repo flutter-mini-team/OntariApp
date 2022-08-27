@@ -22,6 +22,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
+    final TextEditingController _searchController = TextEditingController();
+
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: SafeArea(
@@ -67,7 +69,8 @@ class HomePage extends StatelessWidget {
                         style: TxtStyle.headline5MediumWhite,
                       ),
                       const SizedBox(height: 16),
-                      const TextFieldSearchBar(
+                      TextFieldSearchBar(
+                        textController: _searchController,
                         hintText: 'Search your focus...',
                         childPrefixIcon: CustomAvatar(
                           width: 15,

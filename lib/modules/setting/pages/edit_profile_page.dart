@@ -12,7 +12,11 @@ import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 
 class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  EditProfilePage({Key? key}) : super(key: key);
+
+  final TextEditingController _firstController = TextEditingController();
+  final TextEditingController _lastController = TextEditingController();
+  final TextEditingController _userController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -97,18 +101,21 @@ class EditProfilePage extends StatelessWidget {
                         'First Name',
                         'Enter your First Name',
                         AssetPath.iconUser,
+                        _firstController,
                       ),
                     ),
                     buildTextFieldString(
                       'Last Name',
                       'Enter your Last Name',
                       AssetPath.iconUser,
+                      _lastController
                     ),
                     const SizedBox(height: 24),
                     buildTextFieldString(
                       'Username',
                       'Enter your Username',
                       AssetPath.iconUser,
+                      _userController,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 24.0),
@@ -128,7 +135,12 @@ class EditProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buildTextFieldString(String title, String hintText, String assetName) {
+  Widget buildTextFieldString(
+    String title,
+    String hintText,
+    String assetName,
+    TextEditingController controller,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -141,6 +153,7 @@ class EditProfilePage extends StatelessWidget {
             height: 12,
             assetName: assetName,
           ),
+          textController: controller,
         ),
       ],
     );

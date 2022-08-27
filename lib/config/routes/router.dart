@@ -43,10 +43,10 @@ class Router {
       //   {
       //     return MaterialPageRoute(builder: (_) => const SignUpPage());
       //   }
-      case 'VerifyYourPage':
-        {
-          return MaterialPageRoute(builder: (_) => VerifyYourPage());
-        }
+      // case 'VerifyYourPage':
+      //   {
+      //     return MaterialPageRoute(builder: (_) => VerifyYourPage());
+      //   }
       case 'SelectPlanPage':
         {
           return MaterialPageRoute(builder: (_) => const SelectPlanPage());
@@ -77,11 +77,11 @@ class Router {
         }
       case 'DownloadVideoPage':
         {
-          return MaterialPageRoute(builder: (_) => const DownloadVideoPage());
+          return MaterialPageRoute(builder: (_) => DownloadVideoPage());
         }
       case 'EditProfilePage':
         {
-          return MaterialPageRoute(builder: (_) => const EditProfilePage());
+          return MaterialPageRoute(builder: (_) => EditProfilePage());
         }
       case 'DetailMentorPage':
         {

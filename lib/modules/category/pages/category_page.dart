@@ -12,7 +12,9 @@ import '../../../widgets/stateless/common_button.dart';
 import '../../../widgets/stateful/common_textfield.dart';
 
 class CategoryPage extends StatelessWidget {
-  const CategoryPage({Key? key}) : super(key: key);
+  CategoryPage({Key? key}) : super(key: key);
+
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,12 @@ class CategoryPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildTitleCategory(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: TextFieldSearchBar(
+                    textController: _searchController,
                     hintText: 'Search your focus...',
-                    childPrefixIcon: CustomAvatar(
+                    childPrefixIcon: const CustomAvatar(
                       width: 16,
                       height: 16,
                       assetName: AssetPath.iconSearch,

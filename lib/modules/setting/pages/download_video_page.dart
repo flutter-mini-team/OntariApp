@@ -10,7 +10,9 @@ import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 
 class DownloadVideoPage extends StatelessWidget {
-  const DownloadVideoPage({Key? key}) : super(key: key);
+  DownloadVideoPage({Key? key}) : super(key: key);
+
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,10 @@ class DownloadVideoPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const TitleSetting(title: 'Download Video'),
-                const TextFieldSearchBar(
+                TextFieldSearchBar(
+                  textController: _searchController,
                   hintText: 'Search your focus...',
-                  childPrefixIcon: CustomAvatar(
+                  childPrefixIcon: const CustomAvatar(
                     width: 16,
                     height: 16,
                     assetName: AssetPath.iconSearch,

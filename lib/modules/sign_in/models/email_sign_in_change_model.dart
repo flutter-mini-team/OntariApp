@@ -13,7 +13,6 @@ class EmailSignInChangeModel with GeneralValidator, ChangeNotifier {
   String email;
   String password;
 
-
   Future<void> submitSignIn() async {
     try {
       await auth.signInWithEmailAndPassword(email, password);

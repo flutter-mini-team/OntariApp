@@ -206,6 +206,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             TextFieldSearchBar(
+              textController: TextEditingController(),
               hintText: 'Search your focus...',
               childPrefixIcon: CustomAvatar(
                 width: size.width / 22.5,
