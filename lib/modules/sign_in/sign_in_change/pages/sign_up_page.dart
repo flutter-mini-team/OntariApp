@@ -9,9 +9,9 @@ import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import 'package:ontari_app/widgets/stateless/terms.dart';
 import 'package:provider/provider.dart';
 
-import '../../../services/auth.dart';
-import '../../../utils/showSnackBar.dart';
-import '../../../widgets/stateless/show_exception_alert_dialog.dart';
+import '../../../../services/auth.dart';
+import '../../../../utils/showSnackBar.dart';
+import '../../../../widgets/stateless/show_exception_alert_dialog.dart';
 import '../models/email_sign_in_change_model.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -55,11 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.of(context).pop();
       snackBarSuccess();
     } on FirebaseAuthException catch (e) {
-      showExceptionAlertDialog(
-        context,
-        title: 'Sign in failed',
-        exception: e,
-      );
+      showExceptionAlertDialog(context, title: 'Sign in failed', exception: e);
     }
   }
 
@@ -67,9 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return TextFieldEmail(
       emailController: _emailController,
       emailFocusNode: _emailFocusNode,
-      onChanged: (value) {
-        model.updateEmail(value);
-      },
+      onChanged: (value) => model.updateEmail(value),
       onEditingComplete: () => _emailEditingComplete(),
       childPrefixIcon: const CustomAvatar(
         width: 15,
@@ -215,18 +209,10 @@ class _SignUpPageState extends State<SignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Already have an account? ',
-                    style: TxtStyle.Term,
-                  ),
+                  const Text('Already have an account? ', style: TxtStyle.Term),
                   TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      'Sign in',
-                      style: TxtStyle.create,
-                    ),
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Sign in', style: TxtStyle.create),
                   ),
                 ],
               )
@@ -241,10 +227,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return showSnackBar(
       context,
       "Sign up Successfully",
-      Image.asset(
-        AssetPath.iconChecked,
-        color: DarkTheme.green,
-      ),
+      Image.asset(AssetPath.iconChecked, color: DarkTheme.green),
     );
   }
 }

@@ -10,9 +10,9 @@ import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:provider/provider.dart';
 
-import '../../../services/auth.dart';
-import '../../../utils/showSnackBar.dart';
-import '../../../widgets/stateless/show_exception_alert_dialog.dart';
+import '../../../../widgets/stateless/show_exception_alert_dialog.dart';
+import '../../../../services/auth.dart';
+import '../../../../utils/showSnackBar.dart';
 import '../models/phone_sign_in_change_model.dart';
 
 class VerifyYourPage extends StatefulWidget {
@@ -61,9 +61,7 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
   TextFieldSearchBar buildTextFieldPhoneNumber() {
     return TextFieldSearchBar(
       textController: _textController,
-      onChanged: (value) {
-        model.updatePhone(value);
-      },
+      onChanged: (value) => model.updatePhone(value),
       keyboardType: TextInputType.number,
       hintText: "Enter phone number ...",
       childPrefixIcon: const Icon(

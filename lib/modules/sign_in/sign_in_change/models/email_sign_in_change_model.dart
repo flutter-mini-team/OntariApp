@@ -33,7 +33,6 @@ class EmailSignInChangeModel with GeneralValidator, ChangeNotifier {
     return emailValidator.isValid(email) && passwordValidator.isValid(password);
   }
 
-
   void updateEmail(String email) => updateWith(email: email);
   void updatePassword(String password) => updateWith(password: password);
 

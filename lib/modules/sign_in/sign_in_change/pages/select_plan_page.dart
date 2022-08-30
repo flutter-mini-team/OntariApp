@@ -32,10 +32,7 @@ class SelectPlanPage extends StatelessWidget {
                   radius: 12,
                   colorRadius: DarkTheme.primaryBlue600,
                   child: const Center(
-                    child: Text(
-                      'Send Link',
-                      style: TxtStyle.currentPlan,
-                    ),
+                    child: Text('Send Link', style: TxtStyle.currentPlan),
                   ),
                   onTap: () {
                     print('aaa');
@@ -89,10 +86,7 @@ class SelectPlanPage extends StatelessWidget {
                         textButton: 'Current Plan',
                         colorButton: DarkTheme.greyScale900,
                         assetName: AssetPath.iconStar,
-                        onTap: () {
-                          //print('aaa');
-                          openSendLink(context);
-                        },
+                        onTap: () => openSendLink(context),
                       ),
                       Subscription(
                         color: DarkTheme.greyScale700,
@@ -123,7 +117,7 @@ class SelectPlanPage extends StatelessWidget {
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Terms & Condition',
-                          style: TxtStyle.create,
+                          style: TxtStyle.create
                         ),
                         TextSpan(
                           text: 'and that you agree to our ',
@@ -131,7 +125,7 @@ class SelectPlanPage extends StatelessWidget {
                         ),
                         TextSpan(
                           text: 'Privacy Policy.',
-                          style: TxtStyle.create,
+                          style: TxtStyle.create
                         ),
                       ],
                     ),

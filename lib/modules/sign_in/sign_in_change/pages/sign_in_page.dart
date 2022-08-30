@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
-import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
-import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
+import 'package:ontari_app/modules/sign_in/sign_in_change/pages/sign_up_page.dart';
+import 'package:ontari_app/modules/sign_in/sign_in_change/pages/verify_your_page.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import 'package:provider/provider.dart';
 
-import '../../../services/auth.dart';
-import '../../../utils/showSnackBar.dart';
-import '../../../widgets/stateless/show_exception_alert_dialog.dart';
+
+import '../../../../services/auth.dart';
+import '../../../../utils/showSnackBar.dart';
+import '../../../../widgets/stateless/show_exception_alert_dialog.dart';
 import '../models/email_sign_in_change_model.dart';
+
 import '../sign_in_manager.dart';
 
 class SignInPage extends StatefulWidget {
@@ -78,11 +80,7 @@ class _SignInPageState extends State<SignInPage> {
     try {
       await model.submitSignIn();
     } on FirebaseAuthException catch (e) {
-      showExceptionAlertDialog(
-        context,
-        title: 'Sign in failed',
-        exception: e,
-      );
+      showExceptionAlertDialog(context, title: 'Sign in failed', exception: e);
     }
   }
 
@@ -90,9 +88,7 @@ class _SignInPageState extends State<SignInPage> {
     return TextFieldEmail(
       emailController: _emailController,
       emailFocusNode: _emailFocusNode,
-      onChanged: (value) {
-        model.updateEmail(value);
-      },
+      onChanged: (value) => model.updateEmail(value),
       onEditingComplete: () => _emailEditingComplete(),
       childPrefixIcon: const CustomAvatar(
         width: 15,
@@ -200,13 +196,9 @@ class _SignInPageState extends State<SignInPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: widget.isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
+                    ? const Center(child: CircularProgressIndicator())
                     : ClassicButton(
-                        onTap: () {
-                          model.canSubmit ? _submit() : null;
-                        },
+                        onTap: () => model.canSubmit ? _submit() : null,
                         width: size.width,
                         radius: 12,
                         widthRadius: 0,
@@ -234,9 +226,7 @@ class _SignInPageState extends State<SignInPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        AssetPath.iconGoogle,
-                      ),
+                      Image.asset(AssetPath.iconGoogle),
                       const Padding(
                         padding: EdgeInsets.only(left: 20.0),
                         child: Text('Sign In with Google'),
@@ -257,9 +247,7 @@ class _SignInPageState extends State<SignInPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      AssetPath.iconFacebook,
-                    ),
+                    Image.asset(AssetPath.iconFacebook),
                     const Padding(
                       padding: EdgeInsets.only(left: 20.0),
                       child: Text('Sign In with Facebook'),
@@ -286,10 +274,7 @@ class _SignInPageState extends State<SignInPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(
-                      Icons.phone,
-                      color: DarkTheme.green,
-                    ),
+                    Icon(Icons.phone, color: DarkTheme.green),
                     Padding(
                       padding: EdgeInsets.only(left: 20.0),
                       child: Text('Sign In with Phone number'),
@@ -312,10 +297,7 @@ class _SignInPageState extends State<SignInPage> {
         onPressed: () {
           print('aaaa');
         },
-        child: const Text(
-          'Forgot password?',
-          style: TxtStyle.headline4blue,
-        ),
+        child: const Text('Forgot password?', style: TxtStyle.headline4blue),
       ),
     );
   }
@@ -326,10 +308,7 @@ class _SignInPageState extends State<SignInPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Don\'t have an account? ',
-            style: TxtStyle.Term,
-          ),
+          const Text('Don\'t have an account? ', style: TxtStyle.Term),
           TextButton(
             onPressed: () {
               Navigator.push(
@@ -339,10 +318,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               );
             },
-            child: const Text(
-              'Create Here',
-              style: TxtStyle.create,
-            ),
+            child: const Text('Create Here', style: TxtStyle.create),
           ),
         ],
       ),
@@ -353,10 +329,7 @@ class _SignInPageState extends State<SignInPage> {
     return showSnackBar(
       context,
       "Sign in Successfully",
-      Image.asset(
-        AssetPath.iconChecked,
-        color: DarkTheme.green,
-      ),
+      Image.asset(AssetPath.iconChecked, color: DarkTheme.green),
     );
   }
 }

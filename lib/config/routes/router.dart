@@ -9,15 +9,12 @@ import 'package:ontari_app/modules/setting/pages/change_language_page.dart';
 import 'package:ontari_app/modules/setting/pages/download_video_page.dart';
 import 'package:ontari_app/modules/setting/pages/edit_profile_page.dart';
 import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
-import 'package:ontari_app/modules/sign_in/pages/select_plan_page.dart';
-import 'package:ontari_app/modules/sign_in/pages/sign_in_page.dart';
-import 'package:ontari_app/modules/sign_in/pages/sign_up_page.dart';
-import 'package:ontari_app/modules/sign_in/pages/splash_page.dart';
-import 'package:ontari_app/modules/sign_in/pages/verify_your_page.dart';
+import 'package:ontari_app/modules/sign_in/sign_in_change/pages/select_plan_page.dart';
 
 import '../../modules/home/pages/home_page.dart';
 
 import '../../modules/root_page.dart';
+import '../../modules/sign_in/sign_in_change/pages/splash_page.dart';
 import '../../widgets/stateful/pages.dart';
 
 class Router {
