@@ -2,8 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
-import 'package:ontari_app/services/auth.dart';
-import 'package:provider/provider.dart';
 
 import 'config/routes/routes.dart';
 import 'config/routes/router.dart' as router;
@@ -26,22 +24,19 @@ class MyApp extends StatelessWidget {
       statusBarColor: DarkTheme.greyScale900,
       statusBarBrightness: Brightness.light,
     ));
-    return Provider<AuthBase>(
-      create: (context) => Auth(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: DarkTheme.greyScale50,
-          scaffoldBackgroundColor: DarkTheme.greyScale50,
-          fontFamily: 'manrope',
-          textTheme: Theme.of(context)
-              .textTheme
-              .apply(bodyColor: DarkTheme.white, displayColor: DarkTheme.white),
-        ),
-        initialRoute: Routes.listPage,
-        onGenerateRoute: router.Router.generateRoute,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: DarkTheme.greyScale50,
+        scaffoldBackgroundColor: DarkTheme.greyScale50,
+        fontFamily: 'manrope',
+        textTheme: Theme.of(context)
+            .textTheme
+            .apply(bodyColor: DarkTheme.white, displayColor: DarkTheme.white),
       ),
+      initialRoute: Routes.listPage,
+      onGenerateRoute: router.Router.generateRoute,
     );
   }
 }

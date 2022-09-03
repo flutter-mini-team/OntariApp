@@ -13,6 +13,7 @@ class ListPage extends StatelessWidget {
     List<String> pages = [
       Routes.commonWidgetPage,
       Routes.fullScreenPage,
+      Routes.fullPageBloc,
       Routes.splash,
       Routes.signInPage,
       Routes.signUpPage,

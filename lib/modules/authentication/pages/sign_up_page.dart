@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
@@ -7,27 +6,12 @@ import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import 'package:ontari_app/widgets/stateless/terms.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../services/auth.dart';
 import '../../../../utils/showSnackBar.dart';
-import '../../../../widgets/stateless/show_exception_alert_dialog.dart';
-import '../models/email_sign_in_change_model.dart';
+
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key, required this.model}) : super(key: key);
-
-  final EmailSignInChangeModel model;
-
-  static Widget create(BuildContext context) {
-    final auth = Provider.of<AuthBase>(context, listen: false);
-    return ChangeNotifierProvider<EmailSignInChangeModel>(
-      create: (_) => EmailSignInChangeModel(auth: auth),
-      child: Consumer<EmailSignInChangeModel>(
-        builder: (_, model, __) => SignUpPage(model: model),
-      ),
-    );
-  }
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -38,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
-  EmailSignInChangeModel get model => widget.model;
+
 
   @override
   void dispose() {
@@ -49,22 +33,12 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  Future<void> _submit() async {
-    try {
-      await widget.model.submitSignUp();
-      Navigator.of(context).pop();
-      snackBarSuccess();
-    } on FirebaseAuthException catch (e) {
-      showExceptionAlertDialog(context, title: 'Sign in failed', exception: e);
-    }
-  }
+  
 
   TextFieldEmail buildTextFieldEmail() {
     return TextFieldEmail(
       emailController: _emailController,
       emailFocusNode: _emailFocusNode,
-      onChanged: (value) => model.updateEmail(value),
-      onEditingComplete: () => _emailEditingComplete(),
       childPrefixIcon: const CustomAvatar(
         width: 15,
         height: 12,
@@ -81,11 +55,9 @@ class _SignUpPageState extends State<SignUpPage> {
       passwordController: _passwordController,
       passwordFocusNode: _passwordFocusNode,
       onChanged: (value) {
-        model.updatePassword(value);
         _onChanged = true;
         setState(() {});
       },
-      onEditingComplete: _submit,
       obscureText: _isObscure,
       suffixIcon: _passwordController.text.isEmpty
           ? Container(width: 0)
@@ -110,12 +82,6 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void _emailEditingComplete() {
-    final newFocus = model.emailValidator.isValid(model.email)
-        ? _passwordFocusNode
-        : _emailFocusNode;
-    FocusScope.of(context).requestFocus(newFocus);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Terms(size: size),
               ),
               ClassicButton(
-                onTap: () => model.canSubmit ? _submit() : null,
+                //onTap: () => model.canSubmit ? _submit() : null,
                 width: size.width,
                 radius: 12,
                 widthRadius: 0,

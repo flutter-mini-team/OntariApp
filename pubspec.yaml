@@ -46,6 +46,14 @@ dependencies:
   google_sign_in: ^5.4.1
   flutter_facebook_auth: ^4.4.1
   flutter_login_facebook: ^1.6.0
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+  dio: ^4.0.6
+  http: ^0.13.5
+  rxdart: ^0.27.5
+  go_router: ^4.3.0
+  shared_preferences: ^2.0.15
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:

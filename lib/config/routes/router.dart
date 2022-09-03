@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/models/model_local.dart';
-import 'package:ontari_app/modules/activity/pages/activity_page.dart';
-import 'package:ontari_app/modules/category/pages/category_page.dart';
+import 'package:ontari_app/modules/authentication/pages/select_plan_page.dart';
+import 'package:ontari_app/modules/authentication/pages/splash_page.dart';
 import 'package:ontari_app/modules/common/common_widget_page.dart';
 import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
 import 'package:ontari_app/modules/details/pages/detail_playing_course.dart';
@@ -9,12 +8,8 @@ import 'package:ontari_app/modules/setting/pages/change_language_page.dart';
 import 'package:ontari_app/modules/setting/pages/download_video_page.dart';
 import 'package:ontari_app/modules/setting/pages/edit_profile_page.dart';
 import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
-import 'package:ontari_app/modules/sign_in/sign_in_change/pages/select_plan_page.dart';
-
-import '../../modules/home/pages/home_page.dart';
 
 import '../../modules/root_page.dart';
-import '../../modules/sign_in/sign_in_change/pages/splash_page.dart';
 import '../../widgets/stateful/pages.dart';
 
 class Router {
@@ -96,6 +91,10 @@ class Router {
         {
           return MaterialPageRoute(builder: (_) => const SplashPage());
         }
+      // case 'FullPageBloc':
+      //   {
+      //     return MaterialPageRoute(builder: (_) => const SplashPageBloc());
+      //   }
       default:
         {
           return MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/modules/activity/pages/activity_page.dart';
 import 'package:ontari_app/modules/category/pages/category_page.dart';
@@ -52,6 +53,20 @@ class _RootPageState extends State<RootPage> {
             _buildOffstageNavigator(3),
           ],
         ),
+        // Scaffold(
+        //   body: BlocBuilder<AuthCubit, AuthState>(
+        //     buildWhen: (previous, current) => current is AuthSingedIn,
+        //     builder: (_, state) {
+        //       return Stack(
+        //         children: [
+        //           _buildOffstageNavigator(0),
+        //           _buildOffstageNavigator(1),
+        //           _buildOffstageNavigator(2),
+        //           _buildOffstageNavigator(3),
+        //         ],
+        //       );
+        //     },
+        //   ),
         extendBody: true,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

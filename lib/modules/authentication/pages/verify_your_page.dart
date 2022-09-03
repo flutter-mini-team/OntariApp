@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ontari_app/config/themes/app_color.dart';
 import 'package:ontari_app/config/themes/text_style.dart';
@@ -8,33 +7,17 @@ import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../widgets/stateless/show_exception_alert_dialog.dart';
-import '../../../../services/auth.dart';
 import '../../../../utils/showSnackBar.dart';
-import '../models/phone_sign_in_change_model.dart';
 
 class VerifyYourPage extends StatefulWidget {
-  const VerifyYourPage({Key? key, required this.model}) : super(key: key);
-
-  final PhoneSignInChangeModel model;
-  static Widget create(BuildContext context) {
-    final auth = Provider.of<AuthBase>(context, listen: false);
-    return ChangeNotifierProvider<PhoneSignInChangeModel>(
-      create: (_) => PhoneSignInChangeModel(auth: auth),
-      child: Consumer<PhoneSignInChangeModel>(
-        builder: (_, model, __) => VerifyYourPage(model: model),
-      ),
-    );
-  }
+  const VerifyYourPage({Key? key}) : super(key: key);
 
   @override
   State<VerifyYourPage> createState() => _VerifyYourPageState();
 }
 
 class _VerifyYourPageState extends State<VerifyYourPage> {
-  PhoneSignInChangeModel get model => widget.model;
   final OtpFieldController _controller = OtpFieldController();
   final TextEditingController _textController = TextEditingController();
 
@@ -44,24 +27,9 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
     super.dispose();
   }
 
-  Future<void> _submit(BuildContext context) async {
-    try {
-      await model.submitSignIn();
-      Navigator.of(context).pop();
-      snackBarSuccess();
-    } on FirebaseAuthException catch (e) {
-      showExceptionAlertDialog(
-        context,
-        title: 'Sign in failed',
-        exception: e,
-      );
-    }
-  }
-
   TextFieldSearchBar buildTextFieldPhoneNumber() {
     return TextFieldSearchBar(
       textController: _textController,
-      onChanged: (value) => model.updatePhone(value),
       keyboardType: TextInputType.number,
       hintText: "Enter phone number ...",
       childPrefixIcon: const Icon(
@@ -101,17 +69,14 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
                       width: 240,
                       child: buildTextFieldPhoneNumber(),
                     ),
-                    ClassicButton(
-                      onTap: () => model.canSend
-                          ? model.verifyPhoneNumber(context)
-                          : snackBarEmpty(),
+                    const ClassicButton(
                       widthRadius: 2.0,
                       width: 70,
                       height: 40,
                       radius: 10,
                       color: DarkTheme.greyScale800,
                       colorRadius: DarkTheme.primaryBlue700,
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           'Send',
                           style: TxtStyle.headline4White2,
@@ -122,10 +87,7 @@ class _VerifyYourPageState extends State<VerifyYourPage> {
                 ),
                 const SizedBox(height: 40),
                 OTPTextField(
-                  onCompleted: (pin) {
-                    model.updateSmsCode(pin);
-                    _submit(context);
-                  },
+                  onCompleted: (pin) {},
                   controller: _controller,
                   length: 6,
                   width: 360,
