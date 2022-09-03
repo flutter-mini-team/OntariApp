@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../config/themes/text_style.dart';
+import '../../../themes/text_style.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 
 class ItemsCategoryOffice extends StatelessWidget {

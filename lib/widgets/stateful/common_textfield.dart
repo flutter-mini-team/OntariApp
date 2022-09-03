@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ontari_app/constants/assets_path.dart';
 
-import '../../config/themes/app_color.dart';
-import '../../config/themes/text_style.dart';
+import '../../themes/app_color.dart';
+import '../../themes/text_style.dart';
 import '../stateless/common_avatar.dart';
 
 class TextFieldEmail extends StatelessWidget {

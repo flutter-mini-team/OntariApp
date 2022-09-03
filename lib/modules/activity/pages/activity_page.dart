@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:ontari_app/config/themes/text_style.dart';
+import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/activity/widgets/activity_empty.dart';
 import 'package:ontari_app/modules/activity/widgets/completed_progress.dart';
@@ -10,7 +8,7 @@ import 'package:ontari_app/modules/activity/widgets/uncompleted_progress.dart';
 import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import '../../../config/themes/app_color.dart';
+import '../../../themes/app_color.dart';
 import '../../../constants/assets_path.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 import '../../../widgets/stateless/common_button.dart';

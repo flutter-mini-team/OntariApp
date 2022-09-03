@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/config/themes/app_color.dart';
+import 'package:ontari_app/themes/app_color.dart';
 
-import '../../config/routes/routes.dart';
+import '../../routes/routes.dart';
 import '../stateless/common_button.dart';
 
 class ListPage extends StatelessWidget {

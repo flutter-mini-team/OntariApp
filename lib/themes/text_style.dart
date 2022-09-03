@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/config/themes/app_color.dart';
+import 'package:ontari_app/themes/app_color.dart';
 
 class TxtStyle {
   static const headline1Bold = TextStyle(

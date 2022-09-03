@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ontari_app/config/themes/text_style.dart';
+import 'package:ontari_app/themes/text_style.dart';
 
 Future<bool?> showAlertDialog(
   BuildContext context, {

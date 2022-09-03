@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ontari_app/config/themes/app_color.dart';
+import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/modules/root_page.dart';
 import 'package:provider/provider.dart';
 

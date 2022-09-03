@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:ontari_app/config/themes/app_color.dart';
-import 'package:ontari_app/config/themes/text_style.dart';
+import 'package:ontari_app/themes/app_color.dart';
+import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/modules/setting/widgets/title_option_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/title_setting.dart';

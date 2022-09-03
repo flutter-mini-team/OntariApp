@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/config/themes/app_color.dart';
 
 class BodyItem extends StatelessWidget {
   BodyItem({

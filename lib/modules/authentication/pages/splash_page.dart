@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/config/themes/app_color.dart';
-import 'package:ontari_app/config/themes/text_style.dart';
+import 'package:ontari_app/themes/app_color.dart';
+import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/modules/landing_page.dart';
 
 

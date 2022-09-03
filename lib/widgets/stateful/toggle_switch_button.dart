@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/themes/app_color.dart';
+import '../../themes/app_color.dart';
 
 class ToggleSwitchButton extends StatefulWidget {
   const ToggleSwitchButton({Key? key}) : super(key: key);
