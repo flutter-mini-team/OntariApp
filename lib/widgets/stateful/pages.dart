@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
 
-import '../../routes/routes.dart';
+import '../../routes/route_name.dart';
 import '../stateless/common_button.dart';
 
 class ListPage extends StatelessWidget {
@@ -11,24 +11,24 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     List<String> pages = [
-      Routes.commonWidgetPage,
-      Routes.fullScreenPage,
-      Routes.fullPageBloc,
-      Routes.splash,
-      Routes.signInPage,
-      Routes.signUpPage,
-      Routes.verifyYourPage,
-      Routes.selectPlanPage,
-      Routes.homePage,
-      Routes.activityPage,
-      Routes.categoryPage,
-      Routes.detailMentorPage,
-      Routes.playingCoursePage,
-      Routes.settingPage,
-      Routes.languagePage,
-      Routes.downloadVideoPage,
-      Routes.editProfilePage,
-      Routes.favoritePage,
+      RouteName.commonWidgetPage,
+      RouteName.fullScreenPage,
+      RouteName.fullPageBloc,
+      RouteName.splash,
+      RouteName.signInPage,
+      RouteName.signUpPage,
+      RouteName.verifyYourPage,
+      RouteName.selectPlanPage,
+      RouteName.homePage,
+      RouteName.activityPage,
+      RouteName.categoryPage,
+      RouteName.detailMentorPage,
+      RouteName.playingCoursePage,
+      RouteName.settingPage,
+      RouteName.languagePage,
+      RouteName.downloadVideoPage,
+      RouteName.editProfilePage,
+      RouteName.favoritePage,
     ];
     return Scaffold(
       body: SafeArea(

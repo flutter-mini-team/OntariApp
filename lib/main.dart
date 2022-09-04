@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ontari_app/themes/app_color.dart';
 
-import '/routes/routes.dart';
-import '/routes/router.dart' as router;
+import 'routes/route_name.dart';
+import 'routes/routes.dart' as router;
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             .textTheme
             .apply(bodyColor: DarkTheme.white, displayColor: DarkTheme.white),
       ),
-      initialRoute: Routes.listPage,
+      initialRoute: RouteName.listPage,
       onGenerateRoute: router.Router.generateRoute,
     );
   }

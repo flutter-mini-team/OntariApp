@@ -1,30 +1,91 @@
-class Routes {
-  static const String rootPage = 'RootPage';
-  static const String fullScreenPage = 'FullScreenPage';
-  static const String fullPageBloc = 'FullPageBloc';
+import 'package:flutter/material.dart';
+import 'package:ontari_app/modules/authentication/pages/select_plan_page.dart';
+import 'package:ontari_app/modules/authentication/pages/splash_page.dart';
+import 'package:ontari_app/modules/common/common_widget_page.dart';
+import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
+import 'package:ontari_app/modules/details/pages/detail_playing_course.dart';
+import 'package:ontari_app/modules/setting/pages/change_language_page.dart';
+import 'package:ontari_app/modules/setting/pages/download_video_page.dart';
+import 'package:ontari_app/modules/setting/pages/edit_profile_page.dart';
+import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
+import 'package:ontari_app/routes/route_name.dart';
 
-  static const String commonWidgetPage = 'CommonWidgetPage';
-  static const String listPage = 'ListPage';
-  //--------------------------------------------------------------------------//
-  static const String splash = 'SplashPage';
-  static const String signUpPage = 'SignUpPage';
-  static const String signInPage = 'SignInPage';
-  static const String verifyYourPage = 'VerifyYourPage';
-  static const String forgotPasswordPage = 'ForgotPasswordPage';
-  static const String selectPlanPage = 'SelectPlanPage';
+import '../../modules/root_page.dart';
+import '../../widgets/stateful/pages.dart';
+import '../modules/authentication/pages/sign_in_page.dart';
+import '../modules/authentication/pages/sign_up_page.dart';
+import '../modules/authentication/pages/verify_your_page.dart';
 
-  static const String homePage = 'HomePage';
-  static const String activityPage = 'ActivityPage';
-  static const String categoryPage = 'CategoryPage';
-  static const String searchMentorPage = 'SearchMentorPage';
-  static const String detailMentorPage = 'DetailMentorPage';
-  static const String playingCoursePage = 'PlayingCoursePage';
+class Router {
+  static Route<dynamic>? generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case RouteName.commonWidgetPage:
+        return _buildRoute(settings, const CommonWidgetPage());
+      case RouteName.listPage:
+        return _buildRoute(settings, const ListPage());
+      case RouteName.splash:
+        return _buildRoute(settings, const SplashPage());
+      case RouteName.signInPage:
+        return _buildRoute(settings, const SignInPage());
+      case RouteName.signUpPage:
+        return _buildRoute(settings, const SignUpPage());
+      case RouteName.verifyYourPage:
+        return _buildRoute(settings, const VerifyYourPage());
+      case RouteName.selectPlanPage:
+        return _buildRoute(settings, const SelectPlanPage());
+      case RouteName.homePage:
+        return _buildRoute(settings, const RootPage());
+      case RouteName.activityPage:
+        return _buildRoute(settings, const RootPage(bottom: 1));
+      case RouteName.categoryPage:
+        return _buildRoute(settings, const RootPage(bottom: 2));
+      case RouteName.settingPage:
+        return _buildRoute(settings, const RootPage(bottom: 3));
+      case RouteName.languagePage:
+        return _buildRoute(settings, const LanguagePage());
+      case RouteName.favoritePage:
+        return _buildRoute(settings, const MyFavoritePage());
+      case RouteName.downloadVideoPage:
+        return _buildRoute(settings, DownloadVideoPage());
+      case RouteName.editProfilePage:
+        return _buildRoute(settings, EditProfilePage());
+      case RouteName.detailMentorPage:
+        return _buildRoute(settings, const DetailMentorPage());
+      case RouteName.playingCoursePage:
+        return _buildRoute(settings, const PlayingCoursePage());
+      case RouteName.fullScreenPage:
+        return _buildRoute(settings, const SplashPage());
+      default:
+        return _errorRoute(settings);
+    }
+  }
 
-  static const String fullscreenVideoPage = 'FullscreenVideoPage';
-  static const String settingPage = 'SettingPage';
-  static const String editProfilePage = 'EditProfilePage';
-  static const String downloadVideoPage = 'DownloadVideoPage';
-  static const String languagePage = 'LanguagePage';
-  static const String favoritePage = 'FavoritePage';
-  static const String termConditionPage = 'Term&ConditionPage';
+  
+
+  static Route unAuthorizedRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return _buildRoute(
+          settings,
+          const SignInPage(),
+        );
+      default:
+        return _errorRoute(settings);
+    }
+  }
+
+  static MaterialPageRoute _buildRoute(RouteSettings settings, Widget builder) {
+    return MaterialPageRoute(
+      settings: settings,
+      builder: (BuildContext context) => builder,
+    );
+  }
+
+  static Route _errorRoute(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (_) => Scaffold(
+        body: Center(child: Text('No route defined for ${settings.name}')),
+      ),
+    );
+  }
 }
