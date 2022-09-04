@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../assets/assets_path.dart';
 import '../../themes/text_style.dart';
-import '../../constants/assets_path.dart';
 
 class Terms extends StatefulWidget {
   const Terms({

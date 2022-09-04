@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import 'package:otp_text_field/otp_field.dart';
@@ -9,6 +8,7 @@ import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 
 import '../../../../utils/showSnackBar.dart';
+import '../../../assets/assets_path.dart';
 
 class VerifyYourPage extends StatefulWidget {
   const VerifyYourPage({Key? key}) : super(key: key);

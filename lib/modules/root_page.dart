@@ -4,7 +4,7 @@ import 'package:ontari_app/modules/activity/pages/activity_page.dart';
 import 'package:ontari_app/modules/category/pages/category_page.dart';
 import 'package:ontari_app/modules/setting/pages/setting_page.dart';
 
-import '../constants/assets_path.dart';
+import '../assets/assets_path.dart';
 import 'home/pages/home_page.dart';
 
 class RootPage extends StatefulWidget {

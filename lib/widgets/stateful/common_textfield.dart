@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 
+import '../../assets/assets_path.dart';
 import '../../themes/app_color.dart';
 import '../../themes/text_style.dart';
 import '../stateless/common_avatar.dart';

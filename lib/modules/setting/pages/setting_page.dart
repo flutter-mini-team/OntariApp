@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/setting/pages/change_language_page.dart';
 import 'package:ontari_app/modules/setting/pages/download_video_page.dart';
@@ -14,6 +13,7 @@ import 'package:ontari_app/modules/setting/widgets/items_toggle_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/title_option_setting.dart';
 import 'package:provider/provider.dart';
 
+import '../../../assets/assets_path.dart';
 import '../../../widgets/stateless/show_alert_dialog.dart';
 
 class SettingPage extends StatelessWidget {

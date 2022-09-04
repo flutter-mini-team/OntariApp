@@ -8,8 +8,8 @@ import 'package:ontari_app/modules/activity/widgets/uncompleted_progress.dart';
 import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import '../../../assets/assets_path.dart';
 import '../../../themes/app_color.dart';
-import '../../../constants/assets_path.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 import '../../../widgets/stateless/common_button.dart';
 

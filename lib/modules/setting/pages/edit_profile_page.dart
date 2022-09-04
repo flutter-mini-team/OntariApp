@@ -3,13 +3,14 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/modules/setting/widgets/title_option_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/title_setting.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateless/common_bodyitem.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
+
+import '../../../assets/assets_path.dart';
 
 class EditProfilePage extends StatelessWidget {
   EditProfilePage({Key? key}) : super(key: key);

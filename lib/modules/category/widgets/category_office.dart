@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
 
+import '../../../assets/assets_path.dart';
 import '../../../themes/text_style.dart';
-import '../../../constants/assets_path.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 
 class CategoryOffice extends StatelessWidget {

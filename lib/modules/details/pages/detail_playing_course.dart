@@ -4,11 +4,12 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/details/widgets/items_course.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../../assets/assets_path.dart';
 
 
 class PlayingCoursePage extends StatefulWidget {

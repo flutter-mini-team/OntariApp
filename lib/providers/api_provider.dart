@@ -46,7 +46,7 @@ class ApiProvider {
 
           logger.log('calling with access token: $_accessToken');
           options.headers['Authorization'] = 'Bearer $_accessToken';
-//          options.headers['DeviceUID'] = TrackEventRepo().uid();
+          //options.headers['DeviceUID'] = TrackEventRepo().uid();
 
           _dio.unlock();
           return handler.next(options); //continue

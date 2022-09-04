@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:ontari_app/widgets/stateless/indicator_home.dart';
+
+import '../../../assets/assets_path.dart';
 
 class SelectPlanPage extends StatelessWidget {
   const SelectPlanPage({Key? key}) : super(key: key);

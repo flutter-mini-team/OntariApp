@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/themes/text_style.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/widgets/stateless/class_preview.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 
+import '../../../assets/assets_path.dart';
 import '../../../themes/app_color.dart';
 import '../../../models/model_local.dart';
 import '../../../widgets/stateless/common_avatar.dart';

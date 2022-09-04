@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/themes/app_color.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/setting/widgets/items_download_video.dart';
 import 'package:ontari_app/modules/setting/widgets/title_setting.dart';
 import 'package:ontari_app/widgets/stateless/common_avatar.dart';
 import 'package:ontari_app/widgets/stateful/common_textfield.dart';
+
+import '../../../assets/assets_path.dart';
 
 class DownloadVideoPage extends StatelessWidget {
   DownloadVideoPage({Key? key}) : super(key: key);

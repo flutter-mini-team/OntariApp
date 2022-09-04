@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../../../assets/assets_path.dart';
 import '../../../themes/app_color.dart';
 import '../../../themes/text_style.dart';
-import '../../../constants/assets_path.dart';
 import '../../../models/model_local.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 import '../../../widgets/stateless/common_button.dart';

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
-import 'package:ontari_app/constants/assets_path.dart';
 import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/activity/widgets/completed_progress.dart';
 import 'package:ontari_app/modules/activity/widgets/items_activity.dart';
@@ -21,6 +20,7 @@ import 'package:ontari_app/modules/setting/widgets/items_toggle_setting.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../../assets/assets_path.dart';
 import '../../widgets/stateful/indicator_slider.dart';
 import '../../widgets/stateful/toggle_switch_button.dart';
 import '../../widgets/stateless/class_preview.dart';
