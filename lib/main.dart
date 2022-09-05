@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
     ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: DarkTheme.greyScale50,
         scaffoldBackgroundColor: DarkTheme.greyScale50,
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: DarkTheme.white, displayColor: DarkTheme.white),
       ),
       initialRoute: RouteName.listPage,
-      onGenerateRoute: router.Router.generateRoute,
+      onGenerateRoute: router.Routes.generateRoute,
     );
   }
 }

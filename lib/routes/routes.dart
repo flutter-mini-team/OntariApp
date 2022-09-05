@@ -16,7 +16,7 @@ import '../modules/authentication/pages/sign_in_page.dart';
 import '../modules/authentication/pages/sign_up_page.dart';
 import '../modules/authentication/pages/verify_your_page.dart';
 
-class Router {
+class Routes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteName.commonWidgetPage:
@@ -60,7 +60,41 @@ class Router {
     }
   }
 
-  
+  static Route authorizedRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return _buildRoute(
+          settings,
+          const RootPage(),
+          // BlocProvider(
+          //   bloc: ListPostsRxDartBloc()..getPosts(),
+          //   child: const DashboardPage(),
+          // ),
+        );
+        // case RouteName.createPostPage:
+        //   return _buildRouteDialog(
+        //     settings,
+        //     const CreatePostPage(),
+        //   );
+        // case RouteName.postDetailPage:
+        //   final post = settings.arguments;
+        //   if (post is Post) {
+        //     return _buildRoute(
+        //       settings,
+        //       BlocProvider(
+        //         bloc: PostDetailBloc(post.id!),
+        //         child: BlocProvider(
+        //           bloc: CommentBloc(post.id!),
+        //           child: PostDetailPage(post: post),
+        //         ),
+        //       ),
+        //     );
+        //   }
+        //return _errorRoute(settings);
+      default:
+        return _errorRoute(settings);
+    }
+  }
 
   static Route unAuthorizedRoute(RouteSettings settings) {
     switch (settings.name) {

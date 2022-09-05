@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/modules/authentication/pages/sign_up_page.dart';
@@ -8,6 +9,10 @@ import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 
 import '../../../../utils/showSnackBar.dart';
 import '../../../assets/assets_path.dart';
+import '../../../blocs/app_state_bloc.dart';
+import '../../../providers/bloc_provider.dart';
+import '../bloc/authentication_bloc.dart';
+import '../enum/login_state.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -21,6 +26,50 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
+
+  AppStateBloc? get appStateBloc => BlocProvider.of<AppStateBloc>(context);
+  AuthenticationBloc? get authenBloc =>
+      BlocProvider.of<AuthenticationBloc>(context);
+
+  //----------------------------------------------------------------------------
+  Future<void> _signInWithGmail() async {
+    try {
+      final loginState = await authenBloc!.loginWithGmail();
+      switch (loginState) {
+        case LoginState.success:
+          snackBarSuccess();
+          return _changeAppState();
+        case LoginState.newUser:
+          // handle flow newUser
+          break;
+        default:
+          break;
+      }
+    } on PlatformException catch (e) {
+      _handleErrorPlatformException(e);
+    } catch (e) {
+      print(e.toString());
+      showSnackBar(
+        context,
+        'Something went wrong!!!',
+        Image.asset(AssetPath.iconClose, color: DarkTheme.red),
+      );
+    }
+  }
+
+  void _changeAppState() {
+    appStateBloc!.changeAppState(AppState.authorized);
+  }
+
+  void _handleErrorPlatformException(PlatformException e) {
+    if (e.code != 'ERROR_ABORTED_BY_USER') {
+      showSnackBar(
+        context,
+        'Sign in cancelled : ${e.message}',
+        Image.asset(AssetPath.iconClose, color: DarkTheme.red),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -118,6 +167,7 @@ class _SignInPageState extends State<SignInPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 24, bottom: 16),
                 child: ClassicButton(
+                  onTap: _signInWithGmail,
                   width: size.width,
                   widthRadius: 0,
                   radius: 12,
