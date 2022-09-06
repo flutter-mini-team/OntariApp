@@ -1,8 +1,9 @@
 import 'package:flutter/services.dart';
 
+import '../auth_plugin/auth_fb.dart';
 import '../auth_plugin/auth_gmail.dart';
 import '../auth_plugin/auth_plugin.dart';
-import '../auth_provider/gmail_auth_provider.dart';
+import '../auth_provider/auth_provider.dart';
 import '../models/login_data.dart';
 import 'app_auth.dart';
 import 'auth_service.dart';
@@ -12,12 +13,26 @@ class AppAuthService implements AuthService {
 
   @override
   Future<LoginData?> loginWithGmail() async {
-    final _authGmail = AuthGmail();
-    final authResult = await _authGmail.login();
+    final authGmail = AuthGmail();
+    final authResult = await authGmail.login();
     if (authResult.accessToken != null) {
       print('token ${authResult.accessToken}');
       final result = await _appAuth.signInWithCredential(
         GmailAuthProvider.getCredential(accessToken: authResult.accessToken),
+      );
+      return result;
+    }
+    return handleError(authResult);
+  }
+
+  @override
+  Future<LoginData?> loginWithFacebook() async {
+    final authFacebook = AuthFacebook();
+    final authResult = await authFacebook.login();
+    if (authResult.accessToken != null) {
+      print('token ${authResult.accessToken}');
+      final result = await _appAuth.signInWithCredential(
+        FaceBookAuthProvider.getCredential(accessToken: authResult.accessToken),
       );
       return result;
     }

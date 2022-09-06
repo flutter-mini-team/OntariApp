@@ -34,7 +34,7 @@ class _SignInPageState extends State<SignInPage> {
   //----------------------------------------------------------------------------
   Future<void> _signInWithGmail() async {
     try {
-      final loginState = await authenBloc!.loginWithGmail();
+      final loginState = await authenBloc!.signInWithGmail();
       switch (loginState) {
         case LoginState.success:
           snackBarSuccess();
@@ -48,7 +48,30 @@ class _SignInPageState extends State<SignInPage> {
     } on PlatformException catch (e) {
       _handleErrorPlatformException(e);
     } catch (e) {
-      print(e.toString());
+      showSnackBar(
+        context,
+        'Something went wrong!!!',
+        Image.asset(AssetPath.iconClose, color: DarkTheme.red),
+      );
+    }
+  }
+
+  Future<void> _signInWithFacebook() async {
+    try {
+      final loginState = await authenBloc!.signInWithFacebook();
+      switch (loginState) {
+        case LoginState.success:
+          snackBarSuccess();
+          return _changeAppState();
+        case LoginState.newUser:
+          // handle flow newUser
+          break;
+        default:
+          break;
+      }
+    } on PlatformException catch (e) {
+      _handleErrorPlatformException(e);
+    } catch (e) {
       showSnackBar(
         context,
         'Something went wrong!!!',
@@ -70,6 +93,7 @@ class _SignInPageState extends State<SignInPage> {
       );
     }
   }
+  //----------------------------------------------------------------------------
 
   @override
   void dispose() {
@@ -187,6 +211,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
               ClassicButton(
+                onTap: _signInWithFacebook,
                 width: size.width,
                 widthRadius: 0,
                 radius: 12,
@@ -256,7 +281,7 @@ class _SignInPageState extends State<SignInPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SignUpPage(),
+                  builder: (context) => const SignUpPage(),
                 ),
               );
             },

@@ -21,8 +21,12 @@ class AuthenticationBloc extends BlocBase {
     }
   }
 
-  Future<LoginState> loginWithGmail() async {
+  Future<LoginState> signInWithGmail() async {
     return _signIn(auth.loginWithGmail());
+  }
+
+  Future<LoginState> signInWithFacebook() async {
+    return _signIn(auth.loginWithFacebook());
   }
 
   @override
