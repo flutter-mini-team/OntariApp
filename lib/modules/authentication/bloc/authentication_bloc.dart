@@ -29,6 +29,13 @@ class AuthenticationBloc extends BlocBase {
     return _signIn(auth.loginWithFacebook());
   }
 
+  // Future<LoginState> signInWithEmailAndPassword(
+  //   String email,
+  //   String password,
+  // ) async {
+  //   return _signIn(auth.loginWithEmailAndPassword(email,password));
+  // }
+
   @override
   void dispose() {}
 }
