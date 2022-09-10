@@ -6,11 +6,9 @@ import 'package:ontari_app/modules/activity/widgets/completed_progress.dart';
 import 'package:ontari_app/modules/activity/widgets/items_activity.dart';
 import 'package:ontari_app/modules/activity/widgets/uncompleted_progress.dart';
 import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../assets/assets_path.dart';
 import '../../../themes/app_color.dart';
-import '../../../widgets/stateless/common_bodyitem.dart';
 import '../../../widgets/stateless/common_button.dart';
 
 class ActivityPage extends StatefulWidget {
@@ -59,7 +57,7 @@ class _ActivityPageState extends State<ActivityPage>
                         ? (_isSelectedTab == 0
                             ? buildProgressUncompleted()
                             : buildProgressCompleted())
-                        : Text(''),
+                        : const Text(''),
                   ],
                 ),
               ),

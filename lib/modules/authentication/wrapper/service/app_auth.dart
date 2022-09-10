@@ -34,14 +34,13 @@ class AppAuth {
       return null;
     } catch (e) {
       throw UnimplementedError(
-          'signInWithCredential() is not implemented with err = $e');
+        'signInWithCredential() is not implemented with err = $e',
+      );
     }
   }
 
   /// Signs in with the given [credential].
-  Future<Login?> _signUp(
-    AuthCredential credential,
-  ) async {
-    // TODO:
+  Future<Login?> _signUp(AuthCredential credential) async {
+    
   }
 }

@@ -92,10 +92,10 @@ class ItemsDownloadVideo extends StatelessWidget {
   onSelected(BuildContext context, ModelSetting item) {
     switch (item) {
       case itemPlayVideo:
-        print('play');
+        //print('play');
         break;
       case itemRemove:
-        print('remove');
+        //print('remove');
         break;
     }
   }

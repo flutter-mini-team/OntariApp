@@ -1,8 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/widgets/stateless/class_preview.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
@@ -20,7 +16,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
 
     final TextEditingController _searchController = TextEditingController();
 
@@ -72,7 +67,7 @@ class HomePage extends StatelessWidget {
                       TextFieldSearchBar(
                         textController: _searchController,
                         hintText: 'Search your focus...',
-                        childPrefixIcon: CustomAvatar(
+                        childPrefixIcon: const CustomAvatar(
                           width: 15,
                           height: 16,
                           assetName: AssetPath.iconSearch,
@@ -89,7 +84,7 @@ class HomePage extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              print('aaa');
+                              //print('aaa');
                             },
                             child: const Text(
                               'See all',
@@ -110,7 +105,7 @@ class HomePage extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              print('aaa');
+                              //print('aaa');
                             },
                             child: const Text(
                               'See all',

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/modules/setting/widgets/title_option_setting.dart';
@@ -105,12 +103,8 @@ class EditProfilePage extends StatelessWidget {
                         _firstController,
                       ),
                     ),
-                    buildTextFieldString(
-                      'Last Name',
-                      'Enter your Last Name',
-                      AssetPath.iconUser,
-                      _lastController
-                    ),
+                    buildTextFieldString('Last Name', 'Enter your Last Name',
+                        AssetPath.iconUser, _lastController),
                     const SizedBox(height: 24),
                     buildTextFieldString(
                       'Username',

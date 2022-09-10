@@ -128,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ClassicButton(
-                    onTap: () => print('Size: ${size}'),
+                    //onTap: () => print('Size: ${size}'),
                     width: 151,
                     widthRadius: 0,
                     radius: 12,
@@ -149,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   ClassicButton(
-                    onTap: () => print('Size: ${size}'),
+                    //onTap: () => print('Size: ${size}'),
                     width: 151,
                     widthRadius: 0,
                     radius: 12,

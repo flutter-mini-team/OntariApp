@@ -40,7 +40,7 @@ class ItemsCategoryOffice extends StatelessWidget {
         ),
       ),
       //childImg: ,
-      right: Text(''),
+      right: const Text(''),
     );
   }
 }

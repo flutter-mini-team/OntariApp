@@ -36,7 +36,7 @@ class SelectPlanPage extends StatelessWidget {
                     child: Text('Send Link', style: TxtStyle.currentPlan),
                   ),
                   onTap: () {
-                    print('aaa');
+                    //print('aaa');
                   },
                 ),
               ),
@@ -98,7 +98,7 @@ class SelectPlanPage extends StatelessWidget {
                         textButton: 'Upgrade',
                         assetName: AssetPath.iconFamily,
                         onTap: () {
-                          print('bbb');
+                          //print('bbb');
                         },
                       ),
                     ],

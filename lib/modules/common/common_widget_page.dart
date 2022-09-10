@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
@@ -18,14 +17,12 @@ import 'package:ontari_app/modules/setting/widgets/items_language.dart';
 import 'package:ontari_app/modules/setting/widgets/items_my_favorite.dart';
 import 'package:ontari_app/modules/setting/widgets/items_toggle_setting.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../assets/assets_path.dart';
 import '../../widgets/stateful/indicator_slider.dart';
 import '../../widgets/stateful/toggle_switch_button.dart';
 import '../../widgets/stateless/class_preview.dart';
 import '../../widgets/stateless/common_avatar.dart';
-import '../../widgets/stateless/common_bodyitem.dart';
 import '../../widgets/stateful/common_textfield.dart';
 import '../../widgets/stateless/discount.dart';
 import '../../widgets/stateless/indicator_home.dart';
@@ -42,7 +39,6 @@ class CommonWidgetPage extends StatefulWidget {
 
 class _CommonWidgetPageState extends State<CommonWidgetPage> {
   bool check = false;
-  int _currentIndex = 0;
   late PageController _pageController;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -55,7 +51,6 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final TextEditingController text = TextEditingController();
 
     return Scaffold(
       //backgroundColor: DarkTheme.greyScale900,
@@ -79,7 +74,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
 
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             ClassicButton(
-              onTap: () => print('Size: ${size}'),
+              //onTap: () => print('Size: ${size}'),
               width: size.width / 1.3,
               widthRadius: 0,
               radius: 12,
@@ -118,7 +113,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
                   edge: size.width / 7,
                   radius: 10,
                   bgColor: DarkTheme.primaryBlue900,
-                  child: ImageIcon(
+                  child: const ImageIcon(
                     color: DarkTheme.white,
                     AssetImage(AssetPath.iconClose),
                   ),
@@ -189,19 +184,19 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             //     assetName: AssetPath.iconEmail,
             //   ),
             // ),
-            TextFieldEmail(
+            const TextFieldEmail(
               //emailController: _emailController,
               //emailFocusNode: _emailFocusNode,
               //onChanged: ,
               //onEditingComplete: ,
-              childPrefixIcon: const CustomAvatar(
+              childPrefixIcon: CustomAvatar(
                 width: 15,
                 height: 12,
                 assetName: AssetPath.iconEmail,
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            TextFieldPassword(
+            const TextFieldPassword(
               assetPrefixIcon: AssetPath.iconLock,
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
@@ -406,10 +401,10 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: SettingAccount(
                 onTap: () {
-                  print('aaa');
+                  //print('aaa');
                 },
                 fullName: 'Barly Vallendito',
                 userName: 'barlyvallendito',
