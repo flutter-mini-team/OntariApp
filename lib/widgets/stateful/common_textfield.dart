@@ -11,14 +11,14 @@ class TextFieldEmail extends StatelessWidget {
     Key? key,
     this.emailFocusNode,
     this.emailController,
-    this.childPrefixIcon,
+    //this.childPrefixIcon,
     this.onChanged,
     this.onEditingComplete,
   }) : super(key: key);
 
   final FocusNode? emailFocusNode;
   final TextEditingController? emailController;
-  final Widget? childPrefixIcon;
+  //final Widget? childPrefixIcon;
   final Function(String)? onChanged;
   final Function()? onEditingComplete;
 
@@ -58,10 +58,14 @@ class TextFieldEmail extends StatelessWidget {
               ),
               hintText: 'Enter your email address',
               hintStyle: TxtStyle.hintText,
-              prefixIcon: Align(
+              prefixIcon: const Align(
                 widthFactor: 0.5,
                 heightFactor: 0.5,
-                child: childPrefixIcon,
+                child: CustomAvatar(
+                  width: 15,
+                  height: 12,
+                  assetName: AssetPath.iconEmail,
+                ),
               ),
             ),
           ),
@@ -74,7 +78,6 @@ class TextFieldEmail extends StatelessWidget {
 class TextFieldPassword extends StatefulWidget {
   const TextFieldPassword({
     Key? key,
-    this.assetPrefixIcon,
     this.suffixIcon,
     this.passwordController,
     this.passwordFocusNode,
@@ -83,7 +86,6 @@ class TextFieldPassword extends StatefulWidget {
     this.obscureText = true,
   }) : super(key: key);
 
-  final String? assetPrefixIcon;
   final Widget? suffixIcon;
   final TextEditingController? passwordController;
   final FocusNode? passwordFocusNode;
@@ -131,13 +133,13 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
               ),
               hintText: 'Enter your password',
               hintStyle: TxtStyle.hintText,
-              prefixIcon: Align(
+              prefixIcon: const Align(
                 widthFactor: 0.5,
                 heightFactor: 0.5,
                 child: CustomAvatar(
                   width: 15,
                   height: 16,
-                  assetName: widget.assetPrefixIcon!,
+                  assetName: AssetPath.iconLock,
                 ),
               ),
               suffixIcon: widget.suffixIcon,

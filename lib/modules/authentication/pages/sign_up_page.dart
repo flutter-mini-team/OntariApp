@@ -9,7 +9,6 @@ import 'package:ontari_app/widgets/stateless/terms.dart';
 import '../../../../utils/showSnackBar.dart';
 import '../../../assets/assets_path.dart';
 
-
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -23,7 +22,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
-
   @override
   void dispose() {
     _emailController.dispose();
@@ -33,17 +31,10 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  
-
   TextFieldEmail buildTextFieldEmail() {
     return TextFieldEmail(
       emailController: _emailController,
       emailFocusNode: _emailFocusNode,
-      childPrefixIcon: const CustomAvatar(
-        width: 15,
-        height: 12,
-        assetName: AssetPath.iconEmail,
-      ),
     );
   }
 
@@ -51,7 +42,6 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _isObscure = true;
   TextFieldPassword buildTextFieldPassword() {
     return TextFieldPassword(
-      assetPrefixIcon: AssetPath.iconLock,
       passwordController: _passwordController,
       passwordFocusNode: _passwordFocusNode,
       onChanged: (value) {
@@ -81,7 +71,6 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Already have an account? ', style: TxtStyle.Term),
+                  const Text('Already have an account? ', style: TxtStyle.term),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
                     child: const Text('Sign in', style: TxtStyle.create),

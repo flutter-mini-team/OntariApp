@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
@@ -113,7 +112,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
                   edge: size.width / 7,
                   radius: 10,
                   bgColor: DarkTheme.primaryBlue900,
-                  child:  ImageIcon(
+                  child: const ImageIcon(
                     color: DarkTheme.white,
                     AssetImage(AssetPath.iconClose),
                   ),
@@ -185,20 +184,13 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
             //   ),
             // ),
             const TextFieldEmail(
-              //emailController: _emailController,
-              //emailFocusNode: _emailFocusNode,
-              //onChanged: ,
-              //onEditingComplete: ,
-              childPrefixIcon: CustomAvatar(
-                width: 15,
-                height: 12,
-                assetName: AssetPath.iconEmail,
-              ),
-            ),
+                //emailController: _emailController,
+                //emailFocusNode: _emailFocusNode,
+                //onChanged: ,
+                //onEditingComplete: ,
+                ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            const TextFieldPassword(
-              assetPrefixIcon: AssetPath.iconLock,
-            ),
+            const TextFieldPassword(),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             TextFieldSearchBar(
               textController: TextEditingController(),
@@ -297,8 +289,8 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
               child: CategoryOffice(
                 assetIcon: AssetPath.iconBell,
                 title: 'Business',

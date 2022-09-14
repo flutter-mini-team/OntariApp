@@ -6,7 +6,7 @@ import '../../../themes/text_style.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 
 class ItemsCourse extends StatelessWidget {
-  ItemsCourse({
+  const ItemsCourse({
     Key? key,
     this.assetName,
     this.title,
@@ -16,7 +16,7 @@ class ItemsCourse extends StatelessWidget {
   }) : super(key: key);
 
   final String? assetName, title, part, time;
-  VoidCallback? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

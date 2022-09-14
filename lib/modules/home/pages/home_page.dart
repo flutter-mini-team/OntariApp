@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final TextEditingController _searchController = TextEditingController();
+    final TextEditingController searchController = TextEditingController();
 
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       TextFieldSearchBar(
-                        textController: _searchController,
+                        textController: searchController,
                         hintText: 'Search your focus...',
                         childPrefixIcon: const CustomAvatar(
                           width: 15,

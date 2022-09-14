@@ -6,7 +6,7 @@ import '../../../themes/text_style.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 
 class CategoryOffice extends StatelessWidget {
-  CategoryOffice({
+  const CategoryOffice({
     Key? key,
     this.assetIcon,
     this.title,
@@ -15,7 +15,7 @@ class CategoryOffice extends StatelessWidget {
   }) : super(key: key);
 
   final String? assetIcon, title, countMentor;
-  VoidCallback? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

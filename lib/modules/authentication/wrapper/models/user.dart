@@ -1,19 +1,23 @@
 class User {
-  final String email;
-  final String password;
+  final String? phone;
+  final String? email;
+  final String? firstName;
+  final String? lastName;
+  final String? password;
 
   User({
-    this.email = '',
-    this.password = '',
+    this.phone,
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.password,
   });
 
-  User copyWith({
-    String? email,
-    String? password,
-  }) {
-    return User(
-      email: email ?? this.email,
-      password: password ?? this.password,
-    );
-  }
+  Map<String, dynamic> toJson() => {
+    "phone": phone,
+    "email": email,
+    "first_name": firstName,
+    "last_name": lastName,
+    "password": password,
+  };
 }

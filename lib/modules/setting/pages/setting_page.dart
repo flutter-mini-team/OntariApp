@@ -69,7 +69,7 @@ class _SettingPageState extends State<SettingPage> {
               const SizedBox(height: 16),
               buildListView(application, 0),
               buildListView(applicationToggle, 1),
-              TitleOptionSettings(
+              const TitleOptionSettings(
                 height: 16,
                 color: DarkTheme.greyScale800,
               ),

@@ -38,11 +38,11 @@ class _TermsState extends State<Terms> {
             RichText(
               text: const TextSpan(
                 text: 'By Creating your account you have to agree with\nour',
-                style: TxtStyle.Term,
+                style: TxtStyle.term,
                 children: <TextSpan>[
                   TextSpan(
                     text: ' Terms and Condition',
-                    style: TxtStyle.TermBold,
+                    style: TxtStyle.termBold,
                   ),
                 ],
               ),

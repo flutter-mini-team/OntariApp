@@ -125,11 +125,6 @@ class _SignInPageState extends State<SignInPage> {
           onChanged: (value) => authenticationBloc!.updateEmail(value),
           emailController: _emailController,
           emailFocusNode: _emailFocusNode,
-          childPrefixIcon: const CustomAvatar(
-            width: 15,
-            height: 12,
-            assetName: AssetPath.iconEmail,
-          ),
         );
       },
     );
@@ -142,7 +137,6 @@ class _SignInPageState extends State<SignInPage> {
       stream: authenticationBloc!.password,
       builder: (context, snapshot) {
         return TextFieldPassword(
-          assetPrefixIcon: AssetPath.iconLock,
           passwordController: _passwordController,
           passwordFocusNode: _passwordFocusNode,
           onChanged: (value) {
@@ -302,7 +296,7 @@ class _SignInPageState extends State<SignInPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Don\'t have an account? ', style: TxtStyle.Term),
+          const Text('Don\'t have an account? ', style: TxtStyle.term),
           TextButton(
             onPressed: () {
               Navigator.push(

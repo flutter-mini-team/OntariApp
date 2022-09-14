@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BodyItem extends StatelessWidget {
-  BodyItem({
+  const BodyItem({
     Key? key,
     this.height = 0,
     this.widthImg = 0,
@@ -14,10 +14,10 @@ class BodyItem extends StatelessWidget {
   }) : super(key: key);
 
   final double height, widthImg, radius;
-  String? assetName;
-  Widget? mid, child;
-  Widget right;
-  VoidCallback? onTap;
+  final String? assetName;
+  final Widget? mid, child;
+  final Widget right;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

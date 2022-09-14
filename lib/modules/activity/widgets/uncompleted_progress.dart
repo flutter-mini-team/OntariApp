@@ -5,15 +5,15 @@ import '../../../themes/app_color.dart';
 import '../../../themes/text_style.dart';
 
 class UncompletedProgress extends StatelessWidget {
-  UncompletedProgress({
+  const UncompletedProgress({
     Key? key,
     this.percent = 0,
     this.percentCompleted = 0,
     this.percentUnCompleted = 0,
   }) : super(key: key);
 
-  double? percent;
-  int percentCompleted, percentUnCompleted;
+  final double? percent;
+  final int percentCompleted, percentUnCompleted;
 
   @override
   Widget build(BuildContext context) {

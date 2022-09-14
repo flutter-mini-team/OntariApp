@@ -44,7 +44,7 @@ class EditProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              TitleOptionSettings(
+              const TitleOptionSettings(
                 title: 'EDIT AVATAR',
                 height: 32,
                 color: DarkTheme.primaryBlueButton,
@@ -85,7 +85,7 @@ class EditProfilePage extends StatelessWidget {
                   right: const Text(''),
                 ),
               ),
-              TitleOptionSettings(
+              const TitleOptionSettings(
                 title: 'EDIT INFORMATION',
                 height: 32,
                 color: DarkTheme.primaryBlueButton,
@@ -156,16 +156,11 @@ class EditProfilePage extends StatelessWidget {
 
   TextFieldEmail buildTextFieldEmail(
       String title, String hintText, String assetName) {
-    return TextFieldEmail(
+    return const TextFieldEmail(
       //emailController: _emailController,
       //emailFocusNode: _emailFocusNode,
       //onChanged: ,
       //onEditingComplete: ,
-      childPrefixIcon: const CustomAvatar(
-        width: 15,
-        height: 12,
-        assetName: AssetPath.iconEmail,
-      ),
     );
   }
 }

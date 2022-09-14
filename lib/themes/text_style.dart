@@ -206,13 +206,13 @@ class TxtStyle {
     fontSize: 14,
   );
 
-  static const Term = TextStyle(
+  static const term = TextStyle(
     fontWeight: FontWeight.w600,
     color: DarkTheme.greyScale500,
     fontSize: 12,
   );
 
-  static const TermBold = TextStyle(
+  static const termBold = TextStyle(
     fontWeight: FontWeight.w500,
     color: DarkTheme.white,
     fontSize: 12,

@@ -10,7 +10,7 @@ import '../../../widgets/stateless/common_bodyitem.dart';
 import '../../../widgets/stateless/common_button.dart';
 
 class ItemsActivity extends StatelessWidget {
-  ItemsActivity({
+  const ItemsActivity({
     Key? key,
     this.assetName,
     this.title,
@@ -19,8 +19,8 @@ class ItemsActivity extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  String? assetName, title, name; //,percentText;
-  double? percent;
+  final String? assetName, title, name; //,percentText;
+  final double? percent;
   final VoidCallback? onTap;
 
   @override

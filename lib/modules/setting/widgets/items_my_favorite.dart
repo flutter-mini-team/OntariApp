@@ -10,7 +10,7 @@ import '../../../widgets/stateless/common_bodyitem.dart';
 import '../../../widgets/stateless/common_button.dart';
 
 class ItemsMyFavorite extends StatelessWidget {
-  ItemsMyFavorite({
+  const ItemsMyFavorite({
     Key? key,
     this.assetName,
     this.title,
@@ -19,7 +19,7 @@ class ItemsMyFavorite extends StatelessWidget {
   }) : super(key: key);
 
   final String? assetName, title, name;
-  VoidCallback? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

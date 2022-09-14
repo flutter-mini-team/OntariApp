@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../themes/text_style.dart';
 
 class TitleOptionSettings extends StatelessWidget {
-  TitleOptionSettings({
+  const TitleOptionSettings({
     Key? key,
     this.title = '',
     this.height = 32,
@@ -12,7 +12,7 @@ class TitleOptionSettings extends StatelessWidget {
 
   final String title;
   final double? height;
-  Color? color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {

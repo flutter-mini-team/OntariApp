@@ -5,7 +5,7 @@ import '../../../themes/text_style.dart';
 import '../../../widgets/stateless/common_bodyitem.dart';
 
 class ItemsArrowSetting extends StatelessWidget {
-  ItemsArrowSetting({
+  const ItemsArrowSetting({
     Key? key,
     this.title,
     this.assetName,
@@ -13,7 +13,7 @@ class ItemsArrowSetting extends StatelessWidget {
   }) : super(key: key);
 
   final String? title, assetName;
-  VoidCallback? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

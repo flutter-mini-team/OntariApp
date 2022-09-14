@@ -2,7 +2,6 @@ import '../auth_credential/auth_credential.dart';
 import '../auth_credential/fb_auth_credential.dart';
 import '../auth_credential/gmail_auth_credential.dart';
 import '../auth_credential/user_auth_credential.dart';
-import '../models/user.dart';
 
 class GmailAuthProvider {
   static AuthCredential getCredential({String? accessToken}) {

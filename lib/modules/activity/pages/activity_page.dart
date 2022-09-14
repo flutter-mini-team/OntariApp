@@ -142,8 +142,8 @@ class _ActivityPageState extends State<ActivityPage>
   }
 
   Padding buildProgressUncompleted() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24.0),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 24.0),
       child: UncompletedProgress(
         percent: 0.8,
         percentCompleted: 16,

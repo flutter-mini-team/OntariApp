@@ -28,7 +28,12 @@ class _RootPageState extends State<RootPage> {
 
   @override
   void initState() {
-    _tabs = [HomePage(), ActivityPage(), CategoryPage(), SettingPage()];
+    _tabs = [
+      const HomePage(),
+      const ActivityPage(),
+      CategoryPage(),
+      const SettingPage(),
+    ];
     super.initState();
   }
 
