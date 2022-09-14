@@ -113,7 +113,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
                   edge: size.width / 7,
                   radius: 10,
                   bgColor: DarkTheme.primaryBlue900,
-                  child: const ImageIcon(
+                  child:  ImageIcon(
                     color: DarkTheme.white,
                     AssetImage(AssetPath.iconClose),
                   ),

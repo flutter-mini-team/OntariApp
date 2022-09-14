@@ -1,16 +1,17 @@
-class UserModel {
-  UserModel({
-    this.email = '',
-    this.password = '',
-  });
+class User {
   final String email;
   final String password;
 
-  UserModel copyWith({
+  User({
+    this.email = '',
+    this.password = '',
+  });
+
+  User copyWith({
     String? email,
     String? password,
   }) {
-    return UserModel(
+    return User(
       email: email ?? this.email,
       password: password ?? this.password,
     );

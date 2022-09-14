@@ -16,6 +16,7 @@ class ApiProvider {
 
   String? get _accessToken {
     return TokenManager().accessToken;
+    // return userToken;
   }
 
   static final ApiProvider _instance = ApiProvider._internal();
@@ -46,7 +47,7 @@ class ApiProvider {
 
           logger.log('calling with access token: $_accessToken');
           options.headers['Authorization'] = 'Bearer $_accessToken';
-          //options.headers['DeviceUID'] = TrackEventRepo().uid();
+//          options.headers['DeviceUID'] = TrackEventRepo().uid();
 
           _dio.unlock();
           return handler.next(options); //continue
@@ -76,13 +77,11 @@ class ApiProvider {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final res = await _dio.get(
-      path,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-      onReceiveProgress: onReceiveProgress,
-    );
+    final res = await _dio.get(path,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress);
 
     if (res is! ErrorResponse) return res;
     throw res;
@@ -110,6 +109,25 @@ class ApiProvider {
     if (res is! ErrorResponse) {
       return res;
     }
+    throw res;
+  }
+
+  Future<Response> delete(
+    String path, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final res = await _dio.delete(path,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken);
+
+    if (res is! ErrorResponse) return res;
     throw res;
   }
 }

@@ -40,7 +40,5 @@ class AppAuth {
   }
 
   /// Signs in with the given [credential].
-  Future<Login?> _signUp(AuthCredential credential) async {
-    
-  }
+  Future<Login?> _signUp(AuthCredential credential) async {}
 }

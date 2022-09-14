@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 
+import '../auth_plugin/auth_email_password.dart';
 import '../auth_plugin/auth_fb.dart';
 import '../auth_plugin/auth_gmail.dart';
 import '../auth_plugin/auth_plugin.dart';
@@ -16,7 +17,7 @@ class AppAuthService implements AuthService {
     final authGmail = AuthGmail();
     final authResult = await authGmail.login();
     if (authResult.accessToken != null) {
-      print('token ${authResult.accessToken}');
+      print('token : ${authResult.accessToken}');
       final result = await _appAuth.signInWithCredential(
         GmailAuthProvider.getCredential(accessToken: authResult.accessToken),
       );
@@ -30,10 +31,28 @@ class AppAuthService implements AuthService {
     final authFacebook = AuthFacebook();
     final authResult = await authFacebook.login();
     if (authResult.accessToken != null) {
-      print('token ${authResult.accessToken}');
+      print('token : ${authResult.accessToken}');
       final result = await _appAuth.signInWithCredential(
         FaceBookAuthProvider.getCredential(accessToken: authResult.accessToken),
       );
+      return result;
+    }
+    return handleError(authResult);
+  }
+
+  @override
+  Future<LoginData?> loginWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    final result = await _appAuth.signInWithCredential(
+      UserAuthProvider.getCredential(usrName: email, password: password),
+    );
+    final authEmailAndPassword = AuthEmailAndPassword(data: result);
+    final authResult = await authEmailAndPassword.login();
+
+    if (authResult.accessToken != null) {
+      print('token ${authResult.accessToken}');
       return result;
     }
     return handleError(authResult);

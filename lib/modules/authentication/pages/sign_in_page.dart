@@ -26,18 +26,18 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
+  //----------------------------------------------------------------------------
 
   AppStateBloc? get appStateBloc => BlocProvider.of<AppStateBloc>(context);
-  AuthenticationBloc? get authenBloc =>
+  AuthenticationBloc? get authenticationBloc =>
       BlocProvider.of<AuthenticationBloc>(context);
 
   //----------------------------------------------------------------------------
   Future<void> _signInWithGmail() async {
     try {
-      final loginState = await authenBloc!.signInWithGmail();
+      final loginState = await authenticationBloc!.signInWithGmail();
       switch (loginState) {
         case LoginState.success:
-          snackBarSuccess();
           return _changeAppState();
         case LoginState.newUser:
           // handle flow newUser
@@ -58,10 +58,35 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> _signInWithFacebook() async {
     try {
-      final loginState = await authenBloc!.signInWithFacebook();
+      final loginState = await authenticationBloc!.signInWithFacebook();
       switch (loginState) {
         case LoginState.success:
-          snackBarSuccess();
+          return _changeAppState();
+        case LoginState.newUser:
+          // handle flow newUser
+          break;
+        default:
+          break;
+      }
+    } on PlatformException catch (e) {
+      _handleErrorPlatformException(e);
+    } catch (e) {
+      showSnackBar(
+        context,
+        'Something went wrong!!!',
+        Image.asset(AssetPath.iconClose, color: DarkTheme.red),
+      );
+    }
+  }
+
+  Future<void> _signInWithEmailPassword(String email, String password) async {
+    try {
+      final loginState = await authenticationBloc!.signInWithEmailAndPassword(
+        email,
+        password,
+      );
+      switch (loginState) {
+        case LoginState.success:
           return _changeAppState();
         case LoginState.newUser:
           // handle flow newUser
@@ -81,73 +106,73 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void _changeAppState() {
+    snackBarSuccess();
     appStateBloc!.changeAppState(AppState.authorized);
   }
 
   void _handleErrorPlatformException(PlatformException e) {
     if (e.code != 'ERROR_ABORTED_BY_USER') {
-      showSnackBar(
-        context,
-        'Sign in cancelled : ${e.message}',
-        Image.asset(AssetPath.iconClose, color: DarkTheme.red),
-      );
+      snackBarError(e);
     }
   }
   //----------------------------------------------------------------------------
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
-    super.dispose();
-  }
-
-  TextFieldEmail buildTextFieldEmail() {
-    return TextFieldEmail(
-      emailController: _emailController,
-      emailFocusNode: _emailFocusNode,
-      childPrefixIcon: const CustomAvatar(
-        width: 15,
-        height: 12,
-        assetName: AssetPath.iconEmail,
-      ),
+  Widget buildTextFieldEmail() {
+    return StreamBuilder(
+      stream: authenticationBloc!.email,
+      builder: (context, snapshot) {
+        return TextFieldEmail(
+          onChanged: (value) => authenticationBloc!.updateEmail(value),
+          emailController: _emailController,
+          emailFocusNode: _emailFocusNode,
+          childPrefixIcon: const CustomAvatar(
+            width: 15,
+            height: 12,
+            assetName: AssetPath.iconEmail,
+          ),
+        );
+      },
     );
   }
 
   bool _onChanged = false;
   bool _isObscure = true;
-  TextFieldPassword buildTextFieldPassword() {
-    return TextFieldPassword(
-      assetPrefixIcon: AssetPath.iconLock,
-      passwordController: _passwordController,
-      passwordFocusNode: _passwordFocusNode,
-      onChanged: (value) {
-        _onChanged = true;
-        setState(() {});
+  Widget buildTextFieldPassword() {
+    return StreamBuilder(
+      stream: authenticationBloc!.password,
+      builder: (context, snapshot) {
+        return TextFieldPassword(
+          assetPrefixIcon: AssetPath.iconLock,
+          passwordController: _passwordController,
+          passwordFocusNode: _passwordFocusNode,
+          onChanged: (value) {
+            authenticationBloc!.updatePassword(value);
+            _onChanged = true;
+            setState(() {});
+          },
+          obscureText: _isObscure,
+          suffixIcon: _passwordController.text.isEmpty
+              ? Container(width: 0)
+              : Align(
+                  widthFactor: 0.5,
+                  heightFactor: 0.5,
+                  child: _onChanged
+                      ? CustomAvatar(
+                          width: 20,
+                          height: 15,
+                          assetName: _isObscure
+                              ? AssetPath.iconEye
+                              : AssetPath.iconHideEye,
+                          onTap: () {
+                            setState(() {
+                              _isObscure = !_isObscure;
+                            });
+                          },
+                        )
+                      : const Text(''),
+                ),
+        );
       },
-      obscureText: _isObscure,
-      suffixIcon: _passwordController.text.isEmpty
-          ? Container(width: 0)
-          : Align(
-              widthFactor: 0.5,
-              heightFactor: 0.5,
-              child: _onChanged
-                  ? CustomAvatar(
-                      width: 20,
-                      height: 15,
-                      assetName: _isObscure
-                          ? AssetPath.iconEye
-                          : AssetPath.iconHideEye,
-                      onTap: () {
-                        setState(() {
-                          _isObscure = !_isObscure;
-                        });
-                      },
-                    )
-                  : const Text(''),
-            ),
     );
   }
 
@@ -175,6 +200,10 @@ class _SignInPageState extends State<SignInPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ClassicButton(
+                  onTap: () => _signInWithEmailPassword(
+                    _emailController.text,
+                    _passwordController.text,
+                  ),
                   width: size.width,
                   radius: 12,
                   widthRadius: 0,
@@ -261,9 +290,7 @@ class _SignInPageState extends State<SignInPage> {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {
-          //print('aaaa');
-        },
+        onPressed: () {},
         child: const Text('Forgot password?', style: TxtStyle.headline4blue),
       ),
     );
@@ -289,6 +316,23 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ],
       ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
+  void snackBarError(PlatformException e) {
+    return showSnackBar(
+      context,
+      'Sign in cancelled : ${e.message}',
+      Image.asset(AssetPath.iconClose, color: DarkTheme.red),
     );
   }
 

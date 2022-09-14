@@ -46,11 +46,11 @@ class ListPage extends StatelessWidget {
                               widthRadius: 0,
                               colorRadius: DarkTheme.white,
                               color: DarkTheme.greyScale800,
-                              child: Center(child: Text(e)),
                               radius: 20,
                               onTap: () {
                                 Navigator.pushNamed(context, e);
                               },
+                              child: Center(child: Text(e)),
                             ),
                           )))
                   .toList()),

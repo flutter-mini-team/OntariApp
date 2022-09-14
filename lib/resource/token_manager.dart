@@ -1,4 +1,3 @@
-import 'package:ontari_app/utils/prefs_key.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TokenManager {
@@ -12,12 +11,10 @@ class TokenManager {
 
   Future<void> save() async {
     final prefs = await SharedPreferences.getInstance();
-    //await prefs.setString('access_token', accessToken!);
-    await prefs.setString(PrefsKey.accessToken, accessToken!);
+    await prefs.setString('access_token', accessToken!);
   }
 
   load(SharedPreferences pref) async {
-    //accessToken = pref.getString('access_token') ?? '';
-    accessToken = pref.getString(PrefsKey.accessToken) ?? '';
+    accessToken = pref.getString('access_token') ?? '';
   }
 }
