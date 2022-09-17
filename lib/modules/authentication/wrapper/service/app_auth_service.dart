@@ -17,7 +17,7 @@ class AppAuthService implements AuthService {
     final authGmail = AuthGmail();
     final authResult = await authGmail.login();
     if (authResult.accessToken != null) {
-      print('token : ${authResult.accessToken}');
+      print('token gmail : ${authResult.accessToken}');
       final result = await _appAuth.signInWithCredential(
         GmailAuthProvider.getCredential(accessToken: authResult.accessToken),
       );
@@ -31,7 +31,7 @@ class AppAuthService implements AuthService {
     final authFacebook = AuthFacebook();
     final authResult = await authFacebook.login();
     if (authResult.accessToken != null) {
-      print('token : ${authResult.accessToken}');
+      print('token facebook : ${authResult.accessToken}');
       final result = await _appAuth.signInWithCredential(
         FaceBookAuthProvider.getCredential(accessToken: authResult.accessToken),
       );
@@ -52,7 +52,7 @@ class AppAuthService implements AuthService {
     final authResult = await authEmailAndPassword.login();
 
     if (authResult.accessToken != null) {
-      print('token ${authResult.accessToken}');
+      print('token email : ${authResult.accessToken}');
       return result;
     }
     return handleError(authResult);

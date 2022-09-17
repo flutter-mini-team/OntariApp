@@ -17,7 +17,7 @@ class ItemsArrowSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BodyItem(
+    return BodyItemAsset(
       onTap: onTap,
       assetName: AssetPath.imgBackgroundItems,
       height: 32,

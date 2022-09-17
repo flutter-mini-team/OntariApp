@@ -51,7 +51,7 @@ class EditProfilePage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: BodyItem(
+                child: BodyItemAsset(
                   assetName: AssetPath.imgAvatar,
                   height: 64,
                   widthImg: 64,

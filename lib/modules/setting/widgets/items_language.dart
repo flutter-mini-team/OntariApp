@@ -25,13 +25,13 @@ class _ItemLanguageState extends State<ItemLanguage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BodyItem(
+        BodyItemAsset(
           onTap: () {
             setState(() {
               _isSelected = !_isSelected!;
             });
           },
-          assetName: widget.assetName,
+          assetName: widget.assetName!,
           mid: Padding(
             padding: const EdgeInsets.only(left: 14.0),
             child: SizedBox(

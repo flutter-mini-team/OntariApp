@@ -15,8 +15,8 @@ class ItemsCategoryOffice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BodyItem(
-      assetName: assetName,
+    return BodyItemAsset(
+      assetName: assetName!,
       widthImg: 64,
       height: 64,
       mid: Padding(

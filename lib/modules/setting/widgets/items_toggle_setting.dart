@@ -16,7 +16,7 @@ class ItemsToggleSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BodyItem(
+    return BodyItemAsset(
       assetName: AssetPath.imgBackgroundItems,
       height: 32,
       widthImg: 32,

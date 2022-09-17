@@ -12,7 +12,9 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
       email: json['email'] as String?,
-      avatar: json['avatar'] as String?,
+      avatar: json['avatar'] == null
+          ? null
+          : Picture.fromJson(json['avatar'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{

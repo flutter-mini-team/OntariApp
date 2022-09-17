@@ -14,12 +14,13 @@ class SettingAccount extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  final String? fullName, userName, assetName;
+  final String? fullName, userName;
+  final String assetName;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return BodyItem(
+    return BodyItemNetwork(
       onTap: onTap,
       height: 64,
       widthImg: 64,

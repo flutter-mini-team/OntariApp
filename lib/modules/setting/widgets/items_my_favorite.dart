@@ -25,11 +25,11 @@ class ItemsMyFavorite extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BodyItem(
+        BodyItemAsset(
           onTap: onTap,
           height: 64,
           widthImg: 64,
-          assetName: assetName,
+          assetName: assetName!,
           mid: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Column(

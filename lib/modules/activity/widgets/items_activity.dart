@@ -28,11 +28,11 @@ class ItemsActivity extends StatelessWidget {
     int percentText = (percent! * 100).toInt();
     return Column(
       children: [
-        BodyItem(
+        BodyItemAsset(
           onTap: onTap,
           height: 64,
           widthImg: 64,
-          assetName: assetName,
+          assetName: assetName!,
           mid: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Column(

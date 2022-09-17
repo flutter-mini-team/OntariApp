@@ -21,7 +21,7 @@ class CategoryOffice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BodyItem(
+        BodyItemAsset(
           onTap: onTap,
           assetName: AssetPath.imgBackgroundItems,
           widthImg: 48,

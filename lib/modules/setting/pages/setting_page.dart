@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ontari_app/models/user.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/models/model_local.dart';
@@ -11,10 +12,10 @@ import 'package:ontari_app/modules/setting/widgets/items_arrow_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/items_toggle_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/title_option_setting.dart';
 
-import '../../../assets/assets_path.dart';
 import '../../../blocs/app_state_bloc.dart';
 import '../../../providers/bloc_provider.dart';
 import '../../../widgets/stateless/show_alert_dialog.dart';
+import '../bloc/user_detail_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -24,64 +25,96 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  final _bloc = UserDetailBloc();
+
   void _logOut(BuildContext context) {
     final appStateBloc = BlocProvider.of<AppStateBloc>(context);
     appStateBloc!.logout();
   }
 
   @override
+  void initState() {
+    super.initState();
+    _bloc.getUserDeTail();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+      body: StreamBuilder<User>(
+        stream: _bloc.userStream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final detail = snapshot.data!;
+            //print('---Info---');
+            //print(detail.displayFirstName);
+            //print(detail.displayLastName);
+            //print(detail.email);
+            //print(detail.displayName);
+            //print(detail.imgUrl);
+            //print('---End---');
+            return SafeArea(
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24.0),
-                      child: Text('Setting', style: TxtStyle.titlePage),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 24.0),
+                            child: Text('Setting', style: TxtStyle.titlePage),
+                          ),
+                          SettingAccount(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (_) => EditProfilePage()),
+                              );
+                            },
+                            fullName:
+                                '${detail.displayFirstName} ${detail.displayLastName}',
+                            userName: '${detail.displayUserName} ',
+                            assetName: '${detail.imgUrl}',
+                          ),
+                        ],
+                      ),
                     ),
-                    SettingAccount(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => EditProfilePage()),
-                        );
-                      },
-                      fullName: 'Barly Vallendito',
-                      userName: 'barlyvallendito',
-                      assetName: AssetPath.imgAvatar,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: buildTitleOptionSettings('ACCOUNT SETTING'),
                     ),
+                    buildListView(accountSetting, 0),
+                    buildTitleOptionSettings('APPLICATION'),
+                    const SizedBox(height: 16),
+                    buildListView(application, 0),
+                    buildListView(applicationToggle, 1),
+                    const TitleOptionSettings(
+                      height: 16,
+                      color: DarkTheme.greyScale800,
+                    ),
+                    buildLogoutButton(context),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: buildTitleOptionSettings('ACCOUNT SETTING'),
+            );
+          }
+          if (snapshot.hasError) {
+            return const SliverFillRemaining(
+              child: Center(
+                child: Text('Something went wrong'),
               ),
-              buildListView(accountSetting, 0),
-              buildTitleOptionSettings('APPLICATION'),
-              const SizedBox(height: 16),
-              buildListView(application, 0),
-              buildListView(applicationToggle, 1),
-              const TitleOptionSettings(
-                height: 16,
-                color: DarkTheme.greyScale800,
-              ),
-              buildLogoutButton(context),
-            ],
-          ),
-        ),
+            );
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }
 
-  // Future<void> _signOut(BuildContext context) async {
   Future<void> _confirmSignOut(BuildContext context) async {
     final didRequestSignOut = await showAlertDialog(
       context,

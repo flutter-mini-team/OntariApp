@@ -1,5 +1,5 @@
-
 import 'package:json_annotation/json_annotation.dart';
+import 'package:ontari_app/models/picture.dart';
 
 part 'user.g.dart';
 
@@ -21,7 +21,7 @@ class User {
   final String? email;
 
   @JsonKey(name: 'avatar')
-  final String? avatar;
+  final Picture? avatar;
 
   User({
     this.id,
@@ -29,18 +29,19 @@ class User {
     this.firstName,
     this.lastName,
     this.email,
-    this.avatar
+    this.avatar,
   });
 
-  // String get displayFirstName => firstName ?? '';
+  String get displayFirstName => firstName ?? '';
+  String get displayLastName => lastName ?? '';
+  String get displayUserName => username ?? '';
+  String get displayEmail => email ?? '';
+  // String get displayName => [
+  //       firstName?.toLowerCase() ?? '',
+  //       lastName?.toLowerCase() ?? ''
+  //     ].join(' ').trim();
 
-  // String get displayName => [firstName ?? '', lastName ?? ''].join(' ').trim();
-
-  // String get displayUsername => '@${username ?? ""}';
-
-  // String get imgUrl {
-  //   return avatar?.cloudUrl() ?? '';
-  // }
+  String? get imgUrl => avatar?.imgUrl ?? '';
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
