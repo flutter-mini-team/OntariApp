@@ -4,8 +4,6 @@ import 'package:ontari_app/models/model_local.dart';
 import 'package:ontari_app/modules/setting/widgets/items_language.dart';
 import 'package:ontari_app/modules/setting/widgets/title_setting.dart';
 
-
-
 class LanguagePage extends StatelessWidget {
   const LanguagePage({Key? key}) : super(key: key);
 
@@ -39,6 +37,7 @@ class LanguagePage extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 26.0),
           child: ItemLanguage(
+          
             assetName: list[index].iconUrl,
             nameLang: list[index].title,
           ),
@@ -47,5 +46,3 @@ class LanguagePage extends StatelessWidget {
     );
   }
 }
-
-

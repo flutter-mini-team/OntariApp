@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/resource/token_manager.dart';
 import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/widgets/stateless/class_preview.dart';
 import 'package:ontari_app/widgets/stateless/common_button.dart';
@@ -17,7 +16,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(TokenManager().accessToken);
+    //print(TokenManager().accessToken);
     final TextEditingController searchController = TextEditingController();
 
     return Scaffold(

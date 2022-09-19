@@ -165,7 +165,7 @@ class _CommonWidgetPageState extends State<CommonWidgetPage> {
                   ),
                 ),
                 const Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
-                const ToggleSwitchButton(),
+                ToggleSwitchButton(),
                 const Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
                 const IndicatorSlider(edge: 10, count: 3),
               ],

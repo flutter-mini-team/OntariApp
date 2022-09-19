@@ -11,14 +11,12 @@ class TextFieldEmail extends StatelessWidget {
     Key? key,
     this.emailFocusNode,
     this.emailController,
-    //this.childPrefixIcon,
     this.onChanged,
     this.onEditingComplete,
   }) : super(key: key);
 
   final FocusNode? emailFocusNode;
   final TextEditingController? emailController;
-  //final Widget? childPrefixIcon;
   final Function(String)? onChanged;
   final Function()? onEditingComplete;
 

@@ -171,12 +171,28 @@ class _SettingPageState extends State<SettingPage> {
             : Padding(
                 padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
                 child: ItemsToggleSetting(
+                  onTap: () {
+                    chooseOption(context, index, list);
+                  },
                   assetName: list[index].iconUrl,
                   title: list[index].title,
                 ),
               );
       },
     );
+  }
+
+  void chooseOption(BuildContext context, int index, List<ModelSetting> list) {
+    if (list == applicationToggle) {
+      switch (index) {
+        case 0:
+          print('Notification');
+          break;
+        case 1:
+          print('Dark mode');
+          break;
+      }
+    }
   }
 
   goToPage(BuildContext context, int index, List<ModelSetting> list) {
@@ -198,10 +214,10 @@ class _SettingPageState extends State<SettingPage> {
     } else {
       switch (index) {
         case 0:
-          //print('change phone number');
+          print('change phone number');
           break;
         case 1:
-          //print('password');
+          print('password');
           break;
       }
     }

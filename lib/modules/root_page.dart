@@ -57,20 +57,6 @@ class _RootPageState extends State<RootPage> {
             _buildOffstageNavigator(3),
           ],
         ),
-        // Scaffold(
-        //   body: BlocBuilder<AuthCubit, AuthState>(
-        //     buildWhen: (previous, current) => current is AuthSingedIn,
-        //     builder: (_, state) {
-        //       return Stack(
-        //         children: [
-        //           _buildOffstageNavigator(0),
-        //           _buildOffstageNavigator(1),
-        //           _buildOffstageNavigator(2),
-        //           _buildOffstageNavigator(3),
-        //         ],
-        //       );
-        //     },
-        //   ),
         extendBody: true,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
