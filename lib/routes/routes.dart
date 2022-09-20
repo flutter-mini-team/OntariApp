@@ -4,6 +4,7 @@ import 'package:ontari_app/modules/authentication/pages/splash_page.dart';
 import 'package:ontari_app/modules/common/common_widget_page.dart';
 import 'package:ontari_app/modules/details/pages/detail_mentor_page.dart';
 import 'package:ontari_app/modules/details/pages/detail_playing_course.dart';
+import 'package:ontari_app/modules/root/widgets/tab_item.dart';
 import 'package:ontari_app/modules/setting/pages/change_language_page.dart';
 import 'package:ontari_app/modules/setting/pages/download_video_page.dart';
 import 'package:ontari_app/modules/setting/pages/edit_profile_page.dart';
@@ -36,11 +37,11 @@ class Routes {
       case RouteName.homePage:
         return _buildRoute(settings, const RootPage());
       case RouteName.activityPage:
-        return _buildRoute(settings, const RootPage(bottom: 1));
+        return _buildRoute(settings, const RootPage(currentTab: TabItem.activity));
       case RouteName.categoryPage:
-        return _buildRoute(settings, const RootPage(bottom: 2));
+        return _buildRoute(settings, const RootPage(currentTab: TabItem.category));
       case RouteName.settingPage:
-        return _buildRoute(settings, const RootPage(bottom: 3));
+        return _buildRoute(settings, const RootPage(currentTab: TabItem.setting));
       case RouteName.languagePage:
         return _buildRoute(settings, const LanguagePage());
       case RouteName.favoritePage:
@@ -71,26 +72,26 @@ class Routes {
           //   child: const DashboardPage(),
           // ),
         );
-        // case RouteName.createPostPage:
-        //   return _buildRouteDialog(
-        //     settings,
-        //     const CreatePostPage(),
-        //   );
-        // case RouteName.postDetailPage:
-        //   final post = settings.arguments;
-        //   if (post is Post) {
-        //     return _buildRoute(
-        //       settings,
-        //       BlocProvider(
-        //         bloc: PostDetailBloc(post.id!),
-        //         child: BlocProvider(
-        //           bloc: CommentBloc(post.id!),
-        //           child: PostDetailPage(post: post),
-        //         ),
-        //       ),
-        //     );
-        //   }
-        //return _errorRoute(settings);
+      // case RouteName.createPostPage:
+      //   return _buildRouteDialog(
+      //     settings,
+      //     const CreatePostPage(),
+      //   );
+      // case RouteName.postDetailPage:
+      //   final post = settings.arguments;
+      //   if (post is Post) {
+      //     return _buildRoute(
+      //       settings,
+      //       BlocProvider(
+      //         bloc: PostDetailBloc(post.id!),
+      //         child: BlocProvider(
+      //           bloc: CommentBloc(post.id!),
+      //           child: PostDetailPage(post: post),
+      //         ),
+      //       ),
+      //     );
+      //   }
+      //return _errorRoute(settings);
       default:
         return _errorRoute(settings);
     }

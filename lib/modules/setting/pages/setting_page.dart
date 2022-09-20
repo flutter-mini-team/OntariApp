@@ -12,8 +12,11 @@ import 'package:ontari_app/modules/setting/widgets/items_arrow_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/items_toggle_setting.dart';
 import 'package:ontari_app/modules/setting/widgets/title_option_setting.dart';
 
+import '../../../assets/assets_path.dart';
 import '../../../blocs/app_state_bloc.dart';
 import '../../../providers/bloc_provider.dart';
+import '../../../widgets/stateful/toggle_switch_button.dart';
+import '../../../widgets/stateless/common_button.dart';
 import '../../../widgets/stateless/show_alert_dialog.dart';
 import '../bloc/user_detail_bloc.dart';
 
@@ -38,8 +41,10 @@ class _SettingPageState extends State<SettingPage> {
     _bloc.getUserDeTail();
   }
 
+  late bool _onValue = false;
   @override
   Widget build(BuildContext context) {
+    //print('co vao setting');
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: StreamBuilder<User>(
@@ -54,6 +59,7 @@ class _SettingPageState extends State<SettingPage> {
             //print(detail.displayName);
             //print(detail.imgUrl);
             //print('---End---');
+
             return SafeArea(
               child: SingleChildScrollView(
                 child: Column(
@@ -64,15 +70,45 @@ class _SettingPageState extends State<SettingPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 24.0),
-                            child: Text('Setting', style: TxtStyle.titlePage),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 24.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('Setting',
+                                    style: TxtStyle.titlePage),
+                                const SizedBox(width: 100),
+                                Row(
+                                  children: [
+                                    const Image(
+                                      color: DarkTheme.white,
+                                      image: AssetImage(AssetPath.iconDarkMode),
+                                    ),
+                                    ToggleSwitchButton(
+                                      value: _onValue,
+                                      onChanged: (value) =>
+                                          setState(() => _onValue = value),
+                                    ),
+                                  ],
+                                ),
+                                const SquareButton(
+                                  bgColor: DarkTheme.greyScale800,
+                                  edge: 40,
+                                  radius: 10,
+                                  child: ImageIcon(
+                                    size: 13,
+                                    color: DarkTheme.white,
+                                    AssetImage(AssetPath.iconBell),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           SettingAccount(
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (_) => EditProfilePage()),
+                                    builder: (_) => const EditProfilePage()),
                               );
                             },
                             fullName:
@@ -91,7 +127,7 @@ class _SettingPageState extends State<SettingPage> {
                     buildTitleOptionSettings('APPLICATION'),
                     const SizedBox(height: 16),
                     buildListView(application, 0),
-                    buildListView(applicationToggle, 1),
+                    //buildListView(applicationToggle, 1),
                     const TitleOptionSettings(
                       height: 16,
                       color: DarkTheme.greyScale800,

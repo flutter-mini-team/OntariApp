@@ -42,6 +42,7 @@ class _ActivityPageState extends State<ActivityPage>
   int _isSelectedTab = 0;
   @override
   Widget build(BuildContext context) {
+    //print('co vao activity');
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: SafeArea(

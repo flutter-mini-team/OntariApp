@@ -9,13 +9,19 @@ import '../../../widgets/stateless/common_avatar.dart';
 import '../../../widgets/stateless/common_button.dart';
 import '../../../widgets/stateful/common_textfield.dart';
 
-class CategoryPage extends StatelessWidget {
-  CategoryPage({Key? key}) : super(key: key);
+class CategoryPage extends StatefulWidget {
+  const CategoryPage({Key? key}) : super(key: key);
 
+  @override
+  State<CategoryPage> createState() => _CategoryPageState();
+}
+
+class _CategoryPageState extends State<CategoryPage> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    //print('co vao category');
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: SafeArea(

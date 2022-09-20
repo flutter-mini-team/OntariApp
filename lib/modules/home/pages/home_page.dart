@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //print(TokenManager().accessToken);
+    //print('co vao home page');
     final TextEditingController searchController = TextEditingController();
 
     return Scaffold(
