@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/modules/root/widgets/tab_item.dart';
+import 'package:ontari_app/providers/bloc_provider.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/modules/activity/pages/activity_page.dart';
 import 'package:ontari_app/modules/category/pages/category_page.dart';
 import 'package:ontari_app/modules/setting/pages/setting_page.dart';
 
-import 'home/pages/home_page.dart';
+import '../../../models/user.dart';
+import '../../home/pages/home_page.dart';
+import '../../../blocs/user_detail_bloc.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key, this.currentTab = TabItem.home}) : super(key: key);
@@ -16,13 +19,14 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  //----------------------------------------------------------------------------
   late TabItem _currentTab;
+  final _bloc = UserDetailBloc();
 
   @override
   void initState() {
     super.initState();
     _currentTab = widget.currentTab;
+    _bloc.getUserDeTail();
   }
 
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
@@ -34,10 +38,10 @@ class _RootPageState extends State<RootPage> {
 
   Map<TabItem, WidgetBuilder> get widgetBuilders {
     return {
-      TabItem.home: (_) => HomePage(),
-      TabItem.activity: (_) => ActivityPage(),
-      TabItem.category: (_) => CategoryPage(),
-      TabItem.setting: (_) => SettingPage(),
+      TabItem.home: (_) => const HomePage(),
+      TabItem.activity: (_) => const ActivityPage(),
+      TabItem.category: (_) => const CategoryPage(),
+      TabItem.setting: (_) => const SettingPage(),
     };
   }
 
@@ -56,11 +60,9 @@ class _RootPageState extends State<RootPage> {
       builder: (context) => widgetBuilders[item]!(context),
     );
   }
-  //----------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
-    //print(widget.currentTab);
     return WillPopScope(
       onWillPop: () async {
         // final isFirstRouteInCurrentTab =
@@ -73,7 +75,10 @@ class _RootPageState extends State<RootPage> {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        body: _builderNavigator(_currentTab.index),
+        body: BlocProvider(
+          bloc: _bloc,
+          child: _builderNavigator(_currentTab.index),
+        ),
         extendBody: true,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -103,28 +108,4 @@ class _RootPageState extends State<RootPage> {
       activeIcon: itemData.activeIcon,
     );
   }
-
-  // Map<String, WidgetBuilder> _routeBuilders(BuildContext context, int index) {
-  //   return {
-  //     '/': (context) {
-  //       return _tabs.elementAt(index);
-  //     },
-  //   };
-  // }
-
-  // Widget _buildOffstageNavigator(int index) {
-  //   var routeBuilders = _routeBuilders(context, index);
-
-  //   return Offstage(
-  //     offstage: _selectedIndex != index,
-  //     child: Navigator(
-  //       key: _navigatorKeys[index],
-  //       onGenerateRoute: (routeSettings) {
-  //         return MaterialPageRoute(
-  //           builder: (context) => routeBuilders[routeSettings.name]!(context),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
 }

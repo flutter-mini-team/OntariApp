@@ -10,10 +10,12 @@ import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 
 import '../../../assets/assets_path.dart';
 import '../../../models/user.dart';
-import '../bloc/user_detail_bloc.dart';
+import '../../../providers/bloc_provider.dart';
+import '../../../blocs/user_detail_bloc.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({Key? key,this.user}) : super(key: key);
+  final User? user;
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -24,15 +26,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _lastController = TextEditingController();
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final _bloc = UserDetailBloc();
+  User get user => widget.user!;
+  //UserDetailBloc? get _bloc => BlocProvider.of<UserDetailBloc>(context);
 
-  @override
-  void initState() {
-    super.initState();
-    _bloc.getUserDeTail();
-  }
-
-  Widget buildTextFieldFirstName(String displayFirstName) {
+  buildTextFieldFirstName(String displayFirstName) {
     _firstController.text = displayFirstName;
     return buildTextFieldString(
       'First Name',
@@ -42,7 +39,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Widget buildTextFieldLastName(String displayLastName) {
+  buildTextFieldLastName(String displayLastName) {
     _userController.text = displayLastName;
     return buildTextFieldString(
       'Last Name',
@@ -52,7 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Widget buildTextFieldUserName(String displayUserName) {
+  buildTextFieldUserName(String displayUserName) {
     _userController.text = displayUserName;
     return buildTextFieldString(
       'Username',
@@ -82,115 +79,97 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
-      body: StreamBuilder<User>(
-          stream: _bloc.userStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final detail = snapshot.data!;
-              return SafeArea(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const TitleSetting(title: 'Edit Profile'),
-                            ClassicButton(
-                              onTap: () {},
-                              width: 60,
-                              height: 32,
-                              radius: 12,
-                              widthRadius: 0,
-                              colorRadius: DarkTheme.primaryBlue600,
-                              color: DarkTheme.primaryBlue600,
-                              child: const Center(child: Text('Save')),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const TitleOptionSettings(
-                        title: 'EDIT AVATAR',
-                        height: 32,
-                        color: DarkTheme.primaryBlueButton,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(24.0),
-                        child: BodyItemNetwork(
-                          assetName: detail.imgUrl!,
-                          height: 64,
-                          widthImg: 64,
-                          mid: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                ClassicButton(
-                                  widthRadius: 2,
-                                  width: 117,
-                                  height: 32,
-                                  radius: 7,
-                                  color: DarkTheme.greyScale800,
-                                  colorRadius: DarkTheme.primaryBlue600,
-                                  child: Center(
-                                    child: Text(
-                                      'Change Avatar',
-                                      style: TxtStyle.headline6MediumBlue,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'Edit avatar are visible only on ontari.',
-                                  style: TxtStyle.headline6MediumGrey,
-                                ),
-                              ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const TitleSetting(title: 'Edit Profile'),
+                    ClassicButton(
+                      onTap: () {},
+                      width: 60,
+                      height: 32,
+                      radius: 12,
+                      widthRadius: 0,
+                      colorRadius: DarkTheme.primaryBlue600,
+                      color: DarkTheme.primaryBlue600,
+                      child: const Center(child: Text('Save')),
+                    ),
+                  ],
+                ),
+              ),
+              const TitleOptionSettings(
+                title: 'EDIT AVATAR',
+                height: 32,
+                color: DarkTheme.primaryBlueButton,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: BodyItemNetwork(
+                  assetName: user.imgUrl!,
+                  height: 64,
+                  widthImg: 64,
+                  mid: Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        ClassicButton(
+                          widthRadius: 2,
+                          width: 117,
+                          height: 32,
+                          radius: 7,
+                          color: DarkTheme.greyScale800,
+                          colorRadius: DarkTheme.primaryBlue600,
+                          child: Center(
+                            child: Text(
+                              'Change Avatar',
+                              style: TxtStyle.headline6MediumBlue,
                             ),
                           ),
-                          right: const Text(''),
                         ),
-                      ),
-                      const TitleOptionSettings(
-                        title: 'EDIT INFORMATION',
-                        height: 32,
-                        color: DarkTheme.primaryBlueButton,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 24.0),
-                              child: buildTextFieldFirstName(
-                                  detail.displayFirstName),
-                            ),
-                            buildTextFieldLastName(detail.displayLastName),
-                            const SizedBox(height: 24),
-                            buildTextFieldUserName(detail.displayUserName),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 24.0),
-                              child: buildTextFieldEmail(detail.displayEmail),
-                            ),
-                          ],
+                        Text(
+                          'Edit avatar are visible only on ontari.',
+                          style: TxtStyle.headline6MediumGrey,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
+                  right: const Text(''),
                 ),
-              );
-            }
-            if (snapshot.hasError) {
-              return const SliverFillRemaining(
-                child: Center(
-                  child: Text('Something went wrong'),
+              ),
+              const TitleOptionSettings(
+                title: 'EDIT INFORMATION',
+                height: 32,
+                color: DarkTheme.primaryBlueButton,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: buildTextFieldFirstName(user.displayFirstName),
+                    ),
+                    buildTextFieldLastName(user.displayLastName),
+                    const SizedBox(height: 24),
+                    buildTextFieldUserName(user.displayUserName),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: buildTextFieldEmail(user.displayEmail),
+                    ),
+                  ],
                 ),
-              );
-            }
-            return const Center(child: CircularProgressIndicator());
-          }),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 

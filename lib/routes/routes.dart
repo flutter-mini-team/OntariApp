@@ -11,7 +11,7 @@ import 'package:ontari_app/modules/setting/pages/edit_profile_page.dart';
 import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
 import 'package:ontari_app/routes/route_name.dart';
 
-import '../../modules/root_page.dart';
+import '../modules/root/pages/root_page.dart';
 import '../../widgets/stateful/pages.dart';
 import '../modules/authentication/pages/sign_in_page.dart';
 import '../modules/authentication/pages/sign_up_page.dart';

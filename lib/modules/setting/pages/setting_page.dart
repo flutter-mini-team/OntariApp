@@ -18,7 +18,7 @@ import '../../../providers/bloc_provider.dart';
 import '../../../widgets/stateful/toggle_switch_button.dart';
 import '../../../widgets/stateless/common_button.dart';
 import '../../../widgets/stateless/show_alert_dialog.dart';
-import '../bloc/user_detail_bloc.dart';
+import '../../../blocs/user_detail_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -28,38 +28,23 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  final _bloc = UserDetailBloc();
+  UserDetailBloc? get _bloc => BlocProvider.of<UserDetailBloc>(context);
 
   void _logOut(BuildContext context) {
     final appStateBloc = BlocProvider.of<AppStateBloc>(context);
     appStateBloc!.logout();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _bloc.getUserDeTail();
-  }
-
   late bool _onValue = false;
   @override
   Widget build(BuildContext context) {
-    //print('co vao setting');
     return Scaffold(
       backgroundColor: DarkTheme.greyScale900,
       body: StreamBuilder<User>(
-        stream: _bloc.userStream,
+        stream: _bloc!.userStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final detail = snapshot.data!;
-            //print('---Info---');
-            //print(detail.displayFirstName);
-            //print(detail.displayLastName);
-            //print(detail.email);
-            //print(detail.displayName);
-            //print(detail.imgUrl);
-            //print('---End---');
-
             return SafeArea(
               child: SingleChildScrollView(
                 child: Column(
@@ -108,7 +93,8 @@ class _SettingPageState extends State<SettingPage> {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (_) => const EditProfilePage()),
+                                  builder: (_) => EditProfilePage(user: detail),
+                                ),
                               );
                             },
                             fullName:

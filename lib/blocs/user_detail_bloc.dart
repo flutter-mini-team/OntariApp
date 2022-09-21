@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:ontari_app/models/user.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../providers/bloc_provider.dart';
-import '../repos/user_detail_repo.dart';
+import '../providers/bloc_provider.dart';
+import '../modules/setting/repos/user_detail_repo.dart';
 
 class UserDetailBloc extends BlocBase {
   final _userController = BehaviorSubject<User>();
