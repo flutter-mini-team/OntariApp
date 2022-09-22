@@ -6,7 +6,7 @@ import 'package:rxdart/rxdart.dart';
 import '../providers/bloc_provider.dart';
 import '../modules/setting/repos/user_detail_repo.dart';
 
-class UserDetailBloc extends BlocBase {
+class AppUserBloc extends BlocBase {
   final _userController = BehaviorSubject<User>();
   Stream<User> get userStream => _userController.stream;
   User get userDetail => _userController.stream.value;

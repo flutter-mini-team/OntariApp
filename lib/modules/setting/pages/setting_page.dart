@@ -18,7 +18,7 @@ import '../../../providers/bloc_provider.dart';
 import '../../../widgets/stateful/toggle_switch_button.dart';
 import '../../../widgets/stateless/common_button.dart';
 import '../../../widgets/stateless/show_alert_dialog.dart';
-import '../../../blocs/user_detail_bloc.dart';
+import '../../../blocs/app_user_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  UserDetailBloc? get _bloc => BlocProvider.of<UserDetailBloc>(context);
+  AppUserBloc? get _bloc => BlocProvider.of<AppUserBloc>(context);
 
   void _logOut(BuildContext context) {
     final appStateBloc = BlocProvider.of<AppStateBloc>(context);
@@ -39,7 +39,6 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: DarkTheme.greyScale900,
       body: StreamBuilder<User>(
         stream: _bloc!.userStream,
         builder: (context, snapshot) {

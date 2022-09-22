@@ -21,9 +21,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    //print('co vao category');
     return Scaffold(
-      backgroundColor: DarkTheme.greyScale900,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

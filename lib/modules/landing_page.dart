@@ -48,8 +48,7 @@ class _LandingPageState extends State<LandingPage> {
               bloc: _authenticationBloc,
               child: MaterialApp(
                 theme: ThemeData(
-                  primaryColor: DarkTheme.greyScale50,
-                  scaffoldBackgroundColor: DarkTheme.greyScale50,
+                  scaffoldBackgroundColor: DarkTheme.greyScale900,
                   fontFamily: 'manrope',
                   textTheme: Theme.of(context).textTheme.apply(
                       bodyColor: DarkTheme.white,
@@ -67,8 +66,7 @@ class _LandingPageState extends State<LandingPage> {
             initialRoute: '/',
             onGenerateRoute: Routes.authorizedRoute,
             theme: ThemeData(
-              primaryColor: DarkTheme.greyScale50,
-              scaffoldBackgroundColor: DarkTheme.greyScale50,
+              scaffoldBackgroundColor: DarkTheme.greyScale900,
               fontFamily: 'manrope',
               textTheme: Theme.of(context).textTheme.apply(
                   bodyColor: DarkTheme.white, displayColor: DarkTheme.white),

@@ -8,7 +8,7 @@ import 'package:ontari_app/modules/setting/pages/setting_page.dart';
 
 import '../../../models/user.dart';
 import '../../home/pages/home_page.dart';
-import '../../../blocs/user_detail_bloc.dart';
+import '../../../blocs/app_user_bloc.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key, this.currentTab = TabItem.home}) : super(key: key);
@@ -20,7 +20,7 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   late TabItem _currentTab;
-  final _bloc = UserDetailBloc();
+  final _bloc = AppUserBloc();
 
   @override
   void initState() {

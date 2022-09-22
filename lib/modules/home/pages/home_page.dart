@@ -12,7 +12,7 @@ import '../../../widgets/stateless/common_avatar.dart';
 import '../../../widgets/stateful/common_textfield.dart';
 import '../../../widgets/stateless/discount.dart';
 import '../../../widgets/stateless/mentor.dart';
-import '../../../blocs/user_detail_bloc.dart';
+import '../../../blocs/app_user_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,13 +23,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
-  UserDetailBloc? get _bloc => BlocProvider.of<UserDetailBloc>(context);
+  AppUserBloc? get _bloc => BlocProvider.of<AppUserBloc>(context);
 
   @override
   Widget build(BuildContext context) {
     //print(TokenManager().accessToken);
     return Scaffold(
-      backgroundColor: DarkTheme.greyScale900,
       body: StreamBuilder<User>(
         stream: _bloc!.userStream,
         builder: (context, snapshot) {

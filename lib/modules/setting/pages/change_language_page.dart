@@ -10,7 +10,6 @@ class LanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: DarkTheme.greyScale900,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
