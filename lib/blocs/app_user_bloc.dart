@@ -22,6 +22,25 @@ class AppUserBloc extends BlocBase {
     }
   }
 
+  Future<bool> updateUserDetail(
+    String firstName,
+    String lastName,
+    String email,
+  ) async {
+    try {
+      final data = {
+        "first_name": firstName,
+        "last_name": lastName,
+        "email": email,
+      };
+
+      final res = await UserDetailRepo().putUserDetailRepos(data);
+      return res;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   @override
   void dispose() {
     _userController.close();

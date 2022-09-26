@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ontari_app/models/user.dart';
 import 'package:ontari_app/modules/authentication/pages/select_plan_page.dart';
 import 'package:ontari_app/modules/authentication/pages/splash_page.dart';
 import 'package:ontari_app/modules/common/common_widget_page.dart';
@@ -9,8 +10,10 @@ import 'package:ontari_app/modules/setting/pages/change_language_page.dart';
 import 'package:ontari_app/modules/setting/pages/download_video_page.dart';
 import 'package:ontari_app/modules/setting/pages/edit_profile_page.dart';
 import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
+import 'package:ontari_app/providers/bloc_provider.dart';
 import 'package:ontari_app/routes/route_name.dart';
 
+import '../blocs/app_user_bloc.dart';
 import '../modules/root/pages/root_page.dart';
 import '../../widgets/stateful/pages.dart';
 import '../modules/authentication/pages/sign_in_page.dart';
@@ -37,11 +40,14 @@ class Routes {
       case RouteName.homePage:
         return _buildRoute(settings, const RootPage());
       case RouteName.activityPage:
-        return _buildRoute(settings, const RootPage(currentTab: TabItem.activity));
+        return _buildRoute(
+            settings, const RootPage(currentTab: TabItem.activity));
       case RouteName.categoryPage:
-        return _buildRoute(settings, const RootPage(currentTab: TabItem.category));
+        return _buildRoute(
+            settings, const RootPage(currentTab: TabItem.category));
       case RouteName.settingPage:
-        return _buildRoute(settings, const RootPage(currentTab: TabItem.setting));
+        return _buildRoute(
+            settings, const RootPage(currentTab: TabItem.setting));
       case RouteName.languagePage:
         return _buildRoute(settings, const LanguagePage());
       case RouteName.favoritePage:
@@ -66,12 +72,21 @@ class Routes {
       case '/':
         return _buildRoute(
           settings,
-          const RootPage(),
-          // BlocProvider(
-          //   bloc: ListPostsRxDartBloc()..getPosts(),
-          //   child: const DashboardPage(),
-          // ),
+          BlocProvider(
+            bloc: AppUserBloc()..getUserDeTail(),
+            child: const RootPage(),
+          ),
         );
+      // case RouteName.editProfilePage:
+      //   final user = settings.arguments;
+      //   if (user is User) {
+      //     return _buildRoute(
+      //       settings,
+      //       EditProfilePage(user: user),
+      //     );
+      //   }
+      //   return _errorRoute(settings);
+      //----------------------------------------------------------------------
       // case RouteName.createPostPage:
       //   return _buildRouteDialog(
       //     settings,
@@ -92,6 +107,7 @@ class Routes {
       //     );
       //   }
       //return _errorRoute(settings);
+      //----------------------------------------------------------------------
       default:
         return _errorRoute(settings);
     }

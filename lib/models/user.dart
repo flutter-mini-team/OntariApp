@@ -5,9 +5,6 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  @JsonKey(name: 'id')
-  final String? id;
-
   @JsonKey(name: 'username')
   final String? username;
 
@@ -24,7 +21,6 @@ class User {
   final Picture? avatar;
 
   User({
-    this.id,
     this.username,
     this.firstName,
     this.lastName,

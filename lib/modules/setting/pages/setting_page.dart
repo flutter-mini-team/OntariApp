@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/models/user.dart';
+import 'package:ontari_app/routes/route_name.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/models/model_local.dart';
@@ -29,6 +30,7 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   AppUserBloc? get _bloc => BlocProvider.of<AppUserBloc>(context);
+  final navigatorKey = GlobalKey<NavigatorState>;
 
   void _logOut(BuildContext context) {
     final appStateBloc = BlocProvider.of<AppStateBloc>(context);
@@ -92,9 +94,19 @@ class _SettingPageState extends State<SettingPage> {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (_) => EditProfilePage(user: detail),
+                                  builder: (context) => EditProfilePage(
+                                    user: detail,
+                                  ),
                                 ),
                               );
+
+                            
+
+                              // Navigator.pushNamed(
+                              //   context,
+                              //   RouteName.editProfilePage,
+                              //   arguments: detail,
+                              // );
                             },
                             fullName:
                                 '${detail.displayFirstName} ${detail.displayLastName}',

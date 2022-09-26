@@ -19,4 +19,14 @@ class UserDetailRepo {
       rethrow;
     }
   }
+
+  Future<bool> putUserDetailRepos(dynamic data) async {
+    try {
+      final response = await apiProvider.put("/profile", data: data);
+
+      return response.statusCode == 200;
+    } catch (e) {
+      return false;
+    }
+  }
 }

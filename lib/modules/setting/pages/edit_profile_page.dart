@@ -14,7 +14,7 @@ import '../../../providers/bloc_provider.dart';
 import '../../../blocs/app_user_bloc.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({Key? key,this.user}) : super(key: key);
+  const EditProfilePage({Key? key, this.user}) : super(key: key);
   final User? user;
 
   @override
@@ -27,10 +27,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   User get user => widget.user!;
-  //UserDetailBloc? get _bloc => BlocProvider.of<UserDetailBloc>(context);
+  AppUserBloc? get _bloc => BlocProvider.of<AppUserBloc>(context);
 
   buildTextFieldFirstName(String displayFirstName) {
     _firstController.text = displayFirstName;
+    _firstController.selection =
+        TextSelection.collapsed(offset: _firstController.text.length);
     return buildTextFieldString(
       'First Name',
       'Enter your First Name',
@@ -40,7 +42,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   buildTextFieldLastName(String displayLastName) {
-    _userController.text = displayLastName;
+    _lastController.text = displayLastName;
+    _lastController.selection =
+        TextSelection.collapsed(offset: _lastController.text.length);
     return buildTextFieldString(
       'Last Name',
       'Enter your Last Name',
@@ -51,6 +55,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   buildTextFieldUserName(String displayUserName) {
     _userController.text = displayUserName;
+    _userController.selection =
+        TextSelection.collapsed(offset: _userController.text.length);
     return buildTextFieldString(
       'Username',
       'Enter your Username',
@@ -61,6 +67,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   TextFieldEmail buildTextFieldEmail(String displayEmail) {
     _emailController.text = displayEmail;
+    _emailController.selection =
+        TextSelection.collapsed(offset: _emailController.text.length);
     return TextFieldEmail(
       emailController: _emailController,
     );
@@ -75,10 +83,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
     _emailController.dispose();
   }
 
+  void _saveUpdateUserDetail() async {
+    // User user = User(
+    //   firstName: _firstController.text,
+    //   lastName: _lastController.text,
+    //   email: _emailController.text,
+    //   username: _userController.text,
+    // );
+
+    return _bloc!
+        .updateUserDetail(
+      _firstController.text,
+      _lastController.text,
+      _emailController.text,
+    )
+        .then((value) {
+      _bloc!.getUserDeTail();
+      Navigator.pop(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: DarkTheme.greyScale900,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -90,7 +117,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   children: [
                     const TitleSetting(title: 'Edit Profile'),
                     ClassicButton(
-                      onTap: () {},
+                      onTap: _saveUpdateUserDetail,
                       width: 60,
                       height: 32,
                       radius: 12,

@@ -112,6 +112,31 @@ class ApiProvider {
     throw res;
   }
 
+  Future<Response> put(
+    String path, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final res = await _dio.put(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    if (res is! ErrorResponse) {
+      return res;
+    }
+    throw res;
+  }
+
   Future<Response> delete(
     String path, {
     data,
