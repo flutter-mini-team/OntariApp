@@ -10,7 +10,7 @@ enum AppState { loading, unAuthorized, authorized }
 class AppStateBloc implements BlocBase {
   // initialize the default value for the screen is loading
   final _appState = BehaviorSubject<AppState>.seeded(AppState.loading);
-  // get stream
+  // stream
   Stream<AppState> get appState => _appState.stream;
   // get value in stream
   AppState get appStateValue => _appState.stream.value;

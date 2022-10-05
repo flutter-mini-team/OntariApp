@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ontari_app/models/user.dart';
-import 'package:ontari_app/routes/route_name.dart';
 import 'package:ontari_app/themes/app_color.dart';
 import 'package:ontari_app/themes/text_style.dart';
 import 'package:ontari_app/models/model_local.dart';
@@ -19,7 +18,7 @@ import '../../../providers/bloc_provider.dart';
 import '../../../widgets/stateful/toggle_switch_button.dart';
 import '../../../widgets/stateless/common_button.dart';
 import '../../../widgets/stateless/show_alert_dialog.dart';
-import '../../../blocs/app_user_bloc.dart';
+import '../bloc/user_detail_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);

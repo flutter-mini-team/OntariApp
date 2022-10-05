@@ -11,7 +11,8 @@ import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import '../../../assets/assets_path.dart';
 import '../../../models/user.dart';
 import '../../../providers/bloc_provider.dart';
-import '../../../blocs/app_user_bloc.dart';
+import '../../../blocs/app_event_bloc.dart';
+import '../bloc/user_detail_bloc.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key, this.user}) : super(key: key);

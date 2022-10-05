@@ -12,7 +12,7 @@ import '../../../widgets/stateless/common_avatar.dart';
 import '../../../widgets/stateful/common_textfield.dart';
 import '../../../widgets/stateless/discount.dart';
 import '../../../widgets/stateless/mentor.dart';
-import '../../../blocs/app_user_bloc.dart';
+import '../../setting/bloc/user_detail_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

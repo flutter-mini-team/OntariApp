@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ontari_app/models/user.dart';
 import 'package:ontari_app/modules/authentication/pages/select_plan_page.dart';
 import 'package:ontari_app/modules/authentication/pages/splash_page.dart';
 import 'package:ontari_app/modules/common/common_widget_page.dart';
@@ -13,12 +12,12 @@ import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
 import 'package:ontari_app/providers/bloc_provider.dart';
 import 'package:ontari_app/routes/route_name.dart';
 
-import '../blocs/app_user_bloc.dart';
 import '../modules/root/pages/root_page.dart';
 import '../../widgets/stateful/pages.dart';
 import '../modules/authentication/pages/sign_in_page.dart';
 import '../modules/authentication/pages/sign_up_page.dart';
 import '../modules/authentication/pages/verify_your_page.dart';
+import '../modules/setting/bloc/user_detail_bloc.dart';
 
 class Routes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
