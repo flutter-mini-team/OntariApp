@@ -4,6 +4,7 @@ import '../providers/bloc_provider.dart';
 
 enum EventName {
   getProfileUser,
+  downloadVideo,
   changeLanguage,
   changeTheme,
 }
