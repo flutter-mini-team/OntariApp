@@ -2,14 +2,15 @@ import 'package:ontari_app/models/user.dart';
 
 import '../providers/api_provider.dart';
 
-abstract class SettingRepo<T> {
+abstract class UserRepo<T> {
   final _apiProvider = ApiProvider();
+
   String get url;
   User? user;
 
   Future<User?> getUserDetailRepos() async {
     try {
-      final response = await _apiProvider.get("/profile");
+      final response = await _apiProvider.get(url);
 
       if (response.statusCode != 200) {
         return null;
@@ -22,9 +23,19 @@ abstract class SettingRepo<T> {
     }
   }
 
+  Future<bool> putUserDetailRepos(dynamic data) async {
+    try {
+      final response = await _apiProvider.put(url, data: data);
+
+      return response.statusCode == 200;
+    } catch (e) {
+      return false;
+    }
+  }
+
   T parseJSON(Map<String, dynamic> json);
 
-  // void refresh() {
-  //   user = null;
-  // }
+  void refresh() {
+    user = null;
+  }
 }
