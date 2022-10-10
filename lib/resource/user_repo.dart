@@ -33,8 +33,6 @@ abstract class UserRepo<T> {
     }
   }
 
-  T parseJSON(Map<String, dynamic> json);
-
   void refresh() {
     user = null;
   }

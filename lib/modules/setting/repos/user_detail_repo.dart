@@ -1,32 +1,37 @@
 import 'package:ontari_app/models/user.dart';
 
-import '../../../providers/api_provider.dart';
+import '../../../resource/user_repo.dart';
 
-class UserDetailRepo {
-  final apiProvider = ApiProvider();
+// class UserDetailRepo {
+//   final apiProvider = ApiProvider();
 
-  Future<User?> getUserDetailRepos() async {
-    try {
-      final response = await apiProvider.get("/profile");
+//   Future<User?> getUserDetailRepos() async {
+//     try {
+//       final response = await apiProvider.get("/profile");
 
-      if (response.statusCode != 200) {
-        return null;
-      }
+//       if (response.statusCode != 200) {
+//         return null;
+//       }
 
-      Map<String, dynamic> data = response.data['data'];
-      return User.fromJson(data);
-    } catch (e) {
-      rethrow;
-    }
-  }
+//       Map<String, dynamic> data = response.data['data'];
+//       return User.fromJson(data);
+//     } catch (e) {
+//       rethrow;
+//     }
+//   }
 
-  Future<bool> putUserDetailRepos(dynamic data) async {
-    try {
-      final response = await apiProvider.put("/profile", data: data);
+//   Future<bool> putUserDetailRepos(dynamic data) async {
+//     try {
+//       final response = await apiProvider.put("/profile", data: data);
 
-      return response.statusCode == 200;
-    } catch (e) {
-      return false;
-    }
-  }
+//       return response.statusCode == 200;
+//     } catch (e) {
+//       return false;
+//     }
+//   }
+// }
+
+class UserDetailRepo with UserRepo<User> {
+  @override
+  String get url => '/profile';
 }

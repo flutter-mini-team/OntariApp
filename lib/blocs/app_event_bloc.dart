@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import '../providers/bloc_provider.dart';
 
 enum EventName {
-  getProfileUser,
+  updateProfileUser,
   downloadVideo,
   changeLanguage,
   changeTheme,

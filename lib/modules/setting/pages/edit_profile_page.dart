@@ -11,8 +11,8 @@ import 'package:ontari_app/widgets/stateful/common_textfield.dart';
 import '../../../assets/assets_path.dart';
 import '../../../models/user.dart';
 import '../../../providers/bloc_provider.dart';
-import '../../../blocs/app_event_bloc.dart';
-import '../bloc/user_detail_bloc.dart';
+import '../bloc/setting_bloc.dart';
+import '../bloc/update_profile_bloc.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key, this.user}) : super(key: key);
@@ -28,7 +28,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   User get user => widget.user!;
-  AppUserBloc? get _bloc => BlocProvider.of<AppUserBloc>(context);
+  SettingBloc? get _bloc => BlocProvider.of<SettingBloc>(context);
+  final _updateProfileBloc = UpdateProfileBloc();
 
   buildTextFieldFirstName(String displayFirstName) {
     _firstController.text = displayFirstName;
@@ -85,23 +86,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   void _saveUpdateUserDetail() async {
-    // User user = User(
-    //   firstName: _firstController.text,
-    //   lastName: _lastController.text,
-    //   email: _emailController.text,
-    //   username: _userController.text,
-    // );
+    try {
+      final res = await _updateProfileBloc.updateUserDetail(
+        _firstController.text,
+        _lastController.text,
+        _emailController.text,
+      );
 
-    return _bloc!
-        .updateUserDetail(
-      _firstController.text,
-      _lastController.text,
-      _emailController.text,
-    )
-        .then((value) {
-      _bloc!.getUserDeTail();
-      Navigator.pop(context);
-    });
+      if (res) {
+        Navigator.pop(context);
+        _bloc!.refresh();
+        return;
+      }
+    } catch (e) {}
   }
 
   @override

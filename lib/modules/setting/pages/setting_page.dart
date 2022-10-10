@@ -18,7 +18,7 @@ import '../../../providers/bloc_provider.dart';
 import '../../../widgets/stateful/toggle_switch_button.dart';
 import '../../../widgets/stateless/common_button.dart';
 import '../../../widgets/stateless/show_alert_dialog.dart';
-import '../bloc/user_detail_bloc.dart';
+import '../bloc/setting_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  AppUserBloc? get _bloc => BlocProvider.of<AppUserBloc>(context);
+  SettingBloc? get _bloc => BlocProvider.of<SettingBloc>(context);
   final navigatorKey = GlobalKey<NavigatorState>;
 
   void _logOut(BuildContext context) {
@@ -40,7 +40,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<User>(
+      body: StreamBuilder<User?>(
         stream: _bloc!.userStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -98,14 +98,9 @@ class _SettingPageState extends State<SettingPage> {
                                   ),
                                 ),
                               );
-
-                            
-
-                              // Navigator.pushNamed(
-                              //   context,
-                              //   RouteName.editProfilePage,
-                              //   arguments: detail,
-                              // );
+                              // Navigator.pushNamed(context,
+                              //     RouteName.editProfilePage,
+                              //     arguments: detail);
                             },
                             fullName:
                                 '${detail.displayFirstName} ${detail.displayLastName}',

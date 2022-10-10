@@ -12,12 +12,13 @@ import 'package:ontari_app/modules/setting/pages/my_favorite_page.dart';
 import 'package:ontari_app/providers/bloc_provider.dart';
 import 'package:ontari_app/routes/route_name.dart';
 
+import '../models/user.dart';
 import '../modules/root/pages/root_page.dart';
 import '../../widgets/stateful/pages.dart';
 import '../modules/authentication/pages/sign_in_page.dart';
 import '../modules/authentication/pages/sign_up_page.dart';
 import '../modules/authentication/pages/verify_your_page.dart';
-import '../modules/setting/bloc/user_detail_bloc.dart';
+import '../modules/setting/bloc/setting_bloc.dart';
 
 class Routes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
@@ -72,19 +73,16 @@ class Routes {
         return _buildRoute(
           settings,
           BlocProvider(
-            bloc: AppUserBloc()..getUserDeTail(),
+            bloc: SettingBloc()..getUserDeTail(),
             child: const RootPage(),
           ),
         );
-      // case RouteName.editProfilePage:
-      //   final user = settings.arguments;
-      //   if (user is User) {
-      //     return _buildRoute(
-      //       settings,
-      //       EditProfilePage(user: user),
-      //     );
-      //   }
-      //   return _errorRoute(settings);
+      case RouteName.editProfilePage:
+        final user = settings.arguments;
+        if (user is User) {
+          return _buildRoute(settings, EditProfilePage(user: user));
+        }
+        return _errorRoute(settings);
       //----------------------------------------------------------------------
       // case RouteName.createPostPage:
       //   return _buildRouteDialog(
